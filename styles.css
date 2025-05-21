@@ -1,0 +1,96 @@
+/* Base styles */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #f9f9f9;
+    color: #333;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+  
+  /* Navbar */
+  .navbar {
+    background: #ffffff;
+    border-bottom: 1px solid #eee;
+    padding: 1rem 0;
+  }
+  
+  .logo {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  /* Hero */
+  .hero {
+    background: #e6f0ff;
+    text-align: center;
+    padding: 4rem 0;
+  }
+  
+  .hero h2 {
+    font-size: 2.5rem;
+  }
+  
+  .highlight {
+    color: #3366ff;
+  }
+  
+  .btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: #3366ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  /* Sections */
+  .section {
+    padding: 4rem 0;
+  }
+  
+  .section h3 {
+    margin-bottom: 1rem;
+  }
+  
+  .grid {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    flex: 1 1 45%;
+  }
+  
+  /* Footer */
+  .footer {
+    background: #f1f1f1;
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 0.9rem;
+  }
+  
