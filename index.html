@@ -3,19 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Name | Personal Website</title>
+  <title>Soklynin Nou | Personal Website</title>
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <header class="navbar">
+  <header class="navbar" style="text-decoration: none;">
     <div class="container">
-      <h1 class="logo">Your Name</h1>
+      <h1 class="logo">Welcome</h1>
       <nav>
         <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about" id="header-link"><b>About</b></a></li>
+          <li><a href="#portfolio" id="header-link"><b>Research</b></a></li>
+          <li><a href="#contact" id="header-link"><b>Contact</b></a></li>
+          <li><a href="#RandomProjects" id="header-link"><b>Coding Projects</b></a></li>
         </ul>
       </nav>
     </div>
@@ -23,8 +24,8 @@
 
   <section class="hero">
     <div class="container">
-      <h2>Hello, I'm <span class="highlight">Your Name</span></h2>
-      <p>A [Your Job Title] passionate about [something short and personal].</p>
+      <h2>Hello, I'm <span class="highlight">Soklynin Nou</span></h2>
+      <p></p>
       <a href="#contact" class="btn">Get in Touch</a>
     </div>
   </section>
@@ -32,7 +33,7 @@
   <section id="about" class="section">
     <div class="container">
       <h3>About Me</h3>
-      <p>Write a few sentences about who you are, your background, and what you're passionate about.</p>
+      <p>Hi</p>
     </div>
   </section>
 
@@ -41,21 +42,24 @@
       <h3>Research Projects</h3>
       <div class="grid">
         <div class="card">
-          <h4>Project Title</h4>
-          <p>Short project description.</p>
-        </div>
-        <div class="card">
-          <h4>Project Title</h4>
-          <p>Short project description.</p>
+          <p><a href="Research-Papers/A-Comparative-Analysis-and-Optimization-of-Renewable-Energy-Sources/Research-Paper.pdf" style="font-size: large;">A Comparative Analysis and Optimization of Renewable Energy Sources</a></p>
+          <p><a href="Research-Papers/A-Reevaluation-of-Birkhoff’s-Formula-on-Polygons/Research-Paper.pdf" style="font-size: large;">A Reevaluation of Birkhoff’s Formula on Polygons</a></p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section id="RandomProjects" class="section">
+    <div class="container">
+      <h3>Coding Projects</h3>
+      <p>WIP</p>
     </div>
   </section>
 
   <section id="contact" class="section">
     <div class="container">
       <h3>Contact</h3>
-      <p>Feel free to reach out via email at <a href="mailto:sly.nou@berkeley.edu">sly.nou@berkeley.edu</a></p>
+      <p>Feel free to reach out via email at <a href="mailto:sly.nou@berkeley.edu"><b>sly.nou@berkeley.edu</a><b></a></p>
     </div>
   </section>
 </body>

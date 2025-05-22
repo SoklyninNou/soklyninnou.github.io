@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soklynin Nou | Personal Website</title>
+    <style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .login-container {
+        background-color: #ffffff;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        max-width: 400px;
+    }
+    .login-container h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+    .login-window{
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        max-width: 400px;
+        margin: 1rem auto;
+    }
+    .btn {
+        font-size: medium;
+        display: inline-block;
+        padding: 1rem 1rem;
+        width: 400px;
+        background: #3366ff;
+        color: white;
+        text-decoration: none;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+    }
+    </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form action="/login" method="POST">
+      <div class="login-window">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+      </div>
+      <button type="submit" class="btn">Gain Access</button>
+    </form>
+    <div>
+        <a href="index.html">Back</a>
+    </div>
+  </div>
+</body>
+</html>
