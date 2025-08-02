@@ -1,15 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Soklynin Nou | Personal Website</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
-</head>
-<body>
-  <img src="dogs/1000000624.JPEG">
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soklynin Nou | Personal Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+  
+      body, html {
+        height: 100%;
+        font-family: 'Inter', sans-serif;
+      }
+  
+      .background {
+        background-image: url('dogs/1000000624.JPEG');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+  
+      h1 {
+        color: white;
+        font-size: 2em;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.6); /* makes text readable on image */
+        text-align: center;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background">
+      <h1>Hello there....... how did you get here?</h1>
+    </div>
+  </body>
 <!-- <body>
   <header class="navbar" style="text-decoration: none;">
     <div class="container">
