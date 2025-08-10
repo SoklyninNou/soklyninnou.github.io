@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Soklynin Nou | Personal Website</title>
     <link rel="stylesheet" href="personal_styles.css" />
+    <script src="personal.js"></script>
 </head>
     <body>
-        <header class="navbar" style="text-decoration: none;"><img src="pictures/me.JPG" alt= "logo" class="logo"></header>
+        <header class="navbar" style="text-decoration: none;">
+            <img src="pictures/me.JPG" alt= "logo" class="logo">
+            <div class="icon-group">
+                <img src="pictures/share.png" alt= "share" class = "icon" onclick="myFunction()">
+            </div>
+        </header>
         <hr class="banner">
         <div class="profile-container">
             <hr class="profile">
@@ -28,5 +34,6 @@
                 loading="lazy">
             </iframe>
         </div>
+        <div id="toast">Copied website link!</div>
     </body>
 </html>

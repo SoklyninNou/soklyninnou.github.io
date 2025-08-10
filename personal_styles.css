@@ -20,18 +20,35 @@ html, body {
     position: fixed;
     top: 0;
     width: 100%;
-    height: 30px;
+    height: 60px;
     background-color: black;
-    color: white;
-    padding: 15px;
-    z-index: 1000; /* Keeps it above other content */
-    border: 0px
+    padding: 0 20px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .logo {
-    width: auto;
     height: 30px;
 }
+
+.icon-group {
+    position: fixed;
+    top: 15px;        /* adjust vertical alignment */
+    right: 20px;      /* distance from right edge of viewport */
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    z-index: 1100;
+}
+
+.icon {
+    height: 30px;
+    cursor: pointer;
+}
+
+
 
 .profile-container {
     position: relative;
@@ -57,6 +74,30 @@ html, body {
     margin-top: 20px;
     font-size: 30px;
 }
+
+#toast {
+    visibility: hidden;
+    min-width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 12px;
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.5s ease, visibility 0.5s;
+  }
+  
+  #toast.show {
+    visibility: visible;
+    opacity: 1;
+  }
+  
 
 .divider {
     height: 2px;
