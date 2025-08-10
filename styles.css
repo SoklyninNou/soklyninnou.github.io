@@ -45,13 +45,16 @@ body {
   
 /* Hero */
 .hero {
-    background: #e6f0ff;
+    background: url('video_memes/morgana.GIF');
+    background-size: cover;
+    background-position: center;
     text-align: center;
     padding: 4rem 0;
 }
   
 .hero h2 {
     font-size: 2.5rem;
+    color: white;
 }
   
 .highlight {
