@@ -11,6 +11,7 @@ html, body {
     background-position: center;
     height: 400px;
     width: 100%;
+    margin-top: 59px;
     display: flex;
     border: 0px
 }
