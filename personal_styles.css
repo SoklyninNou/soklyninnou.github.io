@@ -40,11 +40,11 @@ html, body {
     display: flex;
     gap: 15px;
     align-items: center;
-    z-index: 1100;
 }
 
 .icon {
     height: 30px;
+    width: 30px;
     cursor: pointer;
 }
 
