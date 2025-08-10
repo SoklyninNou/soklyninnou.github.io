@@ -1,4 +1,4 @@
-function myFunction() {
+function shareFunction() {
     const copyText = "https://soklyninnou.github.io/personal";
 
     navigator.clipboard.writeText(copyText).then(() => {
@@ -17,4 +17,8 @@ function showToast(message) {
     setTimeout(() => {
         toast.className = toast.className.replace("show", "");
     }, 1000); // disappears after 3 seconds
+}
+
+function inputText() {
+    const text = document.getElementById("inputText").value;
 }
