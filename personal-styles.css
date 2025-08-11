@@ -9,7 +9,7 @@ html, body {
     background-image: url('pictures/starry-night.png');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center -445px;
+    background-position: center -550px;
     height: 400px;
     width: 100%;
     display: flex;
