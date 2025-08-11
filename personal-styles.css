@@ -232,15 +232,15 @@ html, body {
     height: 360px;
     width: 640px;
     display: flex;
-    border: 10px solid royalblue; /* Square border with color */
+    border: 10px solid royalblue;
     box-sizing: border-box;
     border-radius: 25px;
-    overflow: hidden; /* Ensures that the video doesn't overflow outside the border */
+    overflow: hidden;
 }
 
 .television-border video {
-    height: 100%;
-    width: 100%;
-    object-fit: cover; /* Ensures the video covers the area without stretching */
+    height: 350px;
+    width: 640px;
+    object-fit: cover;
     border-radius: 10px;
 }
