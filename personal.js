@@ -55,3 +55,10 @@ function play(audio) {
     }
 }
 
+function research() {
+    showToast("This feature is not available yet.");
+}
+
+function experience() {
+    showToast("This feature is not available yet.");
+}
