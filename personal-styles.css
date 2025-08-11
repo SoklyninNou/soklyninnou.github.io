@@ -10,7 +10,7 @@ html, body {
     background-image: url('pictures/starry-night.png');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center -550px;
+    background-position: center;
     height: 400px;
     width: 100%;
     display: flex;
@@ -116,7 +116,7 @@ html, body {
 .profile-container {
     position: relative;
     top: -75px;
-    right: 650px;
+    right: 550px;
     text-align: center;
     color: white;
     font-family: Arial, sans-serif;
