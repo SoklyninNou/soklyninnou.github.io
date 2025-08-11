@@ -30,7 +30,7 @@ function burgerMenu() {
 
 function toggleDropdown(dropdownId) {
     const dropdown = document.getElementById(dropdownId);
-    const arrow = dropdown.previousElementSibling.querySelector("#arrow");
+    const arrow = dropdown.previousElementSibling.querySelector(".arrow");
 
     dropdown.classList.toggle("show");
 
@@ -40,14 +40,16 @@ function toggleDropdown(dropdownId) {
         arrow.textContent = "▼";
     }
 
+    // Close other dropdowns
     const allDropdowns = document.querySelectorAll(".dropdown-content");
     allDropdowns.forEach((item) => {
         if (item !== dropdown && item.classList.contains("show")) {
             item.classList.remove("show");
-            item.previousElementSibling.querySelector("#arrow").textContent = "▼";
+            item.previousElementSibling.querySelector(".arrow").textContent = "▼";
         }
     });
 }
+
 
 
 const fein = new Audio('audio/fein.mp3');
