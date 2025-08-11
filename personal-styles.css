@@ -2,6 +2,7 @@ html, body {
     margin: 0;
     padding: 0;
     background-color: black;
+    color: white;
 }
 
 .banner {
@@ -29,6 +30,37 @@ html, body {
     align-items: center;
 }
 
+/* Position the sliding menu */
+#burger-menu {
+    position: absolute;
+    top: 50px; /* adjust if needed */
+    right: -240px; /* initially hidden off-screen */
+    width: 240px;
+    height: 100vh; /* full height */
+    background-color: black;
+    transition: right 0.3s ease;
+    z-index: 1;
+}
+  
+/* When menu is visible */
+#burger-menu.show {
+    right: 0;
+}
+
+#burger-menu p {
+    background-color: black;
+    color: white;
+    padding: 12px 16px;
+    margin: 0;
+    border-bottom: 1px solid #444; /* optional for separation */
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+#burger-menu p:hover {
+    background-color: grey;
+}
+
 .logo {
     height: 30px;
 }
@@ -47,8 +79,6 @@ html, body {
     width: 30px;
     cursor: pointer;
 }
-
-
 
 .profile-container {
     position: relative;
@@ -93,10 +123,10 @@ html, body {
     transition: opacity 0.5s ease, visibility 0.5s;
   }
   
-  #toast.show {
+#toast.show {
     visibility: visible;
     opacity: 1;
-  }
+}
   
 
 .divider {

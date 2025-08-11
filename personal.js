@@ -22,3 +22,12 @@ function showToast(message) {
 function inputText() {
     const text = document.getElementById("inputText").value;
 }
+
+function burgerMenu() {
+    var x = document.getElementById("burger-menu");
+    x.classList.toggle("show");
+}
+
+function dropdownFunction() {
+    document.getElementById("dropdown").classList.toggle("show");
+}
