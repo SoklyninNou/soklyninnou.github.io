@@ -28,6 +28,19 @@ function burgerMenu() {
     x.classList.toggle("show");
 }
 
-function dropdownFunction() {
-    document.getElementById("dropdown").classList.toggle("show");
+function dropDown() {
+    var dropdown = document.getElementById("dropdown-content");
+    var arrow = document.getElementById("arrow");
+    dropdown.classList.toggle("show");
+    arrow.textContent = dropdown.classList.contains("show") ? "▲" : "▼";
+}
+
+const fein = new Audio('audio/fein.mp3');
+function feinPlay() {
+    if (fein.paused) {
+        fein.play();
+    } else {
+        fein.pause();
+        fein.currentTime = 0;
+    }
 }

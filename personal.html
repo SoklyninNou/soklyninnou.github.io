@@ -16,7 +16,12 @@
                 <img style="padding-left: 5px;" src="pictures/burger-icon.png" alt= "menu" class = "icon" onclick="burgerMenu()">
             </div>
             <div id="burger-menu">
-                <p>Gadgets</p>
+                <p onclick="dropDown()">Gadgets <span id="arrow">▼</span></p>
+                <div id="dropdown-content" class="dropdown-content">
+                    <p>Timer</p>
+                    <p>Note Taking</p>
+                    <p onclick="feinPlay()">Fein</p>
+                </div>
                 <p>Contact</p>
             </div>
         </header>

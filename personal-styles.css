@@ -47,18 +47,51 @@ html, body {
     right: 0;
 }
 
-#burger-menu p {
+#burger-menu > p {
     background-color: black;
     color: white;
     padding: 12px 16px;
     margin: 0;
-    border-bottom: 1px solid #444; /* optional for separation */
+    border-bottom: 1px solid #444; /* separation */
     transition: background-color 0.3s ease;
     cursor: pointer;
 }
 
-#burger-menu p:hover {
+#burger-menu > p:hover {
     background-color: grey;
+}
+
+#arrow {
+    font-size: 0.7em;
+    vertical-align: middle;
+    margin-left: 4px;
+}
+
+/* Dropdown container - hidden by default */
+.dropdown-content {
+    display: none;
+    background-color: #1a1a1a; /* different background */
+}
+
+/* Show the dropdown */
+.dropdown-content.show {
+    display: block;
+}
+
+/* Dropdown item style */
+.dropdown-content p {
+    background-color: #1a1a1a; /* different from main */
+    margin: 0;
+    padding: 12px 16px 12px 32px;
+    color: white;
+    border-bottom: 1px solid #333;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+/* Dropdown item hover */
+.dropdown-content p:hover {
+    background-color: #333;
 }
 
 .logo {
