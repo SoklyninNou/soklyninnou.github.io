@@ -166,8 +166,13 @@ html, body {
     opacity: 1;
 }
   
+.divider-wrapper {
+    margin-left: -25px;
+    margin-bottom: 70px;
+}
 
 .divider {
+    position: relative;
     height: 3px;
     background-color: royalblue;
     margin: 20px 0;
@@ -177,6 +182,7 @@ html, body {
 
 .content {
     position: relative;
+    padding-left: 25px;
     top: -110px;
     color: white;
     font-family: Arial, sans-serif;
