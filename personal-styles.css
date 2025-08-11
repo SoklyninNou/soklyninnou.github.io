@@ -195,26 +195,40 @@ html, body {
 }
 
 .mini-banner {
-    background-image: url('pictures/bmo-skate.jpg');
+    background-image: url('pictures/bmo-skate.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     position: absolute;
-    margin-top: -75px;
-    height: 300px;
-    width: 300px;
+    margin-top: 0px;
+    height: 150px;
+    width: 150px;
     display: flex;
     border: 0px;
-    clip-path: inset(69px 65px 60px 60px);
+    clip-path: insert(50px 50px 50px 50px);
     z-index: 1;
-    animation: scroll-right 10s linear infinite;
+    animation: skate 12s linear infinite;
 }
 
-@keyframes scroll-right {
+@keyframes skate {
     0% {
-        left: -180px;
+        left: -150px;
+        transform: scaleX(1);
+    }
+    45% {
+        left: 100vw;
+        transform: scaleX(1);
+    }
+    50% {
+        left: 100vw;
+        transform: scaleX(-1); /* flip horizontally */
+    }
+    95% {
+        left: -150px;
+        transform: scaleX(-1);
     }
     100% {
-        left: calc(100vw - 50px);
+        left: -150px;
+        transform: scaleX(1); /* flip back */
     }
 }
