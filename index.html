@@ -1,47 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Soklynin Nou | Personal Website</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-  
-      body, html {
-        height: 100%;
-        font-family: 'Inter', sans-serif;
-      }
-  
-      .container {
-        background-image: url('video-memes/morgana.GIF');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-  
-      h1 {
-        color: white;
-        font-size: 2em;
-        text-shadow: 2px 2px 8px rgba(0,0,0,0.6); /* makes text readable on image */
-        text-align: center;
-        padding: 1rem;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>
-        Hi ........ How did you get here?
-      </h1>
-    </div>
-  </body>
+    <link rel="stylesheet" href="personal-styles.css" />
+    <script src="personal.js"></script>
+</head>
+    <body>
+        <header class="navbar" style="text-decoration: none;">
+            <img src="pictures/flag.png" alt= "logo" class="logo">
+            <div class="icon-group">
+                <img src="pictures/share.png" alt= "Share" class = "icon" onclick="shareFunction()">
+                <a href="./screen-saver"><img src="pictures/ss.png" alt= "Screen Saver" class = "icon"></a>
+                <img style="padding-left: 5px;" src="pictures/burger-icon.png" alt= "menu" class = "icon" onclick="burgerMenu()">
+            </div>
+            <div id="burger-menu">
+                <p onclick="dropDown()">Gadgets <span id="arrow">▼</span></p>
+                <div id="dropdown-content" class="dropdown-content">
+                    <p onclick="timer()">Timer</p>
+                    <p onclick="noteTaking()">Note Taking</p>
+                    <p onclick="play(fein)">Fein</p>
+                    <p onclick="play(carelessWhisper)">Classic Meme</p>
+                </div>
+                <p onclick="research()">Research</p>
+                <p onclick="experience()">Experience</p>
+                <p><a href="mailto:sly.nou@berkeley.edu" style="text-decoration: none; color: white;">Contact me</a></p>
+            </div>
+        </header>
+        <hr class="banner">
+        <hr class="skater-boi">
+            <div class="profile-container">
+                <hr class="profile">
+                <p class="profile-text">Soklynin Nou</p>
+            </div>
+        
+<!-- Probably a more elegant way of alignment exists -->
+        <div class="content">
+            <hr class="divider">
+            <h2>Some songs I listen to:</h2>
+            <iframe
+                style="border-radius:12px"
+                src="https://open.spotify.com/embed/track/7b4fxkOA4NDr4tDylrb10K?utm_source=generator"
+                width="40%"
+                height="152"
+                frameBorder="0"
+                allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+            </iframe>
+            <br>
+            <iframe
+                style="border-radius:12px"
+                src="https://open.spotify.com/embed/track/1oFqKeepmT5S8BCGqJl7Ar?utm_source=generator"
+                width="40%"
+                height="152"
+                frameBorder="0"
+                allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+            </iframe>
+            <br>
+            <iframe
+                style="border-radius:12px"
+                src="https://open.spotify.com/embed/track/2D4dV2KXDTszzJ3p3cFqhA?utm_source=generator"
+                width="40%"
+                height="152"
+                frameBorder="0"
+                allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+            </iframe>
+            <br>
+            <div id="toast"></div>
+        </div>
+    </body>
 </html>
