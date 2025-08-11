@@ -235,10 +235,12 @@ html, body {
     border: 10px solid royalblue; /* Square border with color */
     box-sizing: border-box;
     border-radius: 25px;
+    overflow: hidden; /* Ensures that the video doesn't overflow outside the border */
 }
 
-.television-border iframe {
-    width: 100%;
+.television-border video {
     height: 100%;
-    border-radius: 15px; /* Optional: rounded corners for the iframe itself */
+    width: 100%;
+    object-fit: cover; /* Ensures the video covers the area without stretching */
+    border-radius: 10px;
 }
