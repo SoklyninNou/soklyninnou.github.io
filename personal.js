@@ -28,12 +28,27 @@ function burgerMenu() {
     x.classList.toggle("show");
 }
 
-function dropDown() {
-    var dropdown = document.getElementById("dropdown-content");
-    var arrow = document.getElementById("arrow");
+function toggleDropdown(dropdownId) {
+    const dropdown = document.getElementById(dropdownId);
+    const arrow = dropdown.previousElementSibling.querySelector("#arrow");
+
     dropdown.classList.toggle("show");
-    arrow.textContent = dropdown.classList.contains("show") ? "▲" : "▼";
+
+    if (dropdown.classList.contains("show")) {
+        arrow.textContent = "▲";
+    } else {
+        arrow.textContent = "▼";
+    }
+
+    const allDropdowns = document.querySelectorAll(".dropdown-content");
+    allDropdowns.forEach((item) => {
+        if (item !== dropdown && item.classList.contains("show")) {
+            item.classList.remove("show");
+            item.previousElementSibling.querySelector("#arrow").textContent = "▼";
+        }
+    });
 }
+
 
 const fein = new Audio('audio/fein.mp3');
 const carelessWhisper = new Audio('audio/careless-whisper.mp3');
@@ -53,6 +68,19 @@ function play(audio) {
         audio.currentTime = 0;
         currentAudio = null;
     }
+}
+
+let videoSource = "video-memes/mambo.mp4";
+function playVideo(newSource) {
+    const videoElement = document.getElementById("myVideo");
+    const videoSourceElement = document.getElementById("videoSource");
+    
+    videoSource = newSource;  // Update the video source variable
+    videoSourceElement.src = newSource;  // Update the <source> element's src attribute
+
+    // Reload the video to apply the new source
+    videoElement.load();
+    videoElement.play();
 }
 
 function research() {
