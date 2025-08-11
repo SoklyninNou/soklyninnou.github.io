@@ -175,14 +175,14 @@ html, body {
     position: relative;
     height: 3px;
     background-color: royalblue;
-    margin: 20px 0;
+    margin: 20px -50px 50px;
     z-index: 9999;
     border: 0px;
 }
 
 .content {
     position: relative;
-    padding-left: 25px;
+    padding-left: 50px;
     top: -110px;
     color: white;
     font-family: Arial, sans-serif;
