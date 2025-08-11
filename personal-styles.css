@@ -172,7 +172,7 @@ html, body {
     background-color: royalblue;
     top: -110px;
     margin: 20px -50px 50px;
-    z-index: 9999;
+    z-index: 1;
     border: 0px;
 }
 
