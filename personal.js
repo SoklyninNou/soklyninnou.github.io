@@ -62,3 +62,11 @@ function research() {
 function experience() {
     showToast("This feature is not available yet.");
 }
+
+function timer() {
+    showToast("This feature is not available yet.");
+}
+
+function noteTaking() {
+    showToast("This feature is not available yet.");
+}
