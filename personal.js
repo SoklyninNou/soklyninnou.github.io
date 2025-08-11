@@ -36,11 +36,22 @@ function dropDown() {
 }
 
 const fein = new Audio('audio/fein.mp3');
-function feinPlay() {
-    if (fein.paused) {
-        fein.play();
+const carelessWhisper = new Audio('audio/careless-whisper.mp3');
+let currentAudio = null;
+function play(audio) {
+    if (currentAudio && currentAudio !== audio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+    }
+  
+    // Toggle play/pause on the clicked audio
+    if (audio.paused) {
+        audio.play();
+        currentAudio = audio;
     } else {
-        fein.pause();
-        fein.currentTime = 0;
+        audio.pause();
+        audio.currentTime = 0;
+        currentAudio = null;
     }
 }
+
