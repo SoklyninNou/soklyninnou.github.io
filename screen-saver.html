@@ -47,6 +47,9 @@
         position: fixed;
         top: 20px;
         right: 20px;
+        width: 100px;
+        height: 50px;
+        font-size: medium;
         padding: 10px 15px;
         background-color: #007BFF;
         color: white;
@@ -54,10 +57,32 @@
         border-radius: 5px;
         cursor: pointer;
         z-index: 1000;
+    
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
       }
-      
+    
+      /* When you hover over the button area, show it */
       #toggleButton:hover {
+        opacity: 1;
+        pointer-events: auto;
         background-color: #0056b3;
+      }
+    
+      /* Optional: make it also appear when hovering the corner area */
+      #hoverArea {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100px;
+        height: 50px;
+        z-index: 999;
+      }
+    
+      #hoverArea:hover + #toggleButton {
+        opacity: 1;
+        pointer-events: auto;
       }
     </style>
 
@@ -86,8 +111,8 @@
         contenteditable="true"
         autocorrect="off" 
         autocapitalize="off" 
-        spellcheck="false">
-        Input Text</h1>
+        spellcheck="false"></h1>
+      <div id="hoverArea"></div>
       <button onclick="toggleVideo()" id="toggleButton">Show</button>
     </div>
     <div id="videoContainer">
