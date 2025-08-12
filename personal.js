@@ -56,18 +56,34 @@ const fein = new Audio('audio/fein.mp3');
 const carelessWhisper = new Audio('audio/careless-whisper.mp3');
 let currentAudio = null;
 function play(audio) {
+    const profile = document.getElementById("profile");
+    if (audio === carelessWhisper) {
+        profile.classList.add("zoom");
+    } else {
+        profile.classList.remove("zoom");
+    }
+
     if (currentAudio && currentAudio !== audio) {
         currentAudio.pause();
         currentAudio.currentTime = 0;
+        if (currentAudio === carelessWhisper) {
+            profile.style.animationPlayState = "paused";
+        }
     }
-  
+
     // Toggle play/pause on the clicked audio
     if (audio.paused) {
         audio.play();
         currentAudio = audio;
+        if (audio === carelessWhisper) {
+            profile.style.animationPlayState = "running";
+        }
     } else {
         audio.pause();
         audio.currentTime = 0;
+        if (audio === carelessWhisper) {
+            profile.style.animationPlayState = "paused";
+        }
         currentAudio = null;
     }
 }
@@ -77,10 +93,9 @@ function playVideo(newSource) {
     const videoElement = document.getElementById("myVideo");
     const videoSourceElement = document.getElementById("videoSource");
     
-    videoSource = newSource;  // Update the video source variable
-    videoSourceElement.src = newSource;  // Update the <source> element's src attribute
+    videoSource = newSource;
+    videoSourceElement.src = newSource;
 
-    // Reload the video to apply the new source
     videoElement.load();
     videoElement.play();
 }

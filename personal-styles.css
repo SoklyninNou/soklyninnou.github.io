@@ -123,7 +123,7 @@ html, body {
     z-index: 999;
 }
 
-.profile {
+#profile {
     background-image: url('pictures/me.JPG');
     height: 200px;
     width: 200px;
@@ -132,6 +132,24 @@ html, body {
     border-radius: 50%;
     border: 3px solid royalblue;
     margin: 0 auto;
+}
+
+#profile.zoom {
+    display: block;
+    animation: dramatic 300s forwards;
+    animation-play-state: paused;
+}
+
+
+@keyframes dramatic {
+    0% {
+        transform: scale(1) translateX(0);
+        border-radius: 50%;
+    }
+    100% {
+        transform: scale(10) translateX(40px);
+        border-radius: 0%;
+    }
 }
 
 .profile-text {
