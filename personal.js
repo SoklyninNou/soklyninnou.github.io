@@ -80,7 +80,6 @@ function play(audio) {
         }
     } else {
         audio.pause();
-        audio.currentTime = 0;
         if (audio === carelessWhisper) {
             profile.style.animationPlayState = "paused";
         }

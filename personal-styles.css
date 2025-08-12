@@ -141,16 +141,19 @@ html, body {
     display: block;
     animation: dramatic 300s forwards;
     animation-play-state: paused;
+    transform-origin: center;
+    position: relative;
+    right: calc(-550px);
 }
 
 
 @keyframes dramatic {
     0% {
-        transform: scale(1) translateX(0);
+        transform: scale(1);
         border-radius: 50%;
     }
     100% {
-        transform: scale(10) translateX(40px);
+        transform: scale(10);
         border-radius: 0%;
     }
 }
