@@ -123,8 +123,11 @@ html, body {
     z-index: 999;
 }
 
-#profile {
+.profile{
     background-image: url('pictures/me.JPG');
+}
+
+#profile {
     height: 200px;
     width: 200px;
     background-position: center;
