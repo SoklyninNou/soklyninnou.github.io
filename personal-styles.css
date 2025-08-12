@@ -139,7 +139,7 @@ html, body {
 
 #profile.zoom {
     display: block;
-    animation: dramatic 300s forwards;
+    animation: dramatic 5s forwards;
     animation-play-state: paused;
     transform-origin: center;
     position: relative;
@@ -153,7 +153,7 @@ html, body {
         border-radius: 50%;
     }
     100% {
-        transform: scale(10);
+        transform: scale(8);
         border-radius: 0%;
     }
 }
