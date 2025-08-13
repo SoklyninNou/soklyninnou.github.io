@@ -26,7 +26,7 @@ html, body {
     height: 60px;
     background-color: black;
     padding: 0 20px;
-    z-index: 999;
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -116,7 +116,7 @@ html, body {
 .profile-container {
     position: relative;
     top: -75px;
-    right: 35%;
+    right: 550px;
     text-align: center;
     color: white;
     font-family: Arial, sans-serif;
@@ -143,8 +143,7 @@ html, body {
     animation-play-state: paused;
     transform-origin: center;
     position: relative;
-    right: calc(-35%);
-    z-index: 1000;
+    right: calc(-550px);
 }
 
 
@@ -154,7 +153,7 @@ html, body {
         border-radius: 50%;
     }
     100% {
-        transform: scale(10);
+        transform: scale(8);
         border-radius: 0%;
     }
 }
@@ -162,18 +161,10 @@ html, body {
 .profile-text {
     margin-top: 20px;
     font-size: 40px;
-}
-
-#profile-text {
     border-radius: 25px;
+    /* border: 3px solid royalblue; */
     display: inline-block;
     background-color: black;
-}
-
-#profile-text.zoom {
-    transform-origin: center;
-    position: relative;
-    right: calc(-35%);
 }
 
 #toast {
