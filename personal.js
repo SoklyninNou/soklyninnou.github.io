@@ -57,10 +57,13 @@ const carelessWhisper = new Audio('audio/careless-whisper.mp3');
 let currentAudio = null;
 function play(audio) {
     const profile = document.getElementById("profile");
+    const profileText = document.getElementById("profile-text");
     if (audio === carelessWhisper) {
+        profileText.classList.add("zoom");
         profile.classList.add("zoom");
     } else {
         profile.classList.remove("zoom");
+        profileText.classList.remove("zoom");
     }
 
     if (currentAudio && currentAudio !== audio) {
@@ -86,6 +89,12 @@ function play(audio) {
         currentAudio = null;
     }
 }
+
+carelessWhisper.addEventListener('ended', () => {
+    const profile = document.getElementById("profile");
+    profile.classList.remove("zoom");
+    profile.style.animationPlayState = "paused";
+});
 
 let videoSource = "video-memes/mambo.mp4";
 function playVideo(newSource) {
