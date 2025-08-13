@@ -120,7 +120,6 @@ html, body {
     text-align: center;
     color: white;
     font-family: Arial, sans-serif;
-    z-index: 999;
 }
 
 .profile{
@@ -231,7 +230,6 @@ html, body {
     display: flex;
     border: 0px;
     clip-path: insert(50px 50px 50px 50px);
-    z-index: 1;
     animation: skate 12s linear infinite;
 }
 
