@@ -19,10 +19,6 @@ function showToast(message) {
     }, 1000); // disappears after 3 seconds
 }
 
-function inputText() {
-    const text = document.getElementById("inputText").value;
-}
-
 function burgerMenu() {
     var x = document.getElementById("burger-menu");
     x.classList.toggle("show");
@@ -49,8 +45,6 @@ function toggleDropdown(dropdownId) {
         }
     });
 }
-
-
 
 const fein = new Audio('audio/fein.mp3');
 const carelessWhisper = new Audio('audio/careless-whisper.mp3');
@@ -90,20 +84,8 @@ function play(audio) {
     }
 }
 
-let videoSource = "video-memes/mambo.mp4";
-function playVideo(newSource) {
-    const videoElement = document.getElementById("myVideo");
-    const videoSourceElement = document.getElementById("videoSource");
-    
-    videoSource = newSource;
-    videoSourceElement.src = newSource;
-
-    videoElement.load();
-    videoElement.play();
-}
-
 function research() {
-    showToast("This feature is not available yet.");
+    window.location.href = "./research.html"; 
 }
 
 function experience() {

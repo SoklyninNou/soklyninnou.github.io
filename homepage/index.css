@@ -1,0 +1,19 @@
+.television-border {
+    position: absolute;
+    top: 850px;
+    right: 100px;
+    height: 360px;
+    width: 640px;
+    display: flex;
+    border: 10px solid royalblue;
+    box-sizing: border-box;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.television-border video {
+    height: 350px;
+    width: 640px;
+    object-fit: cover;
+    border-radius: 10px;
+}

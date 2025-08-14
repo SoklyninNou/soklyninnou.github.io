@@ -7,7 +7,7 @@ html, body {
 }
 
 .banner {
-    background-image: url('pictures/starry-night.png');
+    background-image: url('../pictures/starry-night.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -129,7 +129,7 @@ html, body {
 }
 
 .profile{
-    background-image: url('pictures/me.JPG');
+    background-image: url('../pictures/me.JPG');
 }
 
 #profile {
@@ -226,7 +226,7 @@ html, body {
 }
 
 .skater-boi {
-    background-image: url('pictures/bmo-skate.png');
+    background-image: url('../pictures/bmo-skate.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -261,24 +261,4 @@ html, body {
         left: -150px;
         transform: scaleX(1);
     }
-}
-
-.television-border {
-    position: absolute;
-    top: 850px;
-    right: 100px;
-    height: 360px;
-    width: 640px;
-    display: flex;
-    border: 10px solid royalblue;
-    box-sizing: border-box;
-    border-radius: 25px;
-    overflow: hidden;
-}
-
-.television-border video {
-    height: 350px;
-    width: 640px;
-    object-fit: cover;
-    border-radius: 10px;
 }
