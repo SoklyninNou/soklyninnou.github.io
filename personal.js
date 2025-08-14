@@ -57,10 +57,13 @@ const carelessWhisper = new Audio('audio/careless-whisper.mp3');
 let currentAudio = null;
 function play(audio) {
     const profile = document.getElementById("profile");
+    const profileText = document.getElementById("profile-text");
     if (audio === carelessWhisper) {
         profile.classList.add("zoom");
+        profileText.classList.add("zoom");
     } else {
         profile.classList.remove("zoom");
+        profileText.classList.remove("zoom");
     }
 
     if (currentAudio && currentAudio !== audio) {
