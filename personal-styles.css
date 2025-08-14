@@ -34,7 +34,7 @@ html, body {
 }
 
 #burger-menu {
-    position: absolute;
+    position: fixed;
     top: 47px;
     right: -300px;
     width: 300px;
