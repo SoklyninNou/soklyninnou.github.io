@@ -1,89 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Soklynin Nou | Personal Website</title>
-  <link rel="stylesheet" href="personal-styles.css" />
-  <script src="personal.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soklynin Nou | Personal Website</title>
+    <link rel="stylesheet" href="personal-styles.css" />
+    <script src="personal.js"></script>
 </head>
 <header>
-  <div class="navbar" style="text-decoration: none;">
-  <img src="pictures/flag.png" alt= "logo" class="logo">
-    <div class="icon-group">
-      <img src="pictures/share.png" alt= "Share" class = "icon" onclick="shareFunction()">
-      <a href="./screen-saver"><img src="pictures/ss.png" alt= "Screen Saver" class = "icon"></a>
-      <img style="padding-left: 5px;" src="pictures/burger-icon.png" alt= "menu" class = "icon" onclick="burgerMenu()">
+    <div class="navbar" style="text-decoration: none;">
+    <img src="pictures/flag.png" alt= "logo" class="logo">
+        <div class="icon-group">
+        <img src="pictures/share.png" alt= "Share" class = "icon" onclick="shareFunction()">
+        <a href="./screen-saver"><img src="pictures/ss.png" alt= "Screen Saver" class = "icon"></a>
+        <img style="padding-left: 5px;" src="pictures/burger-icon.png" alt= "menu" class = "icon" onclick="burgerMenu()">
+        </div>
     </div>
-  </div>
-  <div id="burger-menu">
-    <p onclick="toggleDropdown('gadgets-dropbox')">Gadgets <span class="arrow">▼</span></p>
-    <div id="gadgets-dropbox" class="dropdown-content">
-      <p onclick="timer()">Timer</p>
-      <p onclick="noteTaking()">Note Taking</p>
-      <p onclick="play(fein)">Fein</p>
-      <p onclick="play(carelessWhisper)">Classic Meme</p>
+    <div id="burger-menu">
+        <p onclick="toggleDropdown('gadgets-dropbox')">Gadgets <span class="arrow">▼</span></p>
+        <div id="gadgets-dropbox" class="dropdown-content">
+        <p onclick="timer()">Timer</p>
+        <p onclick="noteTaking()">Note Taking</p>
+        <p onclick="play(fein)">Fein</p>
+        <p onclick="play(carelessWhisper)">Classic Meme</p>
+        </div>
+        <p onclick="research()">Research</p>
+        <p onclick="experience()">Experience</p>
+        <p onclick="toggleDropdown('video-selection-dropbox')">Video Selection <span class="arrow">▼</span></p>
+        <div id="video-selection-dropbox" class="dropdown-content">
+        <p onclick="playVideo('video-memes/mambo.mp4')">Mambo</p>
+        <p onclick="playVideo('video-memes/TrillionDollarIdea.mp4')">Cool Idea</p>
+        </div>
+        <p><a href="mailto:sly.nou@berkeley.edu" style="text-decoration: none; color: white;">Contact me</a></p>
     </div>
-    <p onclick="research()">Research</p>
-    <p onclick="experience()">Experience</p>
-    <p onclick="toggleDropdown('video-selection-dropbox')">Video Selection <span class="arrow">▼</span></p>
-    <div id="video-selection-dropbox" class="dropdown-content">
-      <p onclick="playVideo('video-memes/mambo.mp4')">Mambo</p>
-      <p onclick="playVideo('video-memes/TrillionDollarIdea.mp4')">Cool Idea</p>
+    <hr class="banner">
+    <hr class="skater-boi">
+    <div class="profile-container">
+        <hr class="profile" id="profile">
+        <p class="profile-text" id="profile-text">Soklynin Nou</p>
     </div>
-    <p><a href="mailto:sly.nou@berkeley.edu" style="text-decoration: none; color: white;">Contact me</a></p>
-  </div>
-  <hr class="banner">
-  <hr class="skater-boi">
-  <div class="profile-container">
-    <hr class="profile" id="profile">
-    <p class="profile-text" id="profile-text">Soklynin Nou</p>
-  </div>
-  <hr class="divider">
+    <hr class="divider">
 </header>
 <!-- Probably a more elegant way of alignment exists -->
-        <div class="content">
-            <h1>Some songs I listen to:</h1>
-            <iframe
-                style="border-radius:12px"
-                src="https://open.spotify.com/embed/track/7b4fxkOA4NDr4tDylrb10K?utm_source=generator"
-                width="40%"
-                height="152"
-                frameBorder="0"
-                allowfullscreen=""
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy">
-            </iframe>
-            <br>
-            <iframe
-                style="border-radius:12px"
-                src="https://open.spotify.com/embed/track/0BxE4FqsDD1Ot4YuBXwAPp?utm_source=generator&theme=0"
-                width="40%"
-                height="152"
-                frameBorder="0"
-                allowfullscreen=""
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy">
-            </iframe>
-            <br>
-            <iframe
-                style="border-radius:12px"
-                src="https://open.spotify.com/embed/track/2D4dV2KXDTszzJ3p3cFqhA?utm_source=generator"
-                width="40%"
-                height="152"
-                frameBorder="0"
-                allowfullscreen=""
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy">
-            </iframe>
-            <br>
-            <div id="toast"></div>
-        </div>
-        <div class="television-border">
-            <video id="myVideo" controls autoplay loop muted>
-                <source id="videoSource" src="video-memes/mambo.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </body>
+<body>
+    <div class="content">
+        <h1>Some songs I listen to:</h1>
+        <iframe
+            style="border-radius:12px"
+            src="https://open.spotify.com/embed/track/7b4fxkOA4NDr4tDylrb10K?utm_source=generator"
+            width="40%"
+            height="152"
+            frameBorder="0"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+        </iframe>
+        <br>
+        <iframe
+            style="border-radius:12px"
+            src="https://open.spotify.com/embed/track/0BxE4FqsDD1Ot4YuBXwAPp?utm_source=generator&theme=0"
+            width="40%"
+            height="152"
+            frameBorder="0"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+        </iframe>
+        <br>
+        <iframe
+            style="border-radius:12px"
+            src="https://open.spotify.com/embed/track/2D4dV2KXDTszzJ3p3cFqhA?utm_source=generator"
+            width="40%"
+            height="152"
+            frameBorder="0"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+        </iframe>
+        <br>
+        <div id="toast"></div>
+    </div>
+    <div class="television-border">
+        <video id="myVideo" controls autoplay loop muted>
+            <source id="videoSource" src="video-memes/mambo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</body>
 </html>
