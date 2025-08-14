@@ -85,7 +85,7 @@ function play(audio) {
 }
 
 function research() {
-    window.location.href = "./research.html"; 
+    window.location.href = "./research"; 
 }
 
 function experience() {
