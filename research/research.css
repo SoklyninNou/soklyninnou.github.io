@@ -18,8 +18,10 @@
 }
 
 #title {
-    font-size: 30px;
+    color: royalblue;
+    font-size: 29px;
     text-align: center;
+    padding-bottom: 3%;
 }
 
 #abstract {
