@@ -37,10 +37,11 @@ html, body {
     position: fixed;
     top: 47px;
     right: -300px;
-    width: 300px;
+    width: 247px;
     height: 100vh;
     margin-top: 15px;
     background-color: black;
+    border-left: 3px solid royalblue;
     transition: right 0.3s ease;
     z-index: 1;
     font-size: 24px;
