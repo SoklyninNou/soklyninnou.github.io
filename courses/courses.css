@@ -1,0 +1,120 @@
+.container {
+    background-color: #191919;
+    width: 90%;
+    height: auto;
+    padding: 1%;
+    margin: 0% 5% 5%;
+    border: 3px solid royalblue;
+}
+
+.head {
+    text-align: center;
+    font-size: 50px;
+    background-color: #191919;
+    width: 50%;
+    height: auto;
+    padding: 1%;
+    margin: 0% 25% 5%;
+    border: 3px solid royalblue;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+  
+.title {
+    width: 220px;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 50px;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+} 
+
+.item {
+    position: relative;
+    width: 140px;
+    height: 50px;
+    font-size: 18px;
+    align-self: center;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer; 
+}
+
+.item::after {
+    content: attr(courseName);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    width: max-content;
+    transform: translateX(-50%) translateY(-8px);
+    background-color: #333;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 18px;
+    padding: 2px 5px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 999;
+    visibility: hidden;
+}
+
+.item:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+#legend {
+    position: relative;
+    height: 100px;
+    width: auto;
+    background-position: center;
+    display: flex;
+    min-width: 550px;
+    gap: 10px;
+    margin: 50px 20px;
+    font-size: 25px;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+ #legend > div{
+    height: 100%;
+    width: 15%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#honors {
+    background-color: darkgoldenrod;
+    padding: 5px;
+}
+
+#compsci {
+    background-color: darkcyan;
+    padding: 5px;
+}
+
+#math {
+    background-color: darkslateblue;
+    padding: 5px;
+}
+
+#physics {
+    background-color: darkmagenta;
+    padding: 5px;
+}
+
+#electives {
+    background-color: brown;
+    padding: 5px;
+}

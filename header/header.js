@@ -92,6 +92,10 @@ function experience() {
     window.location.href = "./experience";
 }
 
+function course() {
+    window.location.href = "./courses";
+}
+
 function noteTaking() {
     showToast("This feature is not available yet.");
 }

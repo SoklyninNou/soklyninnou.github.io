@@ -4,44 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Soklynin Nou | Personal Website</title>
-    <link rel="stylesheet" href="header/header.css" />
-    <script src="../header/header.js"></script>
 
     <link rel="stylesheet" href="../homepage/index.css" />
     <script src="../homepage/index.js"></script>
 </head>
 <header>
-    <div class="navbar" style="text-decoration: none;">
-    <img src="pictures/flag.png" alt= "logo" class="logo">
-        <div class="icon-group">
-        <img src="pictures/share.png" alt= "Share" class = "icon" onclick="shareFunction()">
-        <a href="./screen-saver"><img src="pictures/ss.png" alt= "Screen Saver" class = "icon"></a>
-        <img style="padding-left: 5px;" src="pictures/burger-icon.png" alt= "menu" class = "icon" onclick="burgerMenu()">
-        </div>
-    </div>
-    <div id="burger-menu">
-        <p onclick="toggleDropdown('gadgets-dropbox')">Gadgets <span class="arrow">▼</span></p>
-        <div id="gadgets-dropbox" class="dropdown-content">
-        <p onclick="noteTaking()">Note Taking</p>
-        <p onclick="play(fein)">Fein</p>
-        <p onclick="play(carelessWhisper)">Classic Meme</p>
-        </div>
-        <p onclick="research()">Research</p>
-        <p onclick="experience()">Experience</p>
-        <p onclick="toggleDropdown('video-selection-dropbox')">Video Selection <span class="arrow">▼</span></p>
-        <div id="video-selection-dropbox" class="dropdown-content">
-        <p onclick="playVideo('video-memes/mambo.mp4')">Mambo</p>
-        <p onclick="playVideo('video-memes/TrillionDollarIdea.mp4')">Cool Idea</p>
-        </div>
-        <p><a href="mailto:sly.nou@berkeley.edu" style="text-decoration: none; color: white;">Contact me</a></p>
-    </div>
-    <hr class="banner">
-    <hr class="skater-boi">
-    <div class="profile-container">
-        <hr class="profile" id="profile">
-        <p class="profile-text" id="profile-text">Soklynin Nou</p>
-    </div>
-    <hr class="divider">
+<div id="header"></div>
+    <script>
+        fetch('header/header.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+            });
+    </script>
 </header>
 <body>
     <div class="content">

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soklynin Nou | Personal Website</title>
+
+    <link rel="stylesheet" href="../courses/courses.css" />
+    <script src="../courses/courses.js"></script>
+</head>
+<header>
+<div id="header"></div>
+    <script>
+        fetch('header/header.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+            });
+    </script>
+</header>
+<body>
+    <div class="head">Course Work</div>
+    <div class="container">
+        <div class="list">
+            <div class="row">
+                <div class="title">Spring 2022</div>
+                <div class="item" courseName="Calculus with Analytic Geometry I" id="math">MATH 251</div>
+                <div class="item" courseName="General Psychology" id="electives">PSYC 100</div>
+                <div class="item" courseName="Survey of Modern Architecture" id="electives">ARCH 100</div>
+                <div class="item" courseName="Composition and Reading" id="electives">ENGL 100</div>
+            </div>
+            <div class="row">
+                <div class="title">Summer 2022</div>
+                <div class="item" courseName="Art of Renaissance & Baroque" id="electives">ART 104</div>
+            </div>
+            <div class="row">
+                <div class="title">Fall 2022</div>
+                <div class="item" courseName="Sciences Honors Seminar I" id="honors">IDST 102</div>
+                <div class="item" courseName="History Western Civilization I" id="electives">HIST 100</div>
+                <div class="item" courseName="Arch+Design Draw 1: Draw & Visual" id="electives">ARCH 120</div>
+                <div class="item" courseName="General Principles of Biology" id="electives">BIOL 110</div>
+                <div class="item" courseName="Intro To Architecture" id="electives">ARCH 666</div>
+                <div class="item" courseName="Composition, Literature, and Critical Thinking" id="electives">ENGL 110</div>
+                <div class="item" courseName="Effective Tutoring" id="electives">LCTR 100</div>
+            </div>
+            <div class="row">
+                <div class="title">Spring 2023</div>
+                <div class="item" courseName="Sciences Honors Seminar II" id="honors">IDST 104</div>
+                <div class="item" courseName="Introduction to Object-Oriented Program Design" id="compsci">CIS 254</div>
+                <div class="item" courseName="Calculus with Analytic Geometry II" id="math">MATH 252</div>
+                <div class="item" courseName="Discrete Mathematics" id="math">MATH 268</div>
+                <div class="item" courseName="Physics with Calculus I" id="physics">PHYS 250</div>
+            </div>
+            <div class="row">
+                <div class="title">Summer 2023</div>
+                <div class="item" courseName="Programming Methods: C++" id="compsci">CIS 278</div>
+                <div class="item" courseName="Calculus with Analytic Geometry III" id="math">MATH 253</div>
+            </div>
+            <div class="row">
+                <div class="title">Fall 2023</div>
+                <div class="item" courseName="Python Programming" id="compsci">CIS 117</div>
+                <div class="item" courseName="Computer Organization and Systems Programming" id="compsci">CIS 264</div>
+                <div class="item" courseName="Ordinary Differential Equations" id="math">MATH 275</div>
+                <div class="item" courseName="Physics with Calculus II" id="physics">PHYS 260</div>
+                <div class="item" courseName="Survey of Latin American History" id="electives">HIST 420</div>
+                <div class="item" courseName="Latin American and Indigenous Peoples History and Culture" id="electives">ETHN 101</div>
+            </div>
+            <div class="row">
+                <div class="title">Spring 2024</div>
+                <div class="item" courseName="Data Structures: C++" id="compsci">CIS 279</div>
+                <div class="item" courseName="Applied Python Programming" id="compsci">CIS 502</div>
+                <div class="item" courseName="Linear Algebra" id="math">MATH 270</div>
+                <div class="item" courseName="Physics with Calculus III" id="physics">PHYS 270</div>
+                <div class="item" courseName="Public Speaking" id="electives">COMM 110</div>
+            </div>
+            <div class="row">
+                <div class="title">Fall 2024</div>
+                <div class="item" courseName="Discrete Mathematics and Probability Theory" id="compsci">COMPSCI 70</div>
+                <div class="item" courseName="Data Structures" id="compsci">COMPSCI 61B</div>
+                <div class="item" courseName="Introduction to Probability and Statistics" id="math">STAT 20</div>
+                <div class="item" courseName="Human Contexts and Ethics of Data" id="electives">DATA C104</div>
+            </div>
+            <div class="row">
+                <div class="title">Spring 2025</div>
+                <div class="item" courseName="Efficient Algorithms and Intractable Problems" id="compsci">COMPSCI 170</div>
+                <div class="item" courseName="Computer Security" id="compsci">COMPSCI 161</div>
+                <div class="item" courseName="Operating Systems and System Programming" id="compsci">COMPSCI 162</div>
+                <div class="item" courseName="Completion of Work in Computer Science 61A" id="compsci">COMPSCI 47A</div>
+            </div>
+            <div class="row">
+                <div class="title">Summer 2025</div>
+                <div class="item" courseName="Immigrants and Immigration as U.S. History" id="electives">HIST 137AC</div>
+            </div>
+            <div class="row">
+                <div class="title">Fall 2025</div>
+                <div class="item" courseName="Introduction to Artificial Intelligence" id="compsci">COMPSCI 188</div>
+                <div class="item" courseName="Introduction to Machine Learning" id="compsci">COMPSCI 189</div>
+                <div class="item" courseName="Principles and Techniques of Data Science" id="compsci">DATA 100</div>
+                <div class="item" courseName="Optimization Models in Engineering" id="compsci">EECS 127</div>
+                <div class="item" courseName="Introduction to Digital Design and Integrated Circuits" id="compsci">EECS 151</div>
+                <div class="item" courseName="Application Specific Integrated Circuits Laboratory" id="compsci">EECS 151LA</div>
+            </div>
+            <div class="row">
+                <div class="title">Spring 2026</div>
+                <div class="item" courseName="Designing, Visualizing and Understanding Deep Neural Networks" id="compsci">COMPSCI 182</div>
+            </div>
+        </div>
+        <div class="row" id="legend">
+            <div id="honors">Honors</div>
+            <div id="compsci">CompSci</div>
+            <div id="math">Mathematics</div>
+            <div id="physics">Physics</div>
+            <div id="electives">Electives</div>
+        </div>
+    </div>
+</body>
+</html>

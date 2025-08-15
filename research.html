@@ -4,58 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Soklynin Nou | Personal Website</title>
-    <link rel="stylesheet" href="header/header.css" />
-    <script src="header/header.js"></script>
 
     <link rel="stylesheet" href="research/research.css" />
     <script src="research/research.js"></script>
 </head>
 <header>
-    <div class="navbar" style="text-decoration: none;">
-    <img src="pictures/flag.png" alt= "logo" class="logo">
-        <div class="icon-group">
-        <img src="pictures/share.png" alt= "Share" class = "icon" onclick="shareFunction()">
-        <a href="./screen-saver"><img src="pictures/ss.png" alt= "Screen Saver" class = "icon"></a>
-        <img style="padding-left: 5px;" src="pictures/burger-icon.png" alt= "menu" class = "icon" onclick="burgerMenu()">
-        </div>
-    </div>
-    <div id="burger-menu">
-        <p onclick="toggleDropdown('gadgets-dropbox')">Gadgets <span class="arrow">▼</span></p>
-        <div id="gadgets-dropbox" class="dropdown-content">
-        <p onclick="noteTaking()">Note Taking</p>
-        <p onclick="play(fein)">Fein</p>
-        <p onclick="play(carelessWhisper)">Classic Meme</p>
-        </div>
-        <p onclick="research()">Research</p>
-        <p onclick="experience()">Experience</p>
-        <p onclick="toggleDropdown('video-selection-dropbox')">Video Selection <span class="arrow">▼</span></p>
-        <div id="video-selection-dropbox" class="dropdown-content">
-        <p onclick="playVideo('video-memes/mambo.mp4')">Mambo</p>
-        <p onclick="playVideo('video-memes/TrillionDollarIdea.mp4')">Cool Idea</p>
-        </div>
-        <p><a href="mailto:sly.nou@berkeley.edu" style="text-decoration: none; color: white;">Contact me</a></p>
-    </div>
-    <hr class="banner">
-    <hr class="skater-boi">
-    <div class="profile-container">
-        <hr class="profile" id="profile">
-        <p class="profile-text" id="profile-text">Soklynin Nou</p>
-    </div>
-    <hr class="divider">
+    <div id="header"></div>
+    <script>
+        fetch('header/header.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+            });
+    </script>
 </header>
 <body>
     <div class="container">
         <div class="paper">
-        <div id="title">Comparative Analysis and Optimization of Renewable Energy Sources</div>
-        <p style="text-decoration: underline; line-height: 100%;">Abstract</p>
-        <p style="text-indent: 5%;">This paper proposes a methodology to optimize the reliability, resilience, and invulnerability of power grids based on a model proposed in a paper by K Ramirez-Meyers et al (2021). It assigns numerical values and coefficients to different power plant attributes and uses a weighted sum approach to calculate an objective function. The optimization equation considers only renewable energy sources and eliminates irrelevant attributes of the model. The methodology employs multivariable optimization to find the best allocation of resources for each power plant. Minimum requirements based on the Californian power grid are defined to ensure superior performance. The results show that a combination of solar and hydroelectric is the best-optimized grid while nuclear is always allocated the least resource through all the optimizations.</p>
+            <div id="title">Comparative Analysis and Optimization of Renewable Energy Sources</div>
+            <p style="text-decoration: underline; line-height: 100%;">Abstract</p>
+            <p style="text-indent: 5%;">This paper proposes a methodology to optimize the reliability, resilience, and invulnerability of power grids based on a model proposed in a paper by K Ramirez-Meyers et al (2021). It assigns numerical values and coefficients to different power plant attributes and uses a weighted sum approach to calculate an objective function. The optimization equation considers only renewable energy sources and eliminates irrelevant attributes of the model. The methodology employs multivariable optimization to find the best allocation of resources for each power plant. Minimum requirements based on the Californian power grid are defined to ensure superior performance. The results show that a combination of solar and hydroelectric is the best-optimized grid while nuclear is always allocated the least resource through all the optimizations.</p>
         </div>
         <div class="paper">
-        <div id="title">Reevaluation of Birkhoff's Formula on Polygons</div>
-        <p style="text-decoration: underline; line-height: 100%;">Abstract</p>
-        <p style="text-indent: 5%;">George David Birkhoff attempted to analyze the elements that contribute to an object's beauty, Order and Complexity, in his book Aesthetic Measure. He then proposed a formula to objectively evaluate a polygon's objective beauty. This paper proposes a modified formula to match the predicted values of Birkhoff's formula and the survey results. The survey sampled 91 students from four different math-related classes at the College of San Mateo. The two data sets of Birkhoff's formula and the survey results are then compared and contrasted to find coefficients for each variable that make Birkhoff's formula align more with the survey results. Calculating the coefficient of determination for each of these sets based purely on the results of Birkhoff's formula is 0.1441 for the first set and 0.3803 for the second set, which means that the independent variables of Birkhoff's formula does very little to predict the outcome of the survey conducted. With the newly added variables, the formula now produces results that more closely align with the survey conducted.</p>
-        <p><a style="text-decoration: none; color: white;" href="https://docs.google.com/spreadsheets/d/1ucqgukrNrY_9KM0248yE3FnLPOgtOXxE/edit?usp=sharing&ouid=100589639854279703417&rtpof=true&sd=true">(Data)</a></p>    
-    </div>
+            <div id="title">Reevaluation of Birkhoff's Formula on Polygons</div>
+            <p style="text-decoration: underline; line-height: 100%;">Abstract</p>
+            <p style="text-indent: 5%;">George David Birkhoff attempted to analyze the elements that contribute to an object's beauty, Order and Complexity, in his book Aesthetic Measure. He then proposed a formula to objectively evaluate a polygon's objective beauty. This paper proposes a modified formula to match the predicted values of Birkhoff's formula and the survey results. The survey sampled 91 students from four different math-related classes at the College of San Mateo. The two data sets of Birkhoff's formula and the survey results are then compared and contrasted to find coefficients for each variable that make Birkhoff's formula align more with the survey results. Calculating the coefficient of determination for each of these sets based purely on the results of Birkhoff's formula is 0.1441 for the first set and 0.3803 for the second set, which means that the independent variables of Birkhoff's formula does very little to predict the outcome of the survey conducted. With the newly added variables, the formula now produces results that more closely align with the survey conducted.</p>
+            <p><a style="text-decoration: none; color: white;" href="https://docs.google.com/spreadsheets/d/1ucqgukrNrY_9KM0248yE3FnLPOgtOXxE/edit?usp=sharing&ouid=100589639854279703417&rtpof=true&sd=true">(Data)</a></p>    
+        </div>
     </div>
 </body>
 </html>
