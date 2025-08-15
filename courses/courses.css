@@ -7,6 +7,16 @@
     border: 3px solid royalblue;
 }
 
+.container > p {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 5% 0% -2%;
+}
+
 .head {
     text-align: center;
     font-size: 50px;
@@ -35,12 +45,17 @@
     width: 180px;
     font-weight: bold;
     font-size: 25px;
-    line-height: 50px;
+    line-height: 60px;
+    height: 70px;
+    align-items: center;
 }
 
 .row {
     display: flex;
+    flex-wrap: wrap;
     gap: 12px;
+    align-items: center;
+    min-height: 70px; 
 } 
 
 .item {
@@ -52,6 +67,7 @@
     text-align: center;
     line-height: 50px;
     cursor: pointer; 
+    align-items: center;
 }
 
 .button {
@@ -108,6 +124,7 @@
     align-content: center;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 #legend > div{
@@ -117,54 +134,149 @@
     justify-content: center;
     align-items: center;
     display: flex;
+    visibility: visible;
 }
 
-#honors {
+.honors {
     border-bottom: royalblue 8px solid;
     background-color: darkgoldenrod;
     border-radius: 12px;
     padding: 5px;
+    visibility: visible;
 }
 
-#compsci {
+.honors.hide {
+    display: none;
+    visibility: hidden;
+}
+
+.compsci {
     border-bottom: royalblue 8px solid;
     background-color: darkcyan;
     border-radius: 12px;
     padding: 5px;
+    visibility: visible;
 }
 
-#math {
+.compsci.hide {
+    display: none;
+    visibility: hidden;
+}
+
+.maths {
     border-bottom: royalblue 8px solid;
     background-color: darkslateblue;
     border-radius: 12px;
     padding: 5px;
+    visibility: visible;
 }
 
-#physics {
+.maths.hide {
+    display: none;
+    visibility: hidden;
+}
+
+.physics {
     border-bottom: royalblue 8px solid;
     background-color: darkmagenta;
     border-radius: 12px;
     padding: 5px;
+    visibility: visible;
 }
 
-#electives {
+.physics.hide {
+    display: none;
+    visibility: hidden;
+}
+
+.electives {
+    border-bottom: royalblue 8px solid;
+    background-color: brown;
+    border-radius: 12px;
+    padding: 5px;
+    visibility: visible;
+}
+
+.electives.hide {
+    display: none;
+    visibility: hidden;
+}
+
+.teaching {
+    border-bottom: royalblue 8px solid;
+    background-color: darkgreen;
+    border-radius: 12px;
+    padding: 5px;
+    visibility: visible;
+}
+
+.teaching.hide {
+    display: none;
+    visibility: hidden;
+}
+
+#teaching-legend {
+    border-bottom: royalblue 8px solid;
+    background-color: darkgreen;
+    border-radius: 12px;
+    padding: 5px;
+}
+
+#teaching-legend.off {
+    background-color: #333;
+}
+
+#electives-legend {
     border-bottom: royalblue 8px solid;
     background-color: brown;
     border-radius: 12px;
     padding: 5px;
 }
 
-#teaching {
-    border-bottom: royalblue 8px solid;
-    background-color: darkgreen;
-    border-radius: 12px;
-    padding: 5px;
-    visibility: hidden;
-    pointer-events: none;
-    transition: background-color 0.2s ease;
+#electives-legend.off {
+    background-color: #333;
 }
 
-#teaching.show {
-    visibility: visible;
-    pointer-events: auto;
+#maths-legend {
+    border-bottom: royalblue 8px solid;
+    background-color: darkslateblue;
+    border-radius: 12px;
+    padding: 5px;
+}
+
+#maths-legend.off {
+    background-color: #333;
+}
+
+#compsci-legend {
+    border-bottom: royalblue 8px solid;
+    background-color: darkcyan;
+    border-radius: 12px;
+    padding: 5px;
+}
+
+#compsci-legend.off {
+    background-color: #333;
+}
+
+#honors-legend {
+    border-bottom: royalblue 8px solid;
+    background-color: darkgoldenrod;
+    border-radius: 12px;
+    padding: 5px;
+}
+
+#honors-legend.off {
+    background-color: #333;
+}
+
+#physics-legend {
+    border-bottom: royalblue 8px solid;
+    background-color: darkmagenta;
+    border-radius: 12px;
+    padding: 5px;
+}
+
+#physics-legend.off {
+    background-color: #333;
 }
