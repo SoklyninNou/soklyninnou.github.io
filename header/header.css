@@ -43,8 +43,8 @@ html, body {
     background-color: black;
     border-left: 3px solid royalblue;
     transition: right 0.3s ease;
-    z-index: 1;
     font-size: 24px;
+    z-index: 999;
 }
 
 #burger-button {

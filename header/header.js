@@ -16,7 +16,7 @@ function showToast(message) {
 
     setTimeout(() => {
         toast.className = toast.className.replace("show", "");
-    }, 1000); // disappears after 3 seconds
+    }, 1000);
 }
 
 function burgerMenu() {
