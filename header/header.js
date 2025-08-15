@@ -85,11 +85,11 @@ function play(audio) {
 }
 
 function research() {
-    window.location.href = "./research"; 
+    window.location.href = "./research";
 }
 
 function experience() {
-    showToast("This feature is not available yet.");
+    window.location.href = "./experience";
 }
 
 function timer() {
