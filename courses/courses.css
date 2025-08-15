@@ -18,33 +18,58 @@
     border: 3px solid royalblue;
 }
 
+.school {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
 .list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
   
 .title {
-    width: 220px;
+    width: 180px;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 25px;
     line-height: 50px;
 }
 
 .row {
     display: flex;
-    gap: 10px;
+    gap: 12px;
 } 
 
 .item {
     position: relative;
-    width: 140px;
+    width: 120px;
     height: 50px;
     font-size: 18px;
     align-self: center;
     text-align: center;
     line-height: 50px;
     cursor: pointer; 
+}
+
+.button {
+    position: relative;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 50px;
+    font-size: 18px;
+    line-height: 50px;
+    cursor: pointer; 
+    background-color: #333;
+    color: #fff;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    margin: 3% auto;
 }
 
 .item::after {
@@ -56,7 +81,7 @@
     transform: translateX(-50%) translateY(-8px);
     background-color: #333;
     color: #fff;
-    border-radius: 4px;
+    border-radius: 12px;
     font-size: 18px;
     padding: 2px 5px;
     opacity: 0;
@@ -85,7 +110,7 @@
     align-items: center;
 }
 
- #legend > div{
+#legend > div{
     height: 100%;
     width: 15%;
     text-align: center;
@@ -95,26 +120,51 @@
 }
 
 #honors {
+    border-bottom: royalblue 8px solid;
     background-color: darkgoldenrod;
+    border-radius: 12px;
     padding: 5px;
 }
 
 #compsci {
+    border-bottom: royalblue 8px solid;
     background-color: darkcyan;
+    border-radius: 12px;
     padding: 5px;
 }
 
 #math {
+    border-bottom: royalblue 8px solid;
     background-color: darkslateblue;
+    border-radius: 12px;
     padding: 5px;
 }
 
 #physics {
+    border-bottom: royalblue 8px solid;
     background-color: darkmagenta;
+    border-radius: 12px;
     padding: 5px;
 }
 
 #electives {
+    border-bottom: royalblue 8px solid;
     background-color: brown;
+    border-radius: 12px;
     padding: 5px;
+}
+
+#teaching {
+    border-bottom: royalblue 8px solid;
+    background-color: darkgreen;
+    border-radius: 12px;
+    padding: 5px;
+    visibility: hidden;
+    pointer-events: none;
+    transition: background-color 0.2s ease;
+}
+
+#teaching.show {
+    visibility: visible;
+    pointer-events: auto;
 }

@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="header/header.css" />
     <script src="header/header.js"></script>
 
-    <link rel="stylesheet" href="../courses/courses.css" />
-    <script src="../courses/courses.js"></script>
+    <link rel="stylesheet" href="./courses/courses.css" />
+    <script src="./courses/courses.js"></script>
 </head>
 <header>
 <div id="header"></div>
@@ -24,6 +24,7 @@
     <div class="head">Coursework</div>
     <div class="container">
         <div class="list">
+            <h1 class="school">College of San Mateo</h1>
             <div class="row">
                 <div class="title">Spring 2022</div>
                 <div class="item" courseName="Calculus with Analytic Geometry I" id="math">MATH 251</div>
@@ -66,6 +67,8 @@
                 <div class="item" courseName="Physics with Calculus II" id="physics">PHYS 260</div>
                 <div class="item" courseName="Survey of Latin American History" id="electives">HIST 420</div>
                 <div class="item" courseName="Latin American and Indigenous Peoples History and Culture" id="electives">ETHN 101</div>
+                <div class="item" courseName="Calculus with Analytic Geometry I" id="teaching">MATH 251</div>
+                <div class="item" courseName="Analytical Trigonometry" id="teaching">MATH 130</div>
             </div>
             <div class="row">
                 <div class="title">Spring 2024</div>
@@ -74,7 +77,15 @@
                 <div class="item" courseName="Linear Algebra" id="math">MATH 270</div>
                 <div class="item" courseName="Physics with Calculus III" id="physics">PHYS 270</div>
                 <div class="item" courseName="Public Speaking" id="electives">COMM 110</div>
+                <div class="item" courseName="Calculus with Analytic Geometry III" id="teaching">MATH 253</div>
+                <div class="item" courseName="Discrete Mathematics" id="teaching">MATH 268</div>
             </div>
+            <div style= "border-bottom: 12px solid #333;
+                        width: 80%;
+                        margin: 10px;
+                        padding: 0;align-self: center;">
+            </div>
+            <h1 class="school">UC Berkeley</h1>
             <div class="row">
                 <div class="title">Fall 2024</div>
                 <div class="item" courseName="Discrete Mathematics and Probability Theory" id="compsci">COMPSCI 70</div>
@@ -92,8 +103,9 @@
             <div class="row">
                 <div class="title">Summer 2025</div>
                 <div class="item" courseName="Immigrants and Immigration as U.S. History" id="electives">HIST 137AC</div>
+                <div class="item" courseName="Computer Security" id="teaching">COMPSCI 161</div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="title">Fall 2025</div>
                 <div class="item" courseName="Introduction to Artificial Intelligence" id="compsci">COMPSCI 188</div>
                 <div class="item" courseName="Introduction to Machine Learning" id="compsci">COMPSCI 189</div>
@@ -105,7 +117,7 @@
             <div class="row">
                 <div class="title">Spring 2026</div>
                 <div class="item" courseName="Designing, Visualizing and Understanding Deep Neural Networks" id="compsci">COMPSCI 182</div>
-            </div>
+            </div> -->
         </div>
         <div class="row" id="legend">
             <div id="honors">Honors</div>
@@ -113,6 +125,10 @@
             <div id="math">Mathematics</div>
             <div id="physics">Physics</div>
             <div id="electives">Electives</div>
+            <div id="teaching" style="visibility: visible;">Teaching</div>
+        </div>
+        <div class="button">
+            <p onclick="toggleTeaching()">Toggle Teaching</p>
         </div>
     </div>
 </body>
