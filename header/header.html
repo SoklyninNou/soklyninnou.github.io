@@ -9,7 +9,7 @@
 </head>
 <header>
     <div class="navbar" style="text-decoration: none;">
-        <img src="pictures/flag.png" alt="logo" class="logo">
+        <img src="pictures/flag.png" alt="logo" class="logo" onclick="home()" style="cursor: pointer;">
         <div class="icon-group">
             <img src="pictures/share.png" alt="Share" class="icon" onclick="shareFunction()">
             <a href="./screen-saver"><img src="pictures/ss.png" alt="Screen Saver" class="icon"></a>
@@ -17,6 +17,7 @@
         </div>
     </div>
     <div id="burger-menu">
+        <p onclick="home()">Home</p>
         <p onclick="toggleDropdown('gadgets-dropbox')">Gadgets <span class="arrow">▼</span></p>
         <div id="gadgets-dropbox" class="dropdown-content">
             <p onclick="noteTaking()">Note Taking</p>
