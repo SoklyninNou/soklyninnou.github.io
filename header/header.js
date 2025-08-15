@@ -92,10 +92,6 @@ function experience() {
     window.location.href = "./experience";
 }
 
-function timer() {
-    showToast("This feature is not available yet.");
-}
-
 function noteTaking() {
     showToast("This feature is not available yet.");
 }
