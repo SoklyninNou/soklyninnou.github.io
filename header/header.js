@@ -47,8 +47,11 @@ function toggleDropdown(dropdownId) {
 }
 
 const oliveDelights = new Audio('audio/olive-delights.mp3');
+oliveDelights.volume = 0.5;
 const fein = new Audio('audio/fein.mp3');
+fein.volume = 0.5;
 const carelessWhisper = new Audio('audio/careless-whisper.mp3');
+carelessWhisper.volume = 0.5;
 let currentAudio = null;
 function play(audio) {
     const profile = document.getElementById("profile");
