@@ -46,6 +46,7 @@ function toggleDropdown(dropdownId) {
     });
 }
 
+const oliveDelights = new Audio('audio/olive-delights.mp3');
 const fein = new Audio('audio/fein.mp3');
 const carelessWhisper = new Audio('audio/careless-whisper.mp3');
 let currentAudio = null;
