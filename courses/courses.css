@@ -1,5 +1,5 @@
 :root {
-    --button-time: 0.75s /* Legend button animation*/
+    --button-time: 0.4s /* Legend button animation*/
 }
 
 
@@ -93,7 +93,7 @@
 }
 
 .item::after {
-    content: attr(courseName);
+    content: attr(hoverText);
     position: absolute;
     bottom: 100%;
     left: 50%;
@@ -220,6 +220,7 @@
 }
 
 #teaching-legend {
+    position: relative;
     animation: var(--button-time) on;
     border-bottom: royalblue 8px solid;
     background-color: darkgreen;
@@ -228,11 +229,15 @@
 }
 
 #teaching-legend.off {
+    position: relative;
     background-color: #333;
     animation: var(--button-time) off;
+    border-bottom: none;
+    top: 4px;
 }
 
 #electives-legend {
+    position: relative;
     animation: var(--button-time) on;
     border-bottom: royalblue 8px solid;
     background-color: brown;
@@ -241,11 +246,15 @@
 }
 
 #electives-legend.off {
+    position: relative;
     background-color: #333;
     animation: var(--button-time) off;
+    border-bottom: none;
+    top: 4px;
 }
 
 #maths-legend {
+    position: relative;
     animation: var(--button-time) on;
     border-bottom: royalblue 8px solid;
     background-color: darkslateblue;
@@ -254,11 +263,15 @@
 }
 
 #maths-legend.off {
+    position: relative;
     background-color: #333;
     animation: var(--button-time) off;
+    border-bottom: none;
+    top: 4px;
 }
 
 #compsci-legend {
+    position: relative;
     animation: var(--button-time) on;
     border-bottom: royalblue 8px solid;
     background-color: darkcyan;
@@ -267,11 +280,15 @@
 }
 
 #compsci-legend.off {
+    position: relative;
     background-color: #333;
     animation: var(--button-time) off;
+    border-bottom: none;
+    top: 4px;
 }
 
 #honors-legend {
+    position: relative;
     animation: var(--button-time) on;
     border-bottom: royalblue 8px solid;
     background-color: darkgoldenrod;
@@ -280,12 +297,16 @@
 }
 
 #honors-legend.off {
+    position: relative;
     background-color: #333;
     animation: var(--button-time) off;
+    border-bottom: none;
+    top: 4px;
 }
 
 #physics-legend {
-    animation: var(--button-time) on;
+    position: relative;
+    animation: var(--button-time) on ease;
     border-bottom: royalblue 8px solid;
     background-color: darkmagenta;
     border-radius: 12px;
@@ -293,27 +314,33 @@
 }
 
 #physics-legend.off {
+    position: relative;
     background-color: #333;
-    animation: var(--button-time) off;
+    animation: var(--button-time) off ease;
+    border-bottom: none;
+    top: 4px;
 }
 
 @keyframes off {
     0% {
-        border-bottom: none;
+        border-bottom: royalblue 8px solid;
+        top: 0px;
     }
     100% {
-        border-bottom: royalblue 8px solid;
+        border-bottom: none;
+        top: 4px;
     }
 }
 
 @keyframes on {
     0% {
         border-bottom: none;
+        top: 4px;
     }
     100% {
         border-bottom: royalblue 8px solid;
+        top: 0px;
     }
 }
 
-
-
+/*TODO: reduce legends redundancy*/
