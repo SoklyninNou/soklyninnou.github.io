@@ -1,3 +1,8 @@
+:root {
+    --button-time: 0.75s /* Legend button animation*/
+}
+
+
 .container {
     background-color: #191919;
     width: 90%;
@@ -126,7 +131,7 @@
     cursor: pointer;
 }
 
-#legend > div{
+#legend > div {
     height: 100%;
     width: 15%;
     text-align: center;
@@ -215,6 +220,7 @@
 }
 
 #teaching-legend {
+    animation: var(--button-time) on;
     border-bottom: royalblue 8px solid;
     background-color: darkgreen;
     border-radius: 12px;
@@ -223,9 +229,11 @@
 
 #teaching-legend.off {
     background-color: #333;
+    animation: var(--button-time) off;
 }
 
 #electives-legend {
+    animation: var(--button-time) on;
     border-bottom: royalblue 8px solid;
     background-color: brown;
     border-radius: 12px;
@@ -234,9 +242,11 @@
 
 #electives-legend.off {
     background-color: #333;
+    animation: var(--button-time) off;
 }
 
 #maths-legend {
+    animation: var(--button-time) on;
     border-bottom: royalblue 8px solid;
     background-color: darkslateblue;
     border-radius: 12px;
@@ -245,9 +255,11 @@
 
 #maths-legend.off {
     background-color: #333;
+    animation: var(--button-time) off;
 }
 
 #compsci-legend {
+    animation: var(--button-time) on;
     border-bottom: royalblue 8px solid;
     background-color: darkcyan;
     border-radius: 12px;
@@ -256,9 +268,11 @@
 
 #compsci-legend.off {
     background-color: #333;
+    animation: var(--button-time) off;
 }
 
 #honors-legend {
+    animation: var(--button-time) on;
     border-bottom: royalblue 8px solid;
     background-color: darkgoldenrod;
     border-radius: 12px;
@@ -267,9 +281,11 @@
 
 #honors-legend.off {
     background-color: #333;
+    animation: var(--button-time) off;
 }
 
 #physics-legend {
+    animation: var(--button-time) on;
     border-bottom: royalblue 8px solid;
     background-color: darkmagenta;
     border-radius: 12px;
@@ -278,4 +294,26 @@
 
 #physics-legend.off {
     background-color: #333;
+    animation: var(--button-time) off;
 }
+
+@keyframes off {
+    0% {
+        border-bottom: none;
+    }
+    100% {
+        border-bottom: royalblue 8px solid;
+    }
+}
+
+@keyframes on {
+    0% {
+        border-bottom: none;
+    }
+    100% {
+        border-bottom: royalblue 8px solid;
+    }
+}
+
+
+
