@@ -1,5 +1,5 @@
 function shareFunction() {
-    const copyText = "https://soklyninnou.github.io/personal";
+    const copyText = "https://soklyninnou.github.io";
 
     navigator.clipboard.writeText(copyText).then(() => {
         showToast("Copied website link!");
