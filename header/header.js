@@ -9,6 +9,10 @@ function shareFunction() {
     });
 }
 
+function github() {
+    href = 'https://github.com/SoklyninNou'
+}
+
 function showToast(message) {
     const toast = document.getElementById("toast");
     toast.textContent = message;
