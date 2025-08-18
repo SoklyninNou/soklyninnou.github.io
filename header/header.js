@@ -104,6 +104,6 @@ function course() {
     window.location.href = "./courses";
 }
 
-function noteTaking() {
-    showToast("This feature is not available yet.");
+function projects() {
+    showToast("This page is still in construction.");
 }
