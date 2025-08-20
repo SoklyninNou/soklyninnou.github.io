@@ -11,8 +11,8 @@ html, body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 400px;
-    width: 100%;
+    height: 25vw;
+    aspect-ratio: 4/1;
     display: flex;
     border: 0px;
     border-bottom: 3px solid royalblue;
@@ -23,9 +23,8 @@ html, body {
     position: fixed;
     top: 0;
     width: 100%;
-    height: 60px;
+    height: 4vw;
     background-color: black;
-    padding: 0 20px;
     z-index: 999;
     display: flex;
     justify-content: space-between;
@@ -101,28 +100,28 @@ html, body {
 }
 
 .logo {
-    height: 30px;
+    height: 4vw;
+    left: 1vw;
 }
 
 .icon-group {
     position: fixed;
-    top: 15px;
-    right: 20px;
+    right: 1vw;
     display: flex;
-    gap: 15px;
+    gap: 1vw;
     align-items: center;
 }
 
 .icon {
-    height: 30px;
-    width: 30px;
+    height: 2vw;
+    width: 2vw;
     cursor: pointer;
 }
 
 .profile-container {
     position: relative;
-    top: -75px;
-    right: 550px;
+    top: -5.5vw;
+    right: 35vw;
     text-align: center;
     color: white;
     font-family: Arial, sans-serif;
@@ -134,16 +133,15 @@ html, body {
 }
 
 #profile {
-    height: 200px;
-    width: 200px;
+    height: 12vw;
+    width: 12vw;
     background-position: center;
     background-size: cover;
     border-radius: 50%;
     border: 3px solid royalblue;
-    margin: 0 auto;
 }
 
-#profile.zoom {
+/* #profile.zoom {
     display: block;
     animation: dramatic 300s forwards;
     animation-play-state: paused;
@@ -152,7 +150,6 @@ html, body {
     right: calc(-550px);
     z-index: 1000;
 }
-
 
 @keyframes dramatic {
     0% {
@@ -163,24 +160,30 @@ html, body {
         transform: scale(8);
         border-radius: 0%;
     }
-}
-
-.profile-text {
-    margin-top: 20px;
-    font-size: 40px;
-}
+} */
 
 #profile-text {
+    position: relative;
+    top: -2vw;
+    font-size: 3vw;
     border-radius: 25px;
     /* border: 3px solid royalblue; */
     display: inline-block;
     background-color: black;
 }
 
-#profile-text.zoom {
+/* #profile-text.zoom {
     position: relative;
     right: calc(-550px);
     z-index: 1;
+} */
+
+.divider {
+    position: relative;
+    height: 3px;
+    background-color: royalblue;
+    top: -10vw;
+    border: 0px;
 }
 
 #toast {
@@ -206,19 +209,9 @@ html, body {
     opacity: 1;
 }
 
-.divider {
-    position: relative;
-    height: 3px;
-    background-color: royalblue;
-    top: -110px;
-    margin: 20px -50px 50px;
-    border: 0px;
-}
-
 .content {
     position: relative;
     padding-left: 50px;
-    top: -110px;
     color: white;
     font-family: Arial, sans-serif;
     display: flex;
@@ -232,9 +225,8 @@ html, body {
     background-repeat: no-repeat;
     background-position: center;
     position: absolute;
-    margin-top: 30px;
-    height: 170px;
-    width: 170px;
+    height: 12vw;
+    aspect-ratio: 1/1;
     display: flex;
     border: 0px;
     clip-path: insert(50px 50px 50px 50px);
@@ -243,7 +235,7 @@ html, body {
 
 @keyframes skate {
     0% {
-        left: -150px;
+        left: -12vw;;
         transform: scaleX(1);
     }
     45% {
@@ -255,11 +247,11 @@ html, body {
         transform: scaleX(-1);
     }
     95% {
-        left: -150px;
+        left: -12vw;;
         transform: scaleX(-1);
     }
     100% {
-        left: -150px;
+        left: -12vw;;
         transform: scaleX(1);
     }
 }

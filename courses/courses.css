@@ -10,6 +10,7 @@
     padding: 1%;
     margin: 0% 5% 5%;
     border: 3px solid royalblue;
+    border-radius: 5vw;
 }
 
 .container > p {
@@ -66,7 +67,7 @@
     position: relative;
     width: 8vw;
     height: 4vw;
-    font-size: 1vw;
+    font-size: 1.2vw;
     align-self: center;
     text-align: center;
     line-height: 4vw;
@@ -102,8 +103,8 @@
     background-color: #333;
     color: #fff;
     border-radius: 12px;
-    font-size: 18px;
-    padding: 2px 5px;
+    font-size: 1.2vw;
+    padding: 0px 10px;
     opacity: 0;
     transition: opacity 0.2s ease;
     z-index: 999;
