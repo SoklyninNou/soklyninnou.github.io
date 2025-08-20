@@ -17,14 +17,13 @@
     width: 100%;
     align-items: center;
     justify-content: center;
-    font-size: 40px;
+    font-size: 4vw;
     font-weight: bold;
-    margin: 5% 0% -2%;
 }
 
 .head {
     text-align: center;
-    font-size: 50px;
+    font-size: 5vw;
     background-color: #191919;
     width: 50%;
     height: auto;
@@ -38,38 +37,39 @@
     width: 100%;
     align-items: center;
     justify-content: center;
+    text-decoration: underline royalblue;
+    font-size: 4vw;
 }
 
 .list {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    flex-direction: column;;
 }
   
 .title {
-    width: 180px;
+    min-width: 15vw;
     font-weight: bold;
-    font-size: 25px;
-    line-height: 60px;
-    height: 70px;
+    font-size: 2vw;
+    line-height: 5.5vw;
+    aspect-ratio: 2.5/1;
     align-items: center;
 }
 
 .row {
     display: flex;
-    gap: 12px;
+    gap: 1vw;
     align-items: center;
-    min-height: 70px; 
 } 
 
+/*Course container*/
 .item {
     position: relative;
-    width: 120px;
-    height: 50px;
-    font-size: 18px;
+    width: 8vw;
+    height: 4vw;
+    font-size: 1vw;
     align-self: center;
     text-align: center;
-    line-height: 50px;
+    line-height: 4vw;
     cursor: pointer; 
     align-items: center;
 }
@@ -117,14 +117,13 @@
 
 .legend {
     position: relative;
-    height: 100px;
+    font-size: 2vw;
+    height: 7vw;
     width: auto;
     background-position: center;
     display: flex;
-    min-width: 550px;
-    gap: 10px;
-    margin: 50px 20px;
-    font-size: 25px;
+    gap: 1vw;
+    margin: -2vw 3vw 2vw;
     align-content: center;
     justify-content: center;
     align-items: center;
@@ -144,7 +143,6 @@
     border-bottom: royalblue 8px solid;
     background-color: darkgoldenrod;
     border-radius: 12px;
-    padding: 5px;
     visibility: visible;
 }
 
@@ -157,7 +155,6 @@
     border-bottom: royalblue 8px solid;
     background-color: darkcyan;
     border-radius: 12px;
-    padding: 5px;
     visibility: visible;
 }
 
@@ -170,7 +167,6 @@
     border-bottom: royalblue 8px solid;
     background-color: darkslateblue;
     border-radius: 12px;
-    padding: 5px;
     visibility: visible;
 }
 
@@ -183,7 +179,6 @@
     border-bottom: royalblue 8px solid;
     background-color: darkmagenta;
     border-radius: 12px;
-    padding: 5px;
     visibility: visible;
 }
 
@@ -196,7 +191,6 @@
     border-bottom: royalblue 8px solid;
     background-color: brown;
     border-radius: 12px;
-    padding: 5px;
     visibility: visible;
 }
 
@@ -209,7 +203,6 @@
     border-bottom: royalblue 8px solid;
     background-color: darkgreen;
     border-radius: 12px;
-    padding: 5px;
     visibility: visible;
 }
 
@@ -224,7 +217,6 @@
     border-bottom: royalblue 8px solid;
     background-color: darkgreen;
     border-radius: 12px;
-    padding: 5px;
 }
 
 #teaching-legend.off {
@@ -241,7 +233,6 @@
     border-bottom: royalblue 8px solid;
     background-color: brown;
     border-radius: 12px;
-    padding: 5px;
 }
 
 #electives-legend.off {
@@ -258,7 +249,6 @@
     border-bottom: royalblue 8px solid;
     background-color: darkslateblue;
     border-radius: 12px;
-    padding: 5px;
 }
 
 #maths-legend.off {
@@ -275,7 +265,6 @@
     border-bottom: royalblue 8px solid;
     background-color: darkcyan;
     border-radius: 12px;
-    padding: 5px;
 }
 
 #compsci-legend.off {
@@ -292,7 +281,6 @@
     border-bottom: royalblue 8px solid;
     background-color: darkgoldenrod;
     border-radius: 12px;
-    padding: 5px;
 }
 
 #honors-legend.off {
@@ -309,7 +297,6 @@
     border-bottom: royalblue 8px solid;
     background-color: darkmagenta;
     border-radius: 12px;
-    padding: 5px;
 }
 
 #physics-legend.off {
