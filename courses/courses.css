@@ -1,5 +1,8 @@
 :root {
-    --button-time: 0.4s /* Legend button animation*/
+    --button-time: 0.4s; /* Legend button animation*/
+    --border-radius: 1vw;
+    --course-border-width: 0.5vw;
+    --legend-border-width: 1vw;
 }
 
 
@@ -141,9 +144,9 @@
 }
 
 .honors {
-    border-bottom: royalblue 8px solid;
+    border-bottom: royalblue var(--course-border-width) solid;
     background-color: darkgoldenrod;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     visibility: visible;
 }
 
@@ -153,9 +156,9 @@
 }
 
 .compsci {
-    border-bottom: royalblue 8px solid;
+    border-bottom: royalblue var(--course-border-width) solid;
     background-color: darkcyan;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     visibility: visible;
 }
 
@@ -165,9 +168,9 @@
 }
 
 .maths {
-    border-bottom: royalblue 8px solid;
+    border-bottom: royalblue var(--course-border-width) solid;
     background-color: darkslateblue;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     visibility: visible;
 }
 
@@ -177,9 +180,9 @@
 }
 
 .physics {
-    border-bottom: royalblue 8px solid;
+    border-bottom: royalblue var(--course-border-width) solid;
     background-color: darkmagenta;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     visibility: visible;
 }
 
@@ -189,9 +192,9 @@
 }
 
 .electives {
-    border-bottom: royalblue 8px solid;
+    border-bottom: royalblue var(--course-border-width) solid;
     background-color: brown;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     visibility: visible;
 }
 
@@ -201,9 +204,9 @@
 }
 
 .teaching {
-    border-bottom: royalblue 8px solid;
+    border-bottom: royalblue var(--course-border-width) solid;
     background-color: darkgreen;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     visibility: visible;
 }
 
@@ -215,9 +218,9 @@
 #teaching-legend {
     position: relative;
     animation: var(--button-time) on;
-    border-bottom: royalblue 8px solid;
+    border-bottom: royalblue var(--legend-border-width) solid;
     background-color: darkgreen;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
 }
 
 #teaching-legend.off {
@@ -231,9 +234,9 @@
 #electives-legend {
     position: relative;
     animation: var(--button-time) on;
-    border-bottom: royalblue 8px solid;
+    border-bottom: royalblue var(--legend-border-width) solid;
     background-color: brown;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
 }
 
 #electives-legend.off {
@@ -247,9 +250,9 @@
 #maths-legend {
     position: relative;
     animation: var(--button-time) on;
-    border-bottom: royalblue 8px solid;
+    border-bottom: royalblue var(--legend-border-width) solid;
     background-color: darkslateblue;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
 }
 
 #maths-legend.off {
@@ -263,9 +266,9 @@
 #compsci-legend {
     position: relative;
     animation: var(--button-time) on;
-    border-bottom: royalblue 8px solid;
+    border-bottom: royalblue var(--legend-border-width) solid;
     background-color: darkcyan;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
 }
 
 #compsci-legend.off {
@@ -279,9 +282,9 @@
 #honors-legend {
     position: relative;
     animation: var(--button-time) on;
-    border-bottom: royalblue 8px solid;
+    border-bottom: royalblue var(--legend-border-width) solid;
     background-color: darkgoldenrod;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
 }
 
 #honors-legend.off {
@@ -295,9 +298,9 @@
 #physics-legend {
     position: relative;
     animation: var(--button-time) on ease;
-    border-bottom: royalblue 8px solid;
+    border-bottom: royalblue var(--legend-border-width) solid;
     background-color: darkmagenta;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
 }
 
 #physics-legend.off {
@@ -310,7 +313,7 @@
 
 @keyframes off {
     0% {
-        border-bottom: royalblue 8px solid;
+        border-bottom: royalblue var(--legend-border-width) solid;
         top: 0px;
     }
     100% {
@@ -325,7 +328,7 @@
         top: 4px;
     }
     100% {
-        border-bottom: royalblue 8px solid;
+        border-bottom: royalblue var(--legend-border-width) solid;
         top: 0px;
     }
 }
