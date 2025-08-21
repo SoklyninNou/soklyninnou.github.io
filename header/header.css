@@ -18,7 +18,7 @@ html, body {
     border-bottom: 3px solid royalblue;
     z-index: 3;
 }
-
+/*Navbar*/
 .navbar {
     position: fixed;
     top: 0;
