@@ -211,6 +211,7 @@ html, body {
 
 .content {
     position: relative;
+    top: -100px;
     padding-left: 50px;
     color: white;
     font-family: Arial, sans-serif;
