@@ -2,7 +2,7 @@
     --button-time: 0.4s; /* Legend button animation*/
     --border-radius: 1vw;
     --course-border-width: 0.5vw;
-    --legend-border-width: 1vw;
+    --legend-border-width: 0.75vw;
 }
 
 
@@ -228,7 +228,7 @@
     background-color: #333;
     animation: var(--button-time) off;
     border-bottom: none;
-    top: 4px;
+    top: calc(var(--legend-border-width) / 2);
 }
 
 #electives-legend {
@@ -244,7 +244,7 @@
     background-color: #333;
     animation: var(--button-time) off;
     border-bottom: none;
-    top: 4px;
+    top: calc(var(--legend-border-width) / 2);
 }
 
 #maths-legend {
@@ -260,7 +260,7 @@
     background-color: #333;
     animation: var(--button-time) off;
     border-bottom: none;
-    top: 4px;
+    top: calc(var(--legend-border-width) / 2);
 }
 
 #compsci-legend {
@@ -276,7 +276,7 @@
     background-color: #333;
     animation: var(--button-time) off;
     border-bottom: none;
-    top: 4px;
+    top: calc(var(--legend-border-width) / 2);
 }
 
 #honors-legend {
@@ -292,7 +292,7 @@
     background-color: #333;
     animation: var(--button-time) off;
     border-bottom: none;
-    top: 4px;
+    top: calc(var(--legend-border-width) / 2);
 }
 
 #physics-legend {
@@ -308,7 +308,7 @@
     background-color: #333;
     animation: var(--button-time) off ease;
     border-bottom: none;
-    top: 4px;
+    top: calc(var(--legend-border-width) / 2);
 }
 
 @keyframes off {
@@ -318,14 +318,14 @@
     }
     100% {
         border-bottom: none;
-        top: 4px;
+        top: calc(var(--legend-border-width) / 2);
     }
 }
 
 @keyframes on {
     0% {
         border-bottom: none;
-        top: 4px;
+        top: calc(var(--legend-border-width) / 2);
     }
     100% {
         border-bottom: royalblue var(--legend-border-width) solid;
