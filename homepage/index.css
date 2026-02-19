@@ -1,19 +1,28 @@
-.television-border {
-    position: absolute;
-    top: 825px;
-    right: 50px;
-    aspect-ratio: 16 / 9;
-    width: 40%;
-    display: flex;
-    border: 10px solid royalblue;
-    box-sizing: border-box;
-    border-radius: 25px;
-    overflow: hidden;
+.container {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "title blank"
+    "songs content";
+  grid-template-columns: 47.5% 47.5%;
+  column-gap: 5%;
 }
 
-.television-border video {
-    width: 100%;
-    height: 100%;
-    object-fit: fit;
-    border-radius: 10px;
+.container div.header {
+    font-family: Arial, sans-serif;
+    grid-area: header;
+    text-align: center;
+}
+
+.container div.songs {
+    grid-area: songs;
+}
+
+.container div.content {
+    border: 0.4rem solid royalblue;
+    border-radius: 10%;
+    grid-area: content;
+    font-family: Arial, sans-serif;
+    text-align: left;
+    padding: 25px;
 }

@@ -108,6 +108,6 @@ function course() {
     window.location.href = "./courses";
 }
 
-function projects() {
+function blog() {
     showToast("This page is still in construction.");
 }
