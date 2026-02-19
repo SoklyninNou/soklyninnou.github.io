@@ -97,17 +97,21 @@ function home() {
 }
 
 function research() {
+    showToast("Going to research experiences.");
     window.location.href = "./research";
 }
 
 function experience() {
+    showToast("Going to previous work experience.");
     window.location.href = "./experience";
 }
 
 function course() {
+    showToast("Going to courses taken.");
     window.location.href = "./courses";
 }
 
-function blog() {
-    showToast("This page is still in construction.");
+function notes() {
+    showToast("Going to notes.");
+    window.location.href = "./notes/cs188_notes.pdf";
 }

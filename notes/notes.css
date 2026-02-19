@@ -1,8 +1,17 @@
+.container {
+    background-color: #191919;
+    width: 70%;
+    height: auto;
+    padding: 1%;
+    margin: 0% 15% 5%;
+    border: 3px solid royalblue;
+}
+
 .grid {
   display: grid;
   grid-template-areas:
     "header header"
-    "songs content";
+    "content content";
   grid-template-columns: 47.5% 47.5%;
   column-gap: 5%;
 }
@@ -11,10 +20,6 @@
     font-family: Arial, sans-serif;
     grid-area: header;
     text-align: center;
-}
-
-.grid div.songs {
-    grid-area: songs;
 }
 
 .grid div.content {
