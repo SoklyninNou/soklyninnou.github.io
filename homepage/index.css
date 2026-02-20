@@ -29,3 +29,53 @@
     line-height: 2rem;
     background-color: rgba(65, 105, 225, .67);
 }
+
+.container {
+    background-color: #191919;
+    width: 70%;
+    height: auto;
+    padding: 1%;
+    margin: 0% 15% 5%;
+    border: 3px solid royalblue;
+}
+
+.title {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+    font-size: 3rem;
+}
+
+.job {
+    margin: 10% 10% 15%;
+    border-bottom: 8px solid #333;
+    font-size: 20px;
+}
+
+ul {
+    list-style-type: circle;
+    line-height: 200%;
+}
+
+#title {
+    color: royalblue;
+    font-size: 40px;
+}
+
+#job-grid {
+    grid-template-columns: 50% 50%;
+    grid-template-areas:
+    "left right";
+
+}
+
+#job-grid div.right {
+    grid-area: right;
+    text-align: right;
+}
+
+#job-grid div.left {
+    grid-area: left;
+    text-align: left;
+}

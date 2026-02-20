@@ -9,8 +9,8 @@ html, body {
     padding: 0;
     background-color: black;
     background-image: url('../pictures/background.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size: contain;
+    background-repeat: repeat-y;
     background-position: center;
     color: white;
     overflow-x: hidden;
