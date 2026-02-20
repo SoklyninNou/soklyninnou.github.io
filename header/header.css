@@ -149,6 +149,14 @@ html, body {
     border: 3px solid royalblue;
 }
 
+#profile-text {
+    margin-top: -0.5vw;
+    font-size: 4vw;
+    border-radius: 25px;
+    /* border: 3px solid royalblue; */
+    display: inline-block;
+}
+
 /* #profile.zoom {
     display: block;
     animation: dramatic 300s forwards;
@@ -169,14 +177,6 @@ html, body {
         border-radius: 0%;
     }
 } */
-
-#profile-text {
-    margin-top: -0.5vw;
-    font-size: 4vw;
-    border-radius: 25px;
-    /* border: 3px solid royalblue; */
-    display: inline-block;
-}
 
 /* #profile-text.zoom {
     position: relative;
