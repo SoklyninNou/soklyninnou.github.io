@@ -3,7 +3,7 @@
   grid-template-areas:
     "header header"
     "songs content";
-  grid-template-columns: 47.5% 47.5%;
+  grid-template-columns: 35% 60%;
   column-gap: 5%;
 }
 
@@ -18,10 +18,14 @@
 }
 
 .grid div.content {
-    border: 0.4rem solid royalblue;
+    border: 0.2rem solid black;
     border-radius: 10%;
     grid-area: content;
+    font-size: 1.2rem;
     font-family: Arial, sans-serif;
     text-align: left;
     padding: 25px;
+    text-align: justify;
+    line-height: 2rem;
+    background-color: rgba(65, 105, 225, .67);
 }

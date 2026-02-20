@@ -1,17 +1,22 @@
 :root {
     --banner-height: 60px;
     --separator: 42px;
+    --scroll-up: 120px;
 }
 
 html, body {
     margin: 0;
     padding: 0;
     background-color: black;
+    background-image: url('../pictures/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     color: white;
     overflow-x: hidden;
 }
 
-.banner {
+/* .banner {
     background-image: url('../pictures/starry-night.png');
     background-size: cover;
     background-repeat: no-repeat;
@@ -22,7 +27,7 @@ html, body {
     border: 0px;
     border-bottom: 3px solid royalblue;
     z-index: 3;
-}
+} */
 /*Navbar*/
 .navbar {
     position: fixed;
@@ -171,7 +176,6 @@ html, body {
     border-radius: 25px;
     /* border: 3px solid royalblue; */
     display: inline-block;
-    background-color: black;
 }
 
 /* #profile-text.zoom {
