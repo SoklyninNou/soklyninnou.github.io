@@ -10,37 +10,29 @@
 </head>
 <header>
     <div class="navbar" style="text-decoration: none;">
-        <img src="pictures/flag.png" alt="logo" class="logo" onclick="home()" style="cursor: pointer;">
+        <img src="pictures/flag.png" alt="logo" style="height: 3.8rem;" onclick="goto('index')" style="cursor: pointer;">
         <div class="icon-group">
             <img src="pictures/share.png" alt="Share" class="icon" onclick="shareFunction()">
             <a href="https://github.com/SoklyninNou" target="_blank">
                 <img src="pictures/github.png" alt="Github" class="icon">
             </a>
-            <a href="./screen-saver"><img src="pictures/ss.png" alt="Screen Saver" class="icon"></a>
+            <a href="./screen-saver.html"><img src="pictures/ss.png" alt="Screen Saver" class="icon"></a>
             <img style="padding-left: 5px;" src="pictures/burger-icon.png" alt="menu" class="icon" onclick="burgerMenu()">
         </div>
     </div>
     <div id="burger-menu">
-        <p onclick="home()">Home</p>
-        <!-- <p onclick="toggleDropdown('gadgets-dropbox')">Gadgets <span class="arrow">▼</span></p>
-        <div id="gadgets-dropbox" class="dropdown-content">
-            <p onclick="noteTaking()">Note Taking</p>
-            <p onclick="play(oliveDelights)">Olive Delights</p>
-            <p onclick="play(fein)">Fein</p>
-            <p onclick="play(carelessWhisper)">Classic Meme</p>
-        </div> -->
-        <p onclick="research()">Research</p>
-        <p onclick="experience()">Experience</p>
-        <p onclick="course()">Courses</p>
-        <p onclick="blog()">Blog</p>
-        <p onclick="notes()">Notes</p>
+        <p onclick="goto('index')">Home</p>
+        <p onclick="goto('research')">Research</p>
+        <p onclick="goto('experience')">Experience</p>
+        <p onclick="goto('courses')">Courses</p>
+        <p onclick="goto('blog')">Blog</p>
+        <p onclick="goto('notes')">Notes</p>
         <p><a href="mailto:sly.nou@berkeley.edu" style="text-decoration: none; color: white;">Contact me</a></p>
     </div>
     <div class="profile-container">
         <hr class="profile" id="profile">
         <p id="profile-text">Soklynin Nou</p>
     </div>
-    <!-- <hr class="divider"> -->
 </header>
 <div id="toast"></div>
 </html>

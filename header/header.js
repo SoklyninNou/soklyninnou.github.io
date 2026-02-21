@@ -50,65 +50,22 @@ function toggleDropdown(dropdownId) {
     });
 }
 
-const oliveDelights = new Audio('audio/olive-delights.mp3');
-oliveDelights.volume = 0.5;
-const fein = new Audio('audio/fein.mp3');
-fein.volume = 0.5;
-const carelessWhisper = new Audio('audio/careless-whisper.mp3');
-carelessWhisper.volume = 0.5;
-let currentAudio = null;
-function play(audio) {
-    const profile = document.getElementById("profile");
-    const profileText = document.getElementById("profile-text");
-    if (audio === carelessWhisper) {
-        profile.classList.add("zoom");
-        profileText.classList.add("zoom");
-    } else {
-        profile.classList.remove("zoom");
-        profileText.classList.remove("zoom");
-    }
+function toggle(buttonName) {
+    const button = document.getElementById('button-' + buttonName);
 
-    if (currentAudio && currentAudio !== audio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-        if (currentAudio === carelessWhisper) {
-            profile.style.animationPlayState = "paused";
-        }
-    }
+    button.classList.add('pressed');
 
-    // Toggle play/pause on the clicked audio
-    if (audio.paused) {
-        audio.play();
-        currentAudio = audio;
-        if (audio === carelessWhisper) {
-            profile.style.animationPlayState = "running";
-        }
-    } else {
-        audio.pause();
-        if (audio === carelessWhisper) {
-            profile.style.animationPlayState = "paused";
-        }
-        currentAudio = null;
-    }
+    setTimeout(() => {
+        button.classList.remove('pressed');
+    }, 320);
+
+    setTimeout(() => {
+        window.location.href = `${buttonName}.html`;
+    }, 620);
 }
 
-function home() {
-    window.location.href = "./";
-}
-
-function research() {
-    showToast("Going to research experiences.");
-    window.location.href = "./research";
-}
-
-function experience() {
-    showToast("Going to previous work experience.");
-    window.location.href = "./experience";
-}
-
-function course() {
-    showToast("Going to courses taken.");
-    window.location.href = "./courses";
+function goto(page) {
+    window.location.href = `${page}.html`;
 }
 
 function notes() {

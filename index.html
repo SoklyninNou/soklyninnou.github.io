@@ -25,40 +25,34 @@
         <div class="grid">
             <div class="header"><h1>About Me</h1></div>
             <div class="songs">
-                <h1>Some songs I listen to:</h1>
+                <strong>Some songs I listen to:</strong>
                 <iframe
-                    style="border-radius:12px"
+                    class="song-iframe"
                     src="https://open.spotify.com/embed/track/3x4378ztiLvFmm2nuzEI0C?utm_source=generator"
                     width="100%"
-                    height="152"
                     frameBorder="0"
                     allowfullscreen=""
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                     loading="lazy">
                 </iframe>
-                <br>
                 <iframe
-                    style="border-radius:12px"
+                    class="song-iframe"
                     src="https://open.spotify.com/embed/track/5UWwZ5lm5PKu6eKsHAGxOk?utm_source=generator"
                     width="100%"
-                    height="152"
                     frameBorder="0"
                     allowfullscreen=""
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                     loading="lazy">
                 </iframe>
-                <br>
                 <iframe
-                    style="border-radius:12px"
+                    class="song-iframe"
                     src="https://open.spotify.com/embed/track/4RVbK6cV0VqWdpCDcx3hiT?utm_source=generator"
                     width="100%"
-                    height="152"
                     frameBorder="0"
                     allowfullscreen=""
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                     loading="lazy">
                 </iframe>
-                <br>
             </div>
             <div class="content">
                 <p>
@@ -85,7 +79,7 @@
                 </p>
             </div>
         </div>
-        <div class="title">Experience Summary</div>
+        <div class="title"><h1>Experience Summary</h1></div>
         <div class="container">
             <div class="job">
                 <div id="title">Course Staff</div>
@@ -147,6 +141,7 @@
                     <li>Administration</li>   
                 </ul>
             </div>
+            <div class="button" id='button-experience' onclick="toggle('experience')">More</div>
         </div>
     </div>
 </body>

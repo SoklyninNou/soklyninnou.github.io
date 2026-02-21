@@ -1,73 +1,109 @@
+/* ROOT VARIABLES */
+:root {
+    --music-height: 18dvh;
+    --grid-gap: 5%;
+    --container-padding: 1rem;
+    --container-border: 0.2rem;
+    --content-padding: 1.5rem;
+    --content-radius: 1rem;
+    --line-height: 1.5rem;
+    --title-font-size: clamp(1rem, 5vw, 1.5rem);
+    --job-font-size: 1.2rem;
+}
+
+h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 1rem 0;
+}
+
+/* GRID LAYOUT */
 .grid {
-  display: grid;
-  grid-template-areas:
-    "header header"
-    "songs content";
-  grid-template-columns: 35% 60%;
-  column-gap: 5%;
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "songs content";
+    grid-template-columns: 35% 60%;
+    column-gap: var(--grid-gap);
+    margin-bottom: 0rem;
 }
 
 .grid div.header {
     font-family: Arial, sans-serif;
     grid-area: header;
     text-align: center;
+    font-size: var(--title-font-size);
+    margin-bottom: 0.5rem;
 }
 
 .grid div.songs {
     grid-area: songs;
+    font-size: 2rem;
+    line-height: 3rem;
 }
 
 .grid div.content {
-    border: 0.2rem solid black;
-    border-radius: 10%;
     grid-area: content;
-    font-size: 1.2rem;
     font-family: Arial, sans-serif;
-    text-align: left;
-    padding: 25px;
+    border: var(--container-border) solid black;
+    border-radius: var(--content-radius);
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
     text-align: justify;
-    line-height: 2rem;
-    background-color: rgba(65, 105, 225, .67);
+    padding: var(--content-padding);
+    line-height: var(--line-height);
+    background-color: rgba(65, 105, 225, 0.67);
 }
 
+/* CONTAINER */
 .container {
     background-color: #191919;
     width: 70%;
+    max-width: 90%;
     height: auto;
-    padding: 1%;
-    margin: 0% 15% 5%;
-    border: 3px solid royalblue;
+    padding: var(--container-padding);
+    margin: 0 auto 2rem auto;
+    border: 0.2rem solid royalblue;
+    border-radius: 0.5rem;
 }
 
+/* Title */
 .title {
     font-family: Arial, sans-serif;
     text-align: center;
     margin-top: 4rem;
     margin-bottom: 1rem;
-    font-size: 3rem;
-}
-
-.job {
-    margin: 10% 10% 15%;
-    border-bottom: 8px solid #333;
-    font-size: 20px;
-}
-
-ul {
-    list-style-type: circle;
-    line-height: 200%;
+    font-size: var(--title-font-size);
 }
 
 #title {
     color: royalblue;
-    font-size: 40px;
+    font-size: clamp(2rem, 5vw, 2.5rem);
 }
 
-#job-grid {
-    grid-template-columns: 50% 50%;
-    grid-template-areas:
-    "left right";
+/* JOB SECTION */
+.job {
+    margin: 10% 10% 15%;
+    border-bottom: 0.5rem solid #333;
+    font-size: var(--job-font-size);
+}
 
+/* Lists */
+ul {
+    list-style-type: circle;
+    line-height: 2rem;
+    padding-left: 1.5rem;
+}
+
+/* Job Grid */
+#job-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-areas: "left right";
+    column-gap: 1rem;
+}
+
+#job-grid div.left {
+    grid-area: left;
+    text-align: left;
 }
 
 #job-grid div.right {
@@ -75,7 +111,64 @@ ul {
     text-align: right;
 }
 
-#job-grid div.left {
-    grid-area: left;
-    text-align: left;
+.song-iframe {
+    width: 100%;
+    border-radius: 0.75rem;
+    margin-bottom: 0.5rem;
+    height:var(--music-height);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-areas:
+            "header"
+            "songs"
+            "content";
+        grid-template-columns: 100%;
+    }
+
+    #job-grid {
+        grid-template-columns: 100%;
+        grid-template-areas:
+            "left"
+            "right";
+    }
+
+    .grid div.header {
+        font-family: Arial, sans-serif;
+        grid-area: header;
+        text-align: center;
+        font-size: var(--title-font-size);
+        margin-bottom: 0rem;
+    }
+
+    .grid div.content {
+        padding: 1rem;
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+    }
+
+    .grid div.songs {
+        padding: 1rem;
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+    }
+
+    .container {
+        width: 90%;
+        padding: 0.75rem;
+    }
+
+    .title, #title {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+
+    .job {
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        margin: 5% 5% 10%;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin: -1rem;
+    }
 }

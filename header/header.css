@@ -1,66 +1,84 @@
 :root {
-    --banner-height: 60px;
-    --separator: 42px;
-    --scroll-up: 120px;
+    --banner-height: 3.75rem;
+    --separator: 2.5rem;
+    --scroll-up: 7.5rem;
+    --button-time: 0.3s;
+    --border-radius: 0.75rem;
+    --course-border-width: 0.3rem;
+    --legend-border-width: 0.4rem;
 }
 
+/* Reset + Base */
 html, body {
     margin: 0;
     padding: 0;
     background-color: black;
     background-image: url('../pictures/background.jpg');
-    background-size: contain;
+    background-size: cover;
     background-repeat: repeat-y;
     background-position: center;
     color: white;
     overflow-x: hidden;
+    font-family: Arial, sans-serif;
 }
 
-/* .banner {
-    background-image: url('../pictures/starry-night.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 25vw;
-    aspect-ratio: 4/1;
-    display: flex;
-    border: 0px;
-    border-bottom: 3px solid royalblue;
-    z-index: 3;
-} */
-/*Navbar*/
+/* NAVBAR */
+
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
-    height: var(--banner-height);
+    height: var(--banner-height) ;
     background-color: black;
     z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 3px solid royalblue;
+    border-bottom: 0.2rem solid royalblue;
+    padding: 0 1rem;
+}
+
+.logo {
+    height: 2.5rem;
+}
+
+.icon-group {
+    position: fixed;
+    right: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.icon {
+    height: 1.75rem;
+    width: 1.75rem;
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+    cursor: pointer;
+}
+
+/* BURGER MENU */
+
+#burger-button {
+    height: 2rem;
+    width: 2rem;
 }
 
 #burger-menu {
     position: fixed;
-    top: 47px;
-    right: -300px;
-    width: 247px;
-    height: 100vh;
-    margin-top: 15px;
+    top: var(--banner-height);
+    right: -100%;
+    width: 80%;
+    max-width: 18rem;
+    height: 100dvh;
     background-color: black;
-    border-left: 3px solid royalblue;
+    border-left: 0.2rem solid royalblue;
     transition: right 0.3s ease;
-    font-size: 24px;
+    font-size: 1.25rem;
     z-index: 999;
 }
 
-#burger-button {
-    height: 30px;
-    width: 30px;
-}
-  
 #burger-menu.show {
     right: 0;
 }
@@ -68,7 +86,7 @@ html, body {
 #burger-menu > p {
     background-color: black;
     color: white;
-    padding: 12px 16px;
+    padding: 1rem;
     margin: 0;
     border-bottom: 1px solid #444;
     transition: background-color 0.3s ease;
@@ -80,9 +98,9 @@ html, body {
 }
 
 #arrow {
-    font-size: 0.7em;
+    font-size: 0.75em;
     vertical-align: middle;
-    margin-left: 4px;
+    margin-left: 0.25rem;
 }
 
 .dropdown-content {
@@ -97,11 +115,11 @@ html, body {
 .dropdown-content p {
     background-color: #1a1a1a;
     margin: 0;
-    padding: 12px 16px 12px 48px;
+    padding: 0.9rem 1rem 0.9rem 2.5rem;
     color: white;
     border-bottom: 1px solid #333;
     transition: background-color 0.3s ease;
-    font-size: 18px;
+    font-size: 1rem;
     cursor: pointer;
 }
 
@@ -109,154 +127,129 @@ html, body {
     background-color: #333;
 }
 
-.logo {
-    height: 4vw;
-    left: 1vw;
-}
-
-.icon-group {
-    position: fixed;
-    right: 1vw;
-    display: flex;
-    gap: 1vw;
-    align-items: center;
-}
-
-.icon {
-    height: 2vw;
-    width: 2vw;
-    cursor: pointer;
-}
+/* PROFILE */
 
 .profile-container {
     margin-top: calc(var(--banner-height) + var(--separator));
     text-align: center;
-    color: white;
-    font-family: Arial, sans-serif;
     z-index: 1;
+    padding: 0 1rem;
 }
 
-.profile{
+.profile {
     background-image: url('../pictures/me.JPG');
 }
 
 #profile {
-    height: 12vw;
-    width: 12vw;
+    height: 12rem;
+    width: 12rem;
     background-position: center;
     background-size: cover;
     border-radius: 50%;
-    border: 3px solid royalblue;
+    border: 0.2rem solid black;
+    margin: 0 auto;
 }
 
 #profile-text {
-    margin-top: -0.5vw;
-    font-size: 4vw;
-    border-radius: 25px;
-    /* border: 3px solid royalblue; */
+    margin-top: 0.5rem;
+    font-size: 2rem;
+    border-radius: 1.5rem;
     display: inline-block;
 }
 
-/* #profile.zoom {
-    display: block;
-    animation: dramatic 300s forwards;
-    animation-play-state: paused;
-    transform-origin: center;
-    position: relative;
-    right: calc(-550px);
-    z-index: 1000;
-}
-
-@keyframes dramatic {
-    0% {
-        transform: scale(1);
-        border-radius: 50%;
-    }
-    100% {
-        transform: scale(8);
-        border-radius: 0%;
-    }
-} */
-
-/* #profile-text.zoom {
-    position: relative;
-    right: calc(-550px);
-    z-index: 1;
-} */
-
 .divider {
     position: relative;
-    height: 3px;
+    height: 0.2rem;
     background-color: royalblue;
-    top: -10vw;
-    border: 0px;
+    margin: 2rem auto;
+    width: 90%;
 }
+
+/* TOAST */
 
 #toast {
     visibility: hidden;
-    min-width: 200px;
-    background-color: #333;
+    width: 70%;
+    background-color: rgba(0, 0, 0, 0.67);
     color: #fff;
     text-align: center;
-    border-radius: 4px;
-    padding: 12px;
+    border-radius: 0.25rem;
+    padding: 0.75rem 1rem;
     position: fixed;
-    top: 30px;
+    top: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 9999;
-    font-size: 14px;
+    font-size: 5rem;
     opacity: 0;
-    transition: opacity 0.5s ease, visibility 0.5s;
-  }
-  
+    transition: opacity 0.5s ease, visibility 1s;
+}
+
 #toast.show {
     visibility: visible;
     opacity: 1;
 }
 
+/* CONTENT */
+
 .content {
-    padding: 50px;
-    color: white;
-    font-family: Arial, sans-serif;
+    padding: 2rem 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 0px;
+    gap: 1.5rem;
 }
 
-/* .skater-boi {
-    background-image: url('../pictures/bmo-skate.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    position: absolute;
-    height: 12vw;
-    aspect-ratio: 1/1;
-    display: flex;
-    border: 0px;
-    clip-path: insert(50px 50px 50px 50px);
-    animation: skate 12s linear infinite;
-} */
+/* BUTTONS */
 
-@keyframes skate {
-    0% {
-        left: -12vw;;
-        transform: scaleX(1);
+.button {
+    position: relative;
+    font-size: 1.25rem;
+    height: 3.75rem;
+    width: 100%;
+    max-width: 30rem;
+    margin: 0 auto;
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: royalblue;
+    border-radius: var(--border-radius);
+    transition: all var(--button-time) ease;
+}
+
+#button-experience {
+    box-shadow: 0 var(--legend-border-width) 0 violet;
+}
+
+#button-experience.pressed {
+    background-color: #333;
+    transform: translateY(var(--legend-border-width));
+    box-shadow: 0 0 0 violet;
+}
+
+/* SMALL SCREEN TWEAKS */
+
+@media (max-width: 480px) {
+
+    #profile {
+        height: 6.5rem;
+        width: 6.5rem;
     }
-    45% {
-        left: 100vw;
-        transform: scaleX(1);
+
+    #profile-text {
+        font-size: 1.5rem;
     }
-    50% {
-        left: 100vw;
-        transform: scaleX(-1);
+
+    .button {
+        font-size: 1.1rem;
+        height: 3.25rem;
     }
-    95% {
-        left: -12vw;;
-        transform: scaleX(-1);
+
+    .song-iframe {
+        margin-bottom: 0.25rem;
+        border-radius: 0.5rem;
+        height: 10.5dvh;
     }
-    100% {
-        left: -12vw;;
-        transform: scaleX(1);
-    }
+
 }
