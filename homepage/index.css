@@ -1,6 +1,6 @@
 /* ROOT VARIABLES */
 :root {
-    --music-height: 18dvh;
+    --music-height: 10rem;
     --grid-gap: 5%;
     --container-padding: 1rem;
     --container-border: 0.2rem;
