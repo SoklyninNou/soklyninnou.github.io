@@ -67,18 +67,6 @@
 } 
 
 /*Course container*/
-.item {
-    position: relative;
-    width: 8vw;
-    height: 4vw;
-    font-size: 1.2vw;
-    align-self: center;
-    text-align: center;
-    line-height: 4vw;
-    cursor: pointer; 
-    align-items: center;
-}
-
 .button {
     position: relative;
     text-align: center;
@@ -95,6 +83,18 @@
     border-radius: 4px;
     transition: background-color 0.2s ease;
     margin: 3% auto;
+}
+
+.item {
+    position: relative;
+    width: 8vw;
+    height: 4vw;
+    font-size: 1.2vw;
+    align-self: center;
+    text-align: center;
+    line-height: 4vw;
+    cursor: pointer; 
+    align-items: center;
 }
 
 .item::after {
