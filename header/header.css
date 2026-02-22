@@ -213,18 +213,15 @@ html, body {
     cursor: pointer;
     border-radius: var(--border-radius);
     transition: all var(--button-time) ease;
+    background-color: rgb(25, 25, 25);
+    box-shadow: 0 var(--legend-border-width) 0 black;
 }
 
 .button:hover {
     width: 25rem;
 }
 
-#button-experience {
-    background-color: rgb(25, 25, 25);
-    box-shadow: 0 var(--legend-border-width) 0 black;
-}
-
-#button-experience.pressed {
+.button.pressed {
     background-color: rgb(25, 25, 25);
     transform: translateY(var(--legend-border-width));
     box-shadow: 0 0 0 black;
@@ -258,5 +255,4 @@ html, body {
         border-radius: 0.5rem;
         height: 10.5dvh;
     }
-
 }

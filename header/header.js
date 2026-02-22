@@ -51,7 +51,7 @@ function toggleDropdown(dropdownId) {
 }
 
 function toggle(buttonName) {
-    const button = document.getElementById('button-' + buttonName);
+    const button = document.getElementsByClassName('button')[0];
 
     button.classList.add('pressed');
 
@@ -62,6 +62,19 @@ function toggle(buttonName) {
     setTimeout(() => {
         window.location.href = `${buttonName}.html`;
     }, 620);
+}
+
+function downloadFile(button) {
+    button.classList.add('pressed');
+
+    setTimeout(() => {
+        button.classList.remove('pressed');
+
+        const link = document.createElement('a');
+        link.href = "notes/eecs127_notes.pdf";
+        link.download = "eecs127_notes";
+        link.click();
+    }, 300);
 }
 
 function goto(page) {

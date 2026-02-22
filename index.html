@@ -24,7 +24,7 @@
     <div class="content">
         <div class="title">About Me</div>
         <div class="grid">
-            <div class="context1">
+            <div class="song">
                 <iframe
                     class="song-iframe"
                     src="https://open.spotify.com/embed/track/4oE7MyJhqSD3BaHRpNs8Nl?utm_source=generator&theme=0"
@@ -134,7 +134,7 @@
                     <li>Administration</li>   
                 </ul>
             </div>
-            <div class="button" id='button-experience' onclick="toggle('experience')">More</div>
+            <div class="button" onclick="toggle('experience')">More</div>
         </div>
         <div class="title">
             Cool things
@@ -148,6 +148,37 @@
                 allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
             </iframe>
+            <div class="divider"></div>
+        </div>
+        <div class="title">
+            Notes
+        </div>
+        <div class="container">
+            <div class="container-title">CS 188: Introduction to Artificial Intelligence</div>
+            <br>
+            <object 
+                class="pdf"
+                style="border-radius: 5%;"
+                data="notes/cs188_notes.pdf"
+                            width="100%"
+                            height="700">
+            </object>
+            <div class="button"
+                style="margin-top: 5%; background-color: rgb(25, 25, 25);">Download</div>
+            <div class="divider"></div>
+            <div class="container-title">EECS 127: Optimization Models in Engineering</div>
+            <br>
+            <object 
+                class="pdf"
+                style="border-radius: 5%;"
+                data="notes/eecs127_notes.pdf"
+                            width="100%"
+                            height="700">
+            </object>
+            <div class="button" style="margin-top: 5%"
+                    onclick="downloadFile(this)">
+                Download Notes
+            </div>
             <div class="divider"></div>
         </div>
     </div>
