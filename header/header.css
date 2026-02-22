@@ -215,19 +215,19 @@ html, body {
     transition: all var(--button-time) ease;
 }
 
-#button-experience {
-    background-color: royalblue;
-    box-shadow: 0 var(--legend-border-width) 0 violet;
-}
-
-#button-experience:hover {
+.button:hover {
     width: 25rem;
 }
 
+#button-experience {
+    background-color: rgb(25, 25, 25);
+    box-shadow: 0 var(--legend-border-width) 0 black;
+}
+
 #button-experience.pressed {
-    background-color: #333;
+    background-color: rgb(25, 25, 25);
     transform: translateY(var(--legend-border-width));
-    box-shadow: 0 0 0 violet;
+    box-shadow: 0 0 0 black;
 }
 
 /* SMALL SCREEN TWEAKS */
@@ -246,6 +246,11 @@ html, body {
     .button {
         font-size: 1.1rem;
         height: 3.25rem;
+        width: 10rem;
+    }
+
+    .button:hover {
+        width: 15rem;
     }
 
     .song-iframe {

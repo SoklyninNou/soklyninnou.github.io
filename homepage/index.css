@@ -84,27 +84,29 @@ p {
 .grid div.context {
     grid-area: context;
     font-family: var(--font-family);
-    border: var(--container-border) solid royalblue;
+    border: var(--container-border) solid black;
     border-radius: var(--content-radius);
     font-size: clamp(1rem, 2.5vw, 1.4rem);
     text-align: justify;
     padding: var(--content-padding);
     line-height: var(--line-height);
-    background-color: #191919;
+    background-color: rgb(25, 25, 25, 0.85);
     margin: 0 auto 2rem auto;
 }
 
 /* CONTAINER */
 .container {
-    background-color: #191919;
+    background-color: rgb(25, 25, 25, 0.85);
     display: flex;
     flex-direction: column;
     width: 80%;
     height: auto;
     padding: var(--container-padding);
     margin: 0 auto 2rem auto;
-    border: 0.2rem solid royalblue;
-    border-radius: 0.5rem;
+    border-right: 0.5rem solid black;
+    border-bottom: 0.5rem solid black;
+    border-radius: 1rem;
+    padding: 5% 5% 0%;
 }
 
 #centered-items {
@@ -117,25 +119,25 @@ p {
     font-family: var(--font-family);
     text-align: center;
     font-size: var(--title-font-size);
-    background-color: #191919;
+    background-color: rgb(25, 25, 25, 0.85);
     display: flex;
     flex-direction: column;
     width: 40%;
     height: auto;
     padding: var(--container-padding);
     margin: 4rem auto 1rem auto;
-    border: 0.2rem solid royalblue;
+    border: 0.2rem solid black;
     border-radius: 4rem;
 }
 
-#title {
+.container-title {
     color: royalblue;
     font-size: clamp(2rem, 5vw, 2.5rem);
 }
 
 /* JOB SECTION */
 .job {
-    margin: 5% 10% 5%;
+    margin-bottom: 5%;
     border-bottom: 0.5rem solid #333;
     font-size: var(--job-font-size);
 }
@@ -221,7 +223,7 @@ ul {
         margin: 1rem auto 0.5rem auto;
     }
 
-    #title {
+    .container-title {
         font-size: 1.2rem;
     }
 
