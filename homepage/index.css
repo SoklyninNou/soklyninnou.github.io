@@ -177,7 +177,7 @@ ul {
 .video-iframe {
     width: 1fr;
     aspect-ratio: 16/9;
-    border-radius: 0.75rem;
+    border-radius: 5%;
     margin: 1rem 5% 1rem 5%;
 }
 
