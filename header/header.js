@@ -80,8 +80,3 @@ function downloadFile(button) {
 function goto(page) {
     window.location.href = `${page}.html`;
 }
-
-function notes() {
-    showToast("Going to notes.");
-    window.location.href = "./notes/cs188_notes.pdf";
-}
