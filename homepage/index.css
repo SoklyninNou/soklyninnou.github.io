@@ -112,6 +112,14 @@ p {
 #centered-items {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#centered-items img {
+    border-radius: 5%;
+    max-width: 70%;
+    height: auto;
 }
 
 /* Title */
@@ -175,7 +183,7 @@ ul {
 }
 
 .video-iframe {
-    width: 1fr;
+    width: 80%;
     aspect-ratio: 16/9;
     border-radius: 5%;
     margin: 1rem 5% 1rem 5%;
