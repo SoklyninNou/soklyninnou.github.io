@@ -94,34 +94,6 @@ p {
     margin: 0 auto 2rem auto;
 }
 
-/* CONTAINER */
-.container {
-    background-color: rgb(25, 25, 25, 0.85);
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    height: auto;
-    padding: var(--container-padding);
-    margin: 0 auto 2rem auto;
-    border-right: 0.5rem solid black;
-    border-bottom: 0.5rem solid black;
-    border-radius: 1rem;
-    padding: 5% 5% 0%;
-}
-
-#centered-items {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-#centered-items img {
-    border-radius: 5%;
-    max-width: 70%;
-    height: auto;
-}
-
 /* Title */
 .title {
     font-family: var(--font-family);
@@ -136,11 +108,6 @@ p {
     margin: 4rem auto 1rem auto;
     border: 0.2rem solid black;
     border-radius: 4rem;
-}
-
-.container-title {
-    color: royalblue;
-    font-size: clamp(2rem, 5vw, 2.5rem);
 }
 
 /* JOB SECTION */
@@ -219,20 +186,11 @@ ul {
         font-size: clamp(0.9rem, 2vw, 1.1rem);
     }
 
-    .container {
-        width: 90%;
-        padding: 0.75rem;
-    }
-
     .title {
         padding: calc(var(--container-padding)/2);
         font-size: 1.2rem;
         width: 60%;
         margin: 1rem auto 0.5rem auto;
-    }
-
-    .container-title {
-        font-size: 1.2rem;
     }
 
     .job {

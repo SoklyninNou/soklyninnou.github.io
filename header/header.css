@@ -164,6 +164,39 @@ html, body {
     margin: 1.5rem auto;
 }
 
+/* CONTAINER */
+.container {
+    background-color: rgb(25, 25, 25, 0.85);
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: auto;
+    padding: var(--container-padding);
+    margin: 0 auto 2rem auto;
+    border-right: 0.5rem solid black;
+    border-bottom: 0.5rem solid black;
+    border-radius: 1rem;
+    padding: 5% 5% 0%;
+}
+
+#centered-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#centered-items img {
+    border-radius: 5%;
+    max-width: 70%;
+    height: auto;
+}
+
+.container-title {
+    color: royalblue;
+    font-size: clamp(2rem, 5vw, 2.5rem);
+}
+
 /* TOAST */
 
 #toast {
@@ -190,7 +223,6 @@ html, body {
 }
 
 /* CONTENT */
-
 .content {
     padding: 0% 8%;
     display: flex;
@@ -198,7 +230,6 @@ html, body {
 }
 
 /* BUTTONS */
-
 .button {
     position: relative;
     font-size: 1.25rem;
@@ -227,8 +258,6 @@ html, body {
     box-shadow: 0 0 0 black;
 }
 
-/* SMALL SCREEN TWEAKS */
-
 @media (max-width: 480px) {
 
     #profile {
@@ -254,5 +283,14 @@ html, body {
         margin-bottom: 0.25rem;
         border-radius: 0.5rem;
         height: 10.5dvh;
+    }
+
+    .container-title {
+        font-size: 1.2rem;
+    }
+
+    .container {
+        width: 90%;
+        padding: 0.75rem;
     }
 }

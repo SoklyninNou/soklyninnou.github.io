@@ -1,0 +1,7 @@
+iframe {
+    width: 80%;
+    height: auto;
+    border-radius: 5%;
+    margin: 1rem 5% 1rem 5%;
+    justify-self: center;
+}
