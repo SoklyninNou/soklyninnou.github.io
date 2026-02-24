@@ -94,22 +94,6 @@ p {
     margin: 0 auto 2rem auto;
 }
 
-/* Title */
-.title {
-    font-family: var(--font-family);
-    text-align: center;
-    font-size: var(--title-font-size);
-    background-color: rgb(25, 25, 25, 0.85);
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-    height: auto;
-    padding: var(--container-padding);
-    margin: 4rem auto 1rem auto;
-    border: 0.2rem solid black;
-    border-radius: 4rem;
-}
-
 /* JOB SECTION */
 .job {
     margin-bottom: 5%;

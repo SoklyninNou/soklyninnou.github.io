@@ -1,7 +1,6 @@
-iframe {
+.page-iframe {
     width: 80%;
-    height: auto;
+    height: 80vh;
     border-radius: 5%;
-    margin: 1rem 5% 1rem 5%;
-    justify-self: center;
+    margin: 1rem 5%;
 }

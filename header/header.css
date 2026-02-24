@@ -6,6 +6,9 @@
     --border-radius: 0.75rem;
     --course-border-width: 0.3rem;
     --legend-border-width: 0.4rem;
+    --font-family: "Geist", sans-serif;
+    --title-font-size: clamp(1rem, 5vw, 3rem);
+    --container-padding: 1rem;
 }
 
 /* Reset + Base */
@@ -195,6 +198,22 @@ html, body {
 .container-title {
     color: royalblue;
     font-size: clamp(2rem, 5vw, 2.5rem);
+}
+
+/* Title */
+.title {
+    font-family: var(--font-family);
+    text-align: center;
+    font-size: var(--title-font-size);
+    background-color: rgb(25, 25, 25, 0.85);
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: auto;
+    padding: var(--container-padding);
+    margin: 4rem auto 1rem auto;
+    border: 0.2rem solid black;
+    border-radius: 4rem;
 }
 
 /* TOAST */
