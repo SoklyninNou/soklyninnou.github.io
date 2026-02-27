@@ -1,6 +1,55 @@
-.page-iframe {
-    width: 80%;
-    height: 80vh;
-    border-radius: 5%;
-    margin: 1rem 5%;
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+.container {
+    width: 500px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.card-creator input,
+.card-creator textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    background: #4a90e2;
+    color: white;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #357abd;
+}
+
+.flashcard {
+    margin-top: 20px;
+    padding: 40px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.controls {
+    margin-top: 15px;
 }

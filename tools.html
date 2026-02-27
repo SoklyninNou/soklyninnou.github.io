@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <link rel="icon" type="image/x-icon" href="/pictures/reze.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="header/header.css" />
-    <script src="header/header.js"></script>
-
-    <link rel="stylesheet" href="../homepage/tools.css" />
-    <script src="../homepage/tools.js"></script>
+    <meta charset="UTF-8">
+    <title>Flash Card Maker</title>
+    <link rel="stylesheet" href="tools.css">
 </head>
-<header>
-<div id="header"></div>
-    <script>
-        fetch('header/header.html')
-            .then(res => res.text())
-            .then(data => {
-                document.getElementById('header').innerHTML = data;
-            });
-    </script>
-</header>
 <body>
-    <div class="content">
-        <div class="title">Useful Tools</div>
-        <div class="container">
-            <iframe
-                class="page-iframe"
-                src="https://page-replacement.fun/"
-                title="Clock Algorithm">
-            </iframe>
+
+    <div class="container">
+        <h1>Flash Card Maker</h1>
+
+        <div class="card-creator">
+            <input type="text" id="questionInput" placeholder="Enter question">
+            <textarea id="answerInput" placeholder="Enter answer"></textarea>
+            <button id="addCardBtn">Add Flash Card</button>
+        </div>
+
+        <div class="flashcard-area">
+            <div id="flashcard" class="flashcard">
+                <p id="cardText">Your flash card will appear here</p>
+            </div>
+
+            <div class="controls">
+                <button id="prevBtn">Previous</button>
+                <button id="flipBtn">Flip</button>
+                <button id="nextBtn">Next</button>
+                <button id="deleteBtn">Delete</button>
+            </div>
         </div>
     </div>
+
+    <script src="tools.js"></script>
 </body>
+</html>
