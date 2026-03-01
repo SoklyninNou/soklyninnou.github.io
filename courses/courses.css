@@ -1,43 +1,10 @@
 :root {
     --button-time: 0.4s; /* Legend button animation*/
-    --border-radius: 1vw;
-    --course-border-width: 0.5vw;
-    --legend-border-width: 0.75vw;
+    --item-border-radius: 1.25vw;
+    --legend-border-width: 0.7vw;
 }
 
-
-.container {
-    background-color: #191919;
-    width: 90%;
-    height: auto;
-    padding: 1%;
-    margin: 0% 5% 5%;
-    border: 3px solid royalblue;
-    border-radius: 5vw;
-}
-
-.container > p {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    font-size: 4vw;
-    font-weight: bold;
-}
-
-.head {
-    text-align: center;
-    font-size: 5vw;
-    background-color: #191919;
-    width: 50%;
-    height: auto;
-    padding: 1%;
-    margin: 0% 25% 5%;
-    border: 3px solid royalblue;
-    border-radius: 4rem;
-}
-
-.school {
+.centered-large-text {
     display: flex;
     width: 100%;
     align-items: center;
@@ -51,7 +18,7 @@
     flex-direction: column;;
 }
   
-.title {
+.semester {
     min-width: 15vw;
     font-weight: bold;
     font-size: 2vw;
@@ -67,34 +34,18 @@
 } 
 
 /*Course container*/
-.button {
-    position: relative;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20%;
-    height: 50px;
-    font-size: 18px;
-    line-height: 50px;
-    cursor: pointer; 
-    background-color: #333;
-    color: #fff;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
-    margin: 3% auto;
-}
-
 .item {
     position: relative;
-    width: 8vw;
+    width: 7vw;
     height: 4vw;
-    font-size: 1.2vw;
+    font-size: 1vw;
     align-self: center;
     text-align: center;
     line-height: 4vw;
     cursor: pointer; 
     align-items: center;
+    border-radius: var(--item-border-radius);
+    border-bottom: royalblue 0.5vw solid;
 }
 
 .item::after {
@@ -106,7 +57,7 @@
     transform: translateX(-50%) translateY(-8px);
     background-color: #333;
     color: #fff;
-    border-radius: 12px;
+    border-radius: var(--item-border-radius);
     font-size: 1.2vw;
     padding: 0px 10px;
     opacity: 0;
@@ -125,7 +76,6 @@
     font-size: 2vw;
     height: 7vw;
     width: auto;
-    background-position: center;
     display: flex;
     gap: 1vw;
     margin: -2vw 3vw 2vw;
@@ -145,9 +95,7 @@
 }
 
 .honors {
-    border-bottom: royalblue var(--course-border-width) solid;
     background-color: darkgoldenrod;
-    border-radius: var(--border-radius);
     visibility: visible;
 }
 
@@ -157,9 +105,7 @@
 }
 
 .compsci {
-    border-bottom: royalblue var(--course-border-width) solid;
     background-color: darkcyan;
-    border-radius: var(--border-radius);
     visibility: visible;
 }
 
@@ -169,9 +115,7 @@
 }
 
 .maths {
-    border-bottom: royalblue var(--course-border-width) solid;
     background-color: darkslateblue;
-    border-radius: var(--border-radius);
     visibility: visible;
 }
 
@@ -181,9 +125,7 @@
 }
 
 .physics {
-    border-bottom: royalblue var(--course-border-width) solid;
     background-color: darkmagenta;
-    border-radius: var(--border-radius);
     visibility: visible;
 }
 
@@ -193,9 +135,7 @@
 }
 
 .electives {
-    border-bottom: royalblue var(--course-border-width) solid;
     background-color: brown;
-    border-radius: var(--border-radius);
     visibility: visible;
 }
 
@@ -205,9 +145,7 @@
 }
 
 .teaching {
-    border-bottom: royalblue var(--course-border-width) solid;
     background-color: darkgreen;
-    border-radius: var(--border-radius);
     visibility: visible;
 }
 
@@ -216,122 +154,24 @@
     visibility: hidden;
 }
 
-#teaching-legend {
-    position: relative;
-    animation: var(--button-time) on;
-    border-bottom: royalblue var(--legend-border-width) solid;
-    background-color: darkgreen;
-    border-radius: var(--border-radius);
+.legend-button {
+    border-bottom-style: solid;
+    border-bottom-color: royalblue;
+    border-bottom-width: var(--legend-border-width);
+    background-color: var(--legend-color);
+    border-radius: var(--item-border-radius);
+    transition: transform var(--button-time), border-bottom-width var(--button-time);
 }
 
-#teaching-legend.off {
-    position: relative;
-    background-color: #333;
-    animation: var(--button-time) off;
-    border-bottom: none;
-    top: calc(var(--legend-border-width) / 2);
+.legend-button.off {
+    border-bottom-width: 0px;
+    background-color: black;
+    transform: translateY(calc(var(--legend-border-width) / 2));
 }
 
-#electives-legend {
-    position: relative;
-    animation: var(--button-time) on;
-    border-bottom: royalblue var(--legend-border-width) solid;
-    background-color: brown;
-    border-radius: var(--border-radius);
-}
-
-#electives-legend.off {
-    position: relative;
-    background-color: #333;
-    animation: var(--button-time) off;
-    border-bottom: none;
-    top: calc(var(--legend-border-width) / 2);
-}
-
-#maths-legend {
-    position: relative;
-    animation: var(--button-time) on;
-    border-bottom: royalblue var(--legend-border-width) solid;
-    background-color: darkslateblue;
-    border-radius: var(--border-radius);
-}
-
-#maths-legend.off {
-    position: relative;
-    background-color: #333;
-    animation: var(--button-time) off;
-    border-bottom: none;
-    top: calc(var(--legend-border-width) / 2);
-}
-
-#compsci-legend {
-    position: relative;
-    animation: var(--button-time) on;
-    border-bottom: royalblue var(--legend-border-width) solid;
-    background-color: darkcyan;
-    border-radius: var(--border-radius);
-}
-
-#compsci-legend.off {
-    position: relative;
-    background-color: #333;
-    animation: var(--button-time) off;
-    border-bottom: none;
-    top: calc(var(--legend-border-width) / 2);
-}
-
-#honors-legend {
-    position: relative;
-    animation: var(--button-time) on;
-    border-bottom: royalblue var(--legend-border-width) solid;
-    background-color: darkgoldenrod;
-    border-radius: var(--border-radius);
-}
-
-#honors-legend.off {
-    position: relative;
-    background-color: #333;
-    animation: var(--button-time) off;
-    border-bottom: none;
-    top: calc(var(--legend-border-width) / 2);
-}
-
-#physics-legend {
-    position: relative;
-    animation: var(--button-time) on ease;
-    border-bottom: royalblue var(--legend-border-width) solid;
-    background-color: darkmagenta;
-    border-radius: var(--border-radius);
-}
-
-#physics-legend.off {
-    position: relative;
-    background-color: #333;
-    animation: var(--button-time) off ease;
-    border-bottom: none;
-    top: calc(var(--legend-border-width) / 2);
-}
-
-@keyframes off {
-    0% {
-        border-bottom: royalblue var(--legend-border-width) solid;
-        top: 0px;
-    }
-    100% {
-        border-bottom: none;
-        top: calc(var(--legend-border-width) / 2);
-    }
-}
-
-@keyframes on {
-    0% {
-        border-bottom: none;
-        top: calc(var(--legend-border-width) / 2);
-    }
-    100% {
-        border-bottom: royalblue var(--legend-border-width) solid;
-        top: 0px;
-    }
-}
-
-/*TODO: reduce legends redundancy*/
+#teaching-legend { --legend-color: darkgreen; }
+#electives-legend { --legend-color: brown; }
+#maths-legend { --legend-color: darkslateblue; }
+#compsci-legend { --legend-color: darkcyan; }
+#honors-legend { --legend-color: darkgoldenrod; }
+#physics-legend { --legend-color: darkmagenta; }
