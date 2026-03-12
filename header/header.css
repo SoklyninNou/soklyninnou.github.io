@@ -20,7 +20,7 @@ html, body {
     background-position: center;
     color: white;
     overflow-x: hidden;
-    font-family: Arial, sans-serif;
+    font-family: var(--font-family);
 }
 
 /* NAVBAR */
