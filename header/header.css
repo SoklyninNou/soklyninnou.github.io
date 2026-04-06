@@ -20,7 +20,7 @@ html, body {
     background-position: center;
     color: white;
     overflow-x: hidden;
-    font-family: Arial, sans-serif;
+    font-family: var(--font-family);
 }
 
 /* NAVBAR */
@@ -189,8 +189,8 @@ html, body {
 
 #centered-items img {
     border-radius: 5%;
-    max-width: 70%;
-    height: auto;
+    max-width: 80%;
+    aspect-ratio: auto;
 }
 
 .container-title {
