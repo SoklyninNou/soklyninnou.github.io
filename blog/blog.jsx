@@ -13,7 +13,7 @@ const posts = [
         title: 'About Me',
         date: 'April 23, 2026',
         excerpt: "Hi! Welcome to my blog. I figured it would make sense to introduce myself in a first post, so that's what we're doing.",
-        image: 'pictures/me-irl.JPG',
+        image: 'pictures/me-irl.jpg',
         url: 'blog/about-me.html',
     },
     {
