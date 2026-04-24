@@ -25,16 +25,64 @@
     </script>
 </header>
 <body>
-    <div class="container blog-container">
-        <article class="post-page">
-            <div class="post-category">Journal</div>
-            <h1 class="post-page-title">Learning Claude</h1>
-            <p class="post-page-date">April 23, 2026</p>
-            <div class="post-body">
-                
-            </div>
-            <a class="back-link" href="blog.html">← Back to all posts</a>
-        </article>
+    <div class="blog-layout">
+        <div class="container blog-container">
+            <article class="post-page">
+                <div class="post-category">Journal</div>
+                <h1 class="post-page-title">Learning Claude</h1>
+                <p class="post-page-date">April 23, 2026</p>
+                <div class="post-body">
+                    <h1 class="post-subtitle">Background</h1>
+                    <p><a style="color: red;"><b>DISCLAIMER:</b></a> This is a personal diary/journal, not a Claude guide. This will be apparent by how I explain things.</p>
+                    <p>
+                        When I first found out about Claude Code, I was skeptical on its capabilities. Additionally, I felt that AI coding tools was a cheat in a bad way. I thought that AI coding tools are an excuse to not learn the concepts and incentivize only knowing surface level information. This contradicts what I enjoy doing, which is research and the joy of the process of building things. But, a though I have in the back of my mind is that these AI tools is getting better and better with each passing day. And those who are using it are building useful applications. I am still debating whether to fully embrace this technology or remain cautious. But, I am slowing using claude for more purposes such as reviewing notes.
+                    </p>
+                    <p>
+                        With that being said I figured that learning Claude would be a great way to stay up to date with the latest AI developments by not using to complete my code but learning features like hooks and skills.
+                    </p>
+                    <h1 class="post-subtitle">Reflections</h1>
+                    <p>
+                        This section is to highlight things I've observed while using Claude and writing this blog that might not relate to the usage of Claude.
+                    </p>
+                    <p>
+                        Being relatively late to adopting these agent-based tools, I find that I am still stuck in the mindset of traditional programming approaches. That is, I tend to think about manual steps and processes rather than leveraging the agent's capabilities. Additionally, I am still getting used the idea of the agent being probabilistic. In traditional programming, we have deterministic outcomes: if this then that and follow these precise lines of code. But with AI tools, there could be a degree of uncertainty when working with concepts such as skills, which I find to be more like suggestions rather than definitive actions. At least, Claude's hooks are more deterministic in the sense that they are more like hard rules that the agent has to follow.
+                    </p>
+                    <h1 class="post-subtitle">Claude Skills</h1>
+                    <p class="post-page-date">April 23, 2026</p>
+                    <p>
+                        The first part I want to explore is to understand how Claude skills work, especially in the context of custom command creation.
+                    </p>
+                    <p>
+                        Claude skills is a feature that allows you to create custom commands that Claude can execute. This is useful for creating custom tools that can be used in the context of a conversation.
+                    </p>
+                    <p>
+                        I found that skills are quite similar to tools in the sense that they both allow you to create custom commands. It seems that tools are more focused on the actual execution of the command and can interact with the outside environment like the database, while skills are more like guides showing the agent should think and approach problems. This likely means that skills could probably call tools to execute specific tasks.
+                    </p>
+                    <p>
+                        After some cursory research, I would picture that the workflow is as follows:
+                    </p>
+                    <ol>
+                        <li>Write a rough draft of SKILL.md: frontmatter, a short body, any obvious scripts.</li>
+                        <li>Come up with 2-3 realistic test prompts, the kind of thing a real user would actually type</li>
+                        <li>Run Claude against each prompt twice: once with the skill available, once without. Compare the outputs.</li>
+                        <li>Read the transcripts, not just the final outputs. Look for places where the skill goes wrong</li>
+                        <li>Revise, keeping the prompt lean by cutting any unnecessary elements.</li>
+                        <li>Repeat until the outputs are reliably good.</li>
+                    </ol>
+                    <p>
+                        This is a manual process of creating Skills. But, most people are likely to use Claude itself to create and manage these skills. I realized that I have worked on a similar concepts to skills in the past, which are agent prompts. When I was customizing my offline agent, I could add extra context to the user's prompt that would guide the agent to think in a certain way in runtime. This is quick slow in retrospect, but it is a similar concept to skills in the sense that it is a way to guide the agent's thinking process. One thing I did was feed my agent my entire CS188 notes during running and ask it to use those notes to answer questions in a certain format and interpret the notes file a certain way, since my notes was written in Typst.
+                    </p>
+                    <!-- <h1 class="post-subtitle">Claude Hooks</h1>
+                    <p class="post-page-date">April 24, 2026</p> -->
+                </div>
+                <a class="back-link" href="blog.html">← Back to all posts</a>
+            </article>
+        </div>
+        <aside class="blog-toc">
+            <h2 class="toc-title">Table of Contents</h2>
+            <ul id="toc-list"></ul>
+        </aside>
     </div>
+    <script src="blog/toc.js"></script>
 </body>
 </html>

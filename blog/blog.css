@@ -223,13 +223,116 @@
     display: block;
 }
 
+/* ---------- Post page + ToC layout ---------- */
+
+.blog-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 240px;
+    gap: 1.5rem;
+    width: 90%;
+    margin: calc(var(--banner-height, 3.75rem) + 4rem) auto 5%;
+    align-items: start;
+}
+
+.blog-layout .blog-container {
+    background-color: #111;
+    width: auto;
+    margin: 0;
+}
+
+.blog-toc {
+    align-self: start;
+    background-color: #111;
+    border: 2px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    color: white;
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+.blog-toc.is-pinned {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.toc-title {
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #2a2a2a;
+}
+
+.blog-toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-item {
+    margin: 0.45rem 0;
+}
+
+.toc-link {
+    color: #888;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    display: block;
+    line-height: 1.35;
+    transition: color 0.15s ease;
+    cursor: pointer;
+}
+
+.toc-link:hover {
+    color: #ccc;
+}
+
+.toc-link.active {
+    color: royalblue;
+}
+
+.toc-item.toc-sub {
+    margin: 0.3rem 0 0.3rem 1rem;
+}
+
+.toc-item.toc-sub .toc-link {
+    font-size: 14px;
+    font-weight: 500;
+}
+
 /* ---------- Mobile ---------- */
+
+/* On narrower screens, stack ToC above the post body instead of side-by-side. */
+@media (max-width: 1024px) {
+    .blog-layout {
+        grid-template-columns: 1fr;
+        width: 90%;
+    }
+    .blog-toc {
+        position: static;
+        max-height: none;
+        order: -1;
+    }
+}
 
 @media (max-width: 768px) {
     .blog-container {
         width: 88%;
         margin: 5% 6%;
         padding: 5%;
+    }
+    .blog-layout {
+        width: 90%;
+        margin: calc(var(--banner-height, 3.75rem) + 1rem) auto 5%;
+        gap: 1rem;
+    }
+    .blog-layout .blog-container {
+        width: auto;
+        margin: 0;
     }
     .blog-heading {
         font-size: clamp(1.4rem, 6vw, 2rem);
