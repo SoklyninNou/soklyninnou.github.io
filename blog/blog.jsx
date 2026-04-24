@@ -8,16 +8,18 @@ const { useMemo, useState } = React;
 const posts = [
     {
         id: 'about-me',
-        category: 'Musings',
+        category: 'Personal',
+        status: 'Complete',
         title: 'About Me',
         date: 'April 23, 2026',
         excerpt: "Hi! Welcome to my blog. I figured it would make sense to introduce myself in a first post, so that's what we're doing.",
-        image: 'pictures/me.JPG',
+        image: 'pictures/me-irl.JPG',
         url: 'blog/about-me.html',
     },
     {
         id: 'learning-claude',
         category: 'Journal',
+        status: 'Ongoing',
         title: 'Learning Claude',
         date: 'April 23, 2026',
         excerpt: "I am currently learning how to work with Claude and making things like skills and agents and thought I should document my progress. This is a journal of my learning process.",
@@ -36,7 +38,8 @@ function BlogLanding() {
         return posts.filter(p =>
             p.title.toLowerCase().includes(q) ||
             p.category.toLowerCase().includes(q) ||
-            p.excerpt.toLowerCase().includes(q)
+            p.excerpt.toLowerCase().includes(q) ||
+            p.status.toLowerCase().includes(q)
         );
     }, [query]);
 
@@ -70,6 +73,7 @@ function PostCard({ post }) {
         <a className="post-card" href={post.url}>
             <div className="post-content">
                 <div className="post-category">{post.category}</div>
+                <div className="post-status"><a style={{ color: 'blue'}}>Status: </a>{post.status}</div>
                 <h2 className="post-title">{post.title}</h2>
                 <p className="post-date">{post.date}</p>
                 <p className="post-excerpt">{post.excerpt}</p>

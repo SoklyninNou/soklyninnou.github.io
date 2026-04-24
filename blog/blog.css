@@ -107,6 +107,15 @@
     margin-bottom: 0.4rem;
 }
 
+.post-status {
+    color: #888;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 0.4rem;
+}
+
 .post-title {
     color: royalblue;
     font-size: 28px;
