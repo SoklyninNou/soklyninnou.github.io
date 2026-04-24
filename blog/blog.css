@@ -1,0 +1,259 @@
+/* Blog landing — card layout in the site's royalblue / #191919 palette */
+
+.blog-container {
+    background-color: #191919;
+    width: 70%;
+    height: auto;
+    padding: 2.5% 3%;
+    margin: 2% 15% 5%;
+    border: 3px solid royalblue;
+    border-radius: 4px;
+    color: white;
+}
+
+.blog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid #2a2a2a;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.blog-heading {
+    color: royalblue;
+    font-size: 40px;
+    margin: 0;
+    font-weight: 700;
+}
+
+.post-count {
+    color: #888;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.blog-description {
+    color: #cfcfcf;
+    font-size: 18px;
+    line-height: 160%;
+    margin: 0 0 1.5rem;
+}
+
+.blog-search {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.7rem 1rem;
+    background-color: #111;
+    color: white;
+    border: 2px solid #2a2a2a;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.2s;
+    font-family: inherit;
+}
+
+.blog-search:focus {
+    border-color: royalblue;
+}
+
+.blog-search::placeholder {
+    color: #666;
+}
+
+.posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* Card */
+.post-card {
+    display: flex;
+    gap: 1.5rem;
+    background-color: #111;
+    border: 2px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+    align-items: stretch;
+}
+
+.post-card:hover {
+    border-color: royalblue;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(65, 105, 225, 0.15);
+}
+
+.post-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-category {
+    color: #888;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 0.4rem;
+}
+
+.post-title {
+    color: royalblue;
+    font-size: 28px;
+    margin: 0 0 0.4rem;
+    line-height: 1.2;
+}
+
+.post-subtitle {
+    color: white;
+    font-size: 24px;
+    margin: 4rem 0 0.4rem;
+    line-height: 1.2;
+}
+
+.post-date {
+    color: #888;
+    font-size: 14px;
+    font-style: italic;
+    margin: 0 0 0.8rem;
+}
+
+.post-excerpt {
+    color: #d8d8d8;
+    font-size: 16px;
+    line-height: 160%;
+    margin: 0 0 1rem;
+    flex: 1;
+}
+
+.read-more {
+    color: royalblue;
+    font-size: 15px;
+    font-weight: 600;
+    align-self: flex-start;
+}
+
+.read-more .arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.post-card:hover .read-more .arrow {
+    transform: translate(2px, -2px);
+}
+
+.post-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.empty-state {
+    color: #888;
+    text-align: center;
+    font-style: italic;
+    padding: 2rem 0;
+}
+
+/* ---------- Individual blog post page ---------- */
+
+.post-page {
+    padding: 2% 4%;
+}
+
+.post-page .post-category {
+    margin-bottom: 0.8rem;
+}
+
+.post-page-title {
+    color: royalblue;
+    font-size: 42px;
+    margin: 0 0 0.5rem;
+    line-height: 1.2;
+}
+
+.post-page-date {
+    color: #888;
+    font-style: italic;
+    font-size: 15px;
+    margin: 0 0 2rem;
+}
+
+.post-body {
+    color: #e8e8e8;
+    font-size: 18px;
+    line-height: 180%;
+}
+
+.post-body p {
+    margin: 0 0 1.2rem;
+}
+
+.back-link {
+    display: inline-block;
+    color: royalblue;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 2rem;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.blog-img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    margin: 1.5rem auto;
+    border-radius: 8px;
+    display: block;
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 768px) {
+    .blog-container {
+        width: 88%;
+        margin: 5% 6%;
+        padding: 5%;
+    }
+    .blog-heading {
+        font-size: clamp(1.4rem, 6vw, 2rem);
+    }
+    .post-count {
+        font-size: clamp(0.9rem, 3.5vw, 1.2rem);
+    }
+    .blog-description {
+        font-size: clamp(0.85rem, 3vw, 1rem);
+    }
+    .post-card {
+        flex-direction: column;
+    }
+    .post-image {
+        width: 100%;
+        height: 200px;
+        order: -1;
+    }
+    .post-title {
+        font-size: clamp(1.2rem, 5vw, 1.6rem);
+    }
+    .post-page-title {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+    .post-body {
+        font-size: clamp(0.95rem, 3.2vw, 1.1rem);
+    }
+}

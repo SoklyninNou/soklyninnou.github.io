@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soklynin Nou | Blog</title>
+    <link rel="stylesheet" href="header/header.css" />
+    <script src="header/header.js"></script>
+
+    <link rel="stylesheet" href="blog/blog.css" />
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<header>
+    <div id="header"></div>
+    <script>
+        fetch('header/header.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+            });
+    </script>
+</header>
+<body>
+    <div id="blog-root"></div>
+    <script type="text/babel" data-presets="react" src="blog/blog.jsx"></script>
+</body>
+</html>
