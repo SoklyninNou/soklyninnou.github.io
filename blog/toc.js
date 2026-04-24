@@ -4,6 +4,10 @@
     const STICK_AT_Y = NAVBAR_HEIGHT + OFFSET;
     const STACK_BREAKPOINT = 1024;
 
+    window.addEventListener('pageshow', () => {
+        remeasure();
+    });
+
     function slugify(text) {
         return text
             .toLowerCase()
@@ -175,9 +179,5 @@
         window.addEventListener('scroll', update, { passive: true });
         window.addEventListener('resize', remeasure);
         window.addEventListener('load', remeasure);
-
-        window.addEventListener('pageshow', () => {
-            remeasure();
-        });
     });
 })();

@@ -236,8 +236,16 @@
     max-width: 800px;
     height: auto;
     margin: 1.5rem auto;
-    border-radius: 8px;
+    border-radius: 16px;
     display: block;
+    border: 4px solid #191919;
+}
+
+.blog-img-caption {
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* ---------- Post page + ToC layout ---------- */
