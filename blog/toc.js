@@ -24,13 +24,11 @@
         const tocAside = document.querySelector('.blog-toc');
         const layout = document.querySelector('.blog-layout');
         const postBody = document.querySelector('.post-body');
+
         if (!tocList || !tocAside || !postBody || !layout) return;
 
-        // Pick up both subtitles and sub-subtitles. querySelectorAll on a
-        // comma-separated selector returns nodes in document order, which is
-        // what we need so the ToC reflects reading order rather than grouping
-        // all subs after all sub-subs.
         const headings = postBody.querySelectorAll('.post-subtitle, .post-subsubtitle');
+
         if (headings.length === 0) {
             tocAside.style.display = 'none';
             return;
@@ -38,11 +36,13 @@
 
         // ---- Build the ToC list ----
         const items = [];
+
         headings.forEach(h => {
             if (!h.id) h.id = uniqueId(slugify(h.textContent));
 
             const li = document.createElement('li');
             li.className = 'toc-item';
+
             if (h.classList.contains('post-subsubtitle')) {
                 li.classList.add('toc-subsub');
             } else if (h.tagName.toLowerCase() === 'h2') {
@@ -56,8 +56,16 @@
 
             a.addEventListener('click', e => {
                 e.preventDefault();
-                const targetY = h.getBoundingClientRect().top + window.scrollY - STICK_AT_Y;
-                window.scrollTo({ top: targetY, behavior: 'smooth' });
+                const targetY =
+                    h.getBoundingClientRect().top +
+                    window.scrollY -
+                    STICK_AT_Y;
+
+                window.scrollTo({
+                    top: targetY,
+                    behavior: 'smooth'
+                });
+
                 history.replaceState(null, '', `#${h.id}`);
             });
 
@@ -69,13 +77,21 @@
         // ---- Active-section highlighting ----
         function updateActive() {
             const cutoff = window.scrollY + STICK_AT_Y + 250;
+
             let active = items[0];
+
             for (const it of items) {
-                const top = it.heading.getBoundingClientRect().top + window.scrollY;
+                const top =
+                    it.heading.getBoundingClientRect().top +
+                    window.scrollY;
+
                 if (top <= cutoff) active = it;
                 else break;
             }
-            items.forEach(it => it.link.classList.toggle('active', it === active));
+
+            items.forEach(it =>
+                it.link.classList.toggle('active', it === active)
+            );
         }
 
         // ---- JS-driven sticky ----
@@ -91,11 +107,13 @@
 
         function measureNatural() {
             clearPinned();
+
             const rect = tocAside.getBoundingClientRect();
+
             natural = {
                 top: rect.top + window.scrollY,
                 left: rect.left + window.scrollX,
-                width: rect.width,
+                width: rect.width
             };
         }
 
@@ -105,28 +123,31 @@
                 return;
             }
 
-            if (natural.top <= STICK_AT_Y) {
-                clearPinned();
-                return;
-            }
-
-            const tocHeight = tocAside.offsetHeight;
-            const layoutBottom = layout.getBoundingClientRect().bottom + window.scrollY;
-
             const tocViewportTop = natural.top - window.scrollY;
+
+            // Not yet reached sticky threshold
             if (tocViewportTop > STICK_AT_Y) {
                 clearPinned();
                 return;
             }
 
+            const tocHeight = tocAside.offsetHeight;
+            const layoutBottom =
+                layout.getBoundingClientRect().bottom + window.scrollY;
+
             tocAside.classList.add('is-pinned');
             tocAside.style.position = 'fixed';
-            tocAside.style.left = (natural.left - window.scrollX) + 'px';
+            tocAside.style.left =
+                natural.left - window.scrollX + 'px';
             tocAside.style.width = natural.width + 'px';
 
-            const pinnedBottomIfFlat = window.scrollY + STICK_AT_Y + tocHeight;
+            const pinnedBottomIfFlat =
+                window.scrollY + STICK_AT_Y + tocHeight;
+
+            // Prevent overflow past layout bottom
             if (pinnedBottomIfFlat > layoutBottom) {
-                const top = layoutBottom - tocHeight - window.scrollY;
+                const top =
+                    layoutBottom - tocHeight - window.scrollY;
                 tocAside.style.top = top + 'px';
             } else {
                 tocAside.style.top = STICK_AT_Y + 'px';
@@ -139,15 +160,24 @@
         }
 
         function remeasure() {
-            measureNatural();
-            update();
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    measureNatural();
+                    update();
+                });
+            });
         }
 
-        measureNatural();
-        update();
+        // ---- Init ----
+        remeasure();
 
+        // ---- Events ----
         window.addEventListener('scroll', update, { passive: true });
         window.addEventListener('resize', remeasure);
         window.addEventListener('load', remeasure);
+
+        window.addEventListener('pageshow', () => {
+            remeasure();
+        });
     });
 })();
