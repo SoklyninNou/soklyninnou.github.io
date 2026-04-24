@@ -26,7 +26,11 @@
         const postBody = document.querySelector('.post-body');
         if (!tocList || !tocAside || !postBody || !layout) return;
 
-        const headings = postBody.querySelectorAll('.post-subtitle');
+        // Pick up both subtitles and sub-subtitles. querySelectorAll on a
+        // comma-separated selector returns nodes in document order, which is
+        // what we need so the ToC reflects reading order rather than grouping
+        // all subs after all sub-subs.
+        const headings = postBody.querySelectorAll('.post-subtitle, .post-subsubtitle');
         if (headings.length === 0) {
             tocAside.style.display = 'none';
             return;
@@ -39,7 +43,11 @@
 
             const li = document.createElement('li');
             li.className = 'toc-item';
-            if (h.tagName.toLowerCase() === 'h2') li.classList.add('toc-sub');
+            if (h.classList.contains('post-subsubtitle')) {
+                li.classList.add('toc-subsub');
+            } else if (h.tagName.toLowerCase() === 'h2') {
+                li.classList.add('toc-sub');
+            }
 
             const a = document.createElement('a');
             a.href = `#${h.id}`;
@@ -60,7 +68,7 @@
 
         // ---- Active-section highlighting ----
         function updateActive() {
-            const cutoff = window.scrollY + STICK_AT_Y + 40;
+            const cutoff = window.scrollY + STICK_AT_Y + 250;
             let active = items[0];
             for (const it of items) {
                 const top = it.heading.getBoundingClientRect().top + window.scrollY;

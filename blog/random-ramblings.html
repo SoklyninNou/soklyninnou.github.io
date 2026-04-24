@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Resolve all relative URLs from the site root so the shared header works from this subfolder -->
+    <base href="/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Me | Soklynin Nou</title>
+    <link rel="stylesheet" href="header/header.css" />
+    <script src="header/header.js"></script>
+    <link rel="stylesheet" href="blog/blog.css" />
+</head>
+<header>
+    <div id="header"></div>
+    <script>
+        fetch('header/header.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+                // Header's goto() uses page-relative URLs; override so it navigates from site root
+                window.goto = function(page) {
+                    window.location.href = `/${page}.html`;
+                };
+            });
+    </script>
+</header>
+<body>
+    <div class="blog-layout">
+        <div class="container blog-container">
+            <article class="post-page">
+                <div class="post-category">Personal</div>
+                <h1 class="post-page-title">Random Ramblings</h1>
+                <p class="post-page-date">April 23, 2026</p>
+                <div class="post-body">
+                    <h1 class="post-subtitle">April 23, 2026</h1>
+                    <p>
+                        I've been buying lactose-free milk instead of other alterantives lately. It tastes pretty good and is easier on my stomach. I only realized weeks ago that each carton is packed with sugar and is very high in calories. No wonder I have been gaining weight recently. Back to the alternatives I guess.
+                    </p>
+                    <h1 class="post-subtitle">April 24, 2026</h1>
+                    <p>
+                        The greatest Canvas discussion post I have ever seen will always be:
+                        <blockquote>
+                            <p>
+                                Hello,
+                                <br>
+                                My name is <b>[REDACTED]</b>. This is my major course and I want to know more about dynamic before I decide my major. I am looking forward to learn anything about dynamic from this course. I am still deciding between Mechanical Engineering and Electrical Engineering. I saw a man overdosed and dying at the Bart station this week.
+                            </p>
+                        </blockquote>
+                    </p>
+                </div>
+                <a class="back-link" href="blog.html">← Back to all posts</a>
+            </article>
+        </div>
+        <aside class="blog-toc">
+            <h2 class="toc-title">Table of Contents</h2>
+            <ul id="toc-list"></ul>
+        </aside>
+    </div>
+    <script src="blog/toc.js"></script>
+</body>
+</html>

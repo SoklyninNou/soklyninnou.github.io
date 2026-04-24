@@ -1,8 +1,3 @@
-// Blog landing page — React component rendered via in-browser Babel transpilation.
-// To add a post: append an entry to the `posts` array below and create a matching
-// HTML file in blog/ (use blog/about-me.html as a template — it sets <base href="/">
-// and overrides goto() so the shared header still navigates correctly from the subfolder).
-
 const { useMemo, useState } = React;
 
 const posts = [
@@ -25,6 +20,16 @@ const posts = [
         excerpt: "I am currently learning how to work with Claude and making things like skills and agents and thought I should document my progress. This is a journal of my learning process.",
         image: 'pictures/claude.png',
         url: 'blog/learning-claude.html',
+    },
+    {
+        id: 'random-ramblings',
+        category: 'Personal',
+        status: 'Ongoing',
+        title: 'Random Ramblings',
+        date: 'April 23, 2026',
+        excerpt: "This is a collection of random thoughts that I have had recently. They are not necessarily related to each other or to anything in particular, but I thought it would be fun to share them anyway.",
+        image: 'pictures/blurry-shiba.JPG',
+        url: 'blog/random-ramblings.html',
     }
 ];
 

@@ -58,7 +58,7 @@
                         Claude skills is a feature that allows you to create custom commands that Claude can execute. This is useful for creating custom tools that can be used in the context of a conversation.
                     </p>
                     <p>
-                        I found that skills are quite similar to tools in the sense that they both allow you to create custom commands. It seems that tools are more focused on the actual execution of the command and can interact with the outside environment like the database, while skills are more like guides showing the agent should think and approach problems. This likely means that skills could probably call tools to execute specific tasks.
+                        I found that skills are quite similar to tools in the sense that they both allow you to create custom commands. It seems that tools are more focused on the actual execution of the command and can interact with the outside environment like the database, while skills are more like guides showing the agent should think and approach problems. This likely means that skills could probably call tools to execute specific tasks. I think skills is a great starting point for learning how to customize Claude's behavior as it is quite easy to start implementing.
                     </p>
                     <p>
                         After some cursory research, I would picture that the workflow is as follows:
@@ -74,8 +74,15 @@
                     <p>
                         This is a manual process of creating Skills. But, most people are likely to use Claude itself to create and manage these skills. I realized that I have worked on a similar concepts to skills in the past, which are agent prompts. When I was customizing my offline agent, I could add extra context to the user's prompt that would guide the agent to think in a certain way in runtime. This is quick slow in retrospect, but it is a similar concept to skills in the sense that it is a way to guide the agent's thinking process. One thing I did was feed my agent my entire CS188 notes during running and ask it to use those notes to answer questions in a certain format and interpret the notes file a certain way, since my notes was written in Typst.
                     </p>
-                    <!-- <h1 class="post-subtitle">Claude Hooks</h1>
-                    <p class="post-page-date">April 24, 2026</p> -->
+                    <h1 class="post-subtitle">Claude Hooks</h1>
+                    <p class="post-page-date">April 24, 2026</p>
+                    <p>
+                        The next feature I want to explore is hooks. Hooks are a way to create custom rules that the agent has to follow. It does this by running a shell command at a specific lifecycle moment. Hooks are very useful when handling jobs where we need absolute certainty such as "never touch this .env". This means we can use hooks to ping external services or perform other actions when certain conditions are met. I think hooks are a powerful feature and I can see myself using it a lot in the future. To learn about hooks, we must take a slight detour to understand Claude's lifecycle since hooks are triggered at specific moments in the lifecycle.
+                    </p>
+                    <h2 class="post-subsubtitle">Understanding Claude's Lifecycle</h2>
+                    <p>
+                        Claude's lifecycle is the sequence of stages that a conversation goes through from start to finish. Understanding the lifecycle is crucial for effectively using hooks, as it allows you to know when to trigger specific actions. 
+                    </p>
                 </div>
                 <a class="back-link" href="blog.html">← Back to all posts</a>
             </article>

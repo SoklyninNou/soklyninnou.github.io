@@ -130,6 +130,14 @@
     line-height: 1.2;
 }
 
+.post-subsubtitle {
+    color: white;
+    font-size: 19px;
+    margin: 2rem 0 0.3rem;
+    line-height: 1.25;
+    font-weight: 600;
+}
+
 .post-date {
     color: #888;
     font-size: 14px;
@@ -311,6 +319,20 @@
 .toc-item.toc-sub .toc-link {
     font-size: 14px;
     font-weight: 500;
+}
+
+.toc-item.toc-subsub {
+    margin: 0.25rem 0 0.25rem 2rem;
+}
+
+.toc-item.toc-subsub .toc-link {
+    font-size: 13px;
+    font-weight: 500;
+    color: #777;
+}
+
+.toc-item.toc-subsub .toc-link:hover {
+    color: #bbb;
 }
 
 /* ---------- Mobile ---------- */
