@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Resolve all relative URLs from the site root so the shared header works from this subfolder -->
+    <base href="/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Me | Soklynin Nou</title>
+    <link rel="stylesheet" href="header/header.css" />
+    <script src="header/header.js"></script>
+    <link rel="stylesheet" href="blog/blog.css" />
+</head>
+<header>
+    <div id="header"></div>
+    <script>
+        fetch('header/header.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+                // Header's goto() uses page-relative URLs; override so it navigates from site root
+                window.goto = function(page) {
+                    window.location.href = `/${page}.html`;
+                };
+            });
+    </script>
+</header>
+<body>
+    <div class="container blog-container">
+        <article class="post-page">
+            <div class="post-category">Journal</div>
+            <h1 class="post-page-title">Learning Claude</h1>
+            <p class="post-page-date">April 23, 2026</p>
+            <div class="post-body">
+                
+            </div>
+            <a class="back-link" href="blog.html">← Back to all posts</a>
+        </article>
+    </div>
+</body>
+</html>

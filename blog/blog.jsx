@@ -15,7 +15,17 @@ const posts = [
         image: 'pictures/me.JPG',
         url: 'blog/about-me.html',
     },
+    {
+        id: 'learning-claude',
+        category: 'Journal',
+        title: 'Learning Claude',
+        date: 'April 23, 2026',
+        excerpt: "I am currently learning how to work with Claude and making things like skills and agents and thought I should document my progress. This is a journal of my learning process.",
+        image: 'pictures/claude.png',
+        url: 'blog/learning-claude.html',
+    }
 ];
+
 
 function BlogLanding() {
     const [query, setQuery] = useState('');
