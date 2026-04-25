@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/x-icon" href="/pictures/reze.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="header/header.css" />
+    <script src="header/header.js"></script>
+    <style>
+        .tracker-frame {
+            position: fixed;
+            top: var(--banner-height);
+            left: 0;
+            width: 100%;
+            height: calc(100dvh - var(--banner-height));
+            border: none;
+        }
+    </style>
+</head>
+<header>
+<div id="header"></div>
+    <script>
+        fetch('header/header.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+            });
+    </script>
+</header>
+<body>
+    <iframe
+        class="tracker-frame"
+        src="gym-workout-tracker/dist/index.html"
+        title="Gym Workout Tracker">
+    </iframe>
+</body>
+</html>
