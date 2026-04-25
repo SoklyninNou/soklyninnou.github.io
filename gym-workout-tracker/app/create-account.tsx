@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { router } from 'expo-router';
-import { hasAccount, login, isLoggedIn } from '@/utils/auth';
+import { createUser, login } from '@/utils/auth';
 
 const ACCENT = '#4169e1';
 const BG = '#0f0f0f';
@@ -18,36 +18,32 @@ const TEXT = '#ffffff';
 const SECONDARY = '#8e8e93';
 const RED = '#ff453a';
 
-export default function LoginScreen() {
+export default function CreateAccountScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [confirm, setConfirm] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    if (isLoggedIn()) router.replace('/(tabs)');
-  }, []);
-
-  async function handleLogin() {
+  async function handleCreate() {
     setError('');
-    if (!username.trim() || !password) { setError('Enter your username and password.'); return; }
+    if (!username.trim() || !password) { setError('All fields are required.'); return; }
+    if (password.length < 4) { setError('Password must be at least 4 characters.'); return; }
+    if (password !== confirm) { setError('Passwords do not match.'); return; }
+
     setLoading(true);
-    const ok = await login(username.trim(), password);
+    await createUser(username.trim(), password);
+    await login(username.trim(), password);
     setLoading(false);
-    if (ok) {
-      router.replace('/(tabs)');
-    } else {
-      setError('Incorrect username or password.');
-    }
+    router.replace('/(tabs)');
   }
 
   return (
     <View style={s.container}>
       <View style={s.card}>
         <Text style={s.emoji}>🏋️</Text>
-        <Text style={s.title}>Gym Tracker</Text>
-        <Text style={s.subtitle}>Sign in to continue</Text>
+        <Text style={s.title}>Create Account</Text>
+        <Text style={s.subtitle}>Your password is hashed before being saved.</Text>
 
         <TextInput
           style={s.input}
@@ -57,7 +53,6 @@ export default function LoginScreen() {
           placeholderTextColor={SECONDARY}
           autoCapitalize="none"
           autoCorrect={false}
-          onSubmitEditing={handleLogin}
         />
         <TextInput
           style={s.input}
@@ -66,22 +61,28 @@ export default function LoginScreen() {
           placeholder="Password"
           placeholderTextColor={SECONDARY}
           secureTextEntry
-          onSubmitEditing={handleLogin}
+        />
+        <TextInput
+          style={s.input}
+          value={confirm}
+          onChangeText={setConfirm}
+          placeholder="Confirm Password"
+          placeholderTextColor={SECONDARY}
+          secureTextEntry
+          onSubmitEditing={handleCreate}
         />
 
         {error ? <Text style={s.error}>{error}</Text> : null}
 
-        <TouchableOpacity style={s.btn} onPress={handleLogin} disabled={loading}>
+        <TouchableOpacity style={s.btn} onPress={handleCreate} disabled={loading}>
           {loading
             ? <ActivityIndicator color="#fff" />
-            : <Text style={s.btnText}>Sign In</Text>}
+            : <Text style={s.btnText}>Create Account</Text>}
         </TouchableOpacity>
 
-        {!hasAccount() && (
-          <TouchableOpacity onPress={() => router.push('/create-account')}>
-            <Text style={s.switchText}>No account? Create one</Text>
-          </TouchableOpacity>
-        )}
+        <TouchableOpacity onPress={() => router.back()}>
+          <Text style={s.backText}>Already have an account? Sign in</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -105,7 +106,7 @@ const s = StyleSheet.create({
   },
   emoji: { fontSize: 48, marginBottom: 12 },
   title: { fontSize: 28, fontWeight: 'bold', color: TEXT, marginBottom: 4 },
-  subtitle: { fontSize: 14, color: SECONDARY, marginBottom: 28 },
+  subtitle: { fontSize: 13, color: SECONDARY, marginBottom: 28, textAlign: 'center' },
   input: {
     backgroundColor: ROW_BG,
     color: TEXT,
@@ -129,5 +130,5 @@ const s = StyleSheet.create({
     justifyContent: 'center',
   },
   btnText: { color: TEXT, fontWeight: 'bold', fontSize: 16 },
-  switchText: { color: SECONDARY, fontSize: 13 },
+  backText: { color: SECONDARY, fontSize: 13 },
 });
