@@ -1,16 +1,15 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import {
   View,
   Text,
   ScrollView,
   TextInput,
   TouchableOpacity,
-  Modal,
   SectionList,
   StyleSheet,
   Platform,
 } from 'react-native';
-import { useFocusEffect } from 'expo-router';
+import { useFocusEffect, router } from 'expo-router';
 
 import {
   getPendingWorkout,
@@ -18,8 +17,9 @@ import {
   clearPendingWorkout,
   saveWorkout,
 } from '@/utils/storage';
+import { logout } from '@/utils/auth';
 import { EXERCISES, MUSCLE_GROUPS, Exercise } from '@/data/exercises';
-import { PendingExercise, PendingSet, PendingWorkout, SavedWorkout } from '@/types/workout';
+import { PendingExercise, PendingSet, SavedWorkout } from '@/types/workout';
 
 const ACCENT = '#4169e1';
 const BG = '#0f0f0f';
@@ -48,6 +48,7 @@ export default function WorkoutLogScreen() {
   const [showPicker, setShowPicker] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [showConfirm, setShowConfirm] = useState(false);
+  const searchRef = useRef<TextInput>(null);
 
   useFocusEffect(
     useCallback(() => {
@@ -60,15 +61,12 @@ export default function WorkoutLogScreen() {
   );
 
   function persist(exs: PendingExercise[], started: string | null) {
-    if (exs.length === 0) {
-      clearPendingWorkout();
-      return;
-    }
+    if (exs.length === 0) { clearPendingWorkout(); return; }
     const s = started ?? new Date().toISOString();
     savePendingWorkout({ startedAt: s, exercises: exs });
   }
 
-  function setExercisesAndSave(updated: PendingExercise[]) {
+  function setAndSave(updated: PendingExercise[]) {
     setExercises(updated);
     persist(updated, startedAt);
   }
@@ -90,11 +88,11 @@ export default function WorkoutLogScreen() {
   }
 
   function removeExercise(uid: string) {
-    setExercisesAndSave(exercises.filter((e) => e.uid !== uid));
+    setAndSave(exercises.filter((e) => e.uid !== uid));
   }
 
   function addSet(uid: string) {
-    setExercisesAndSave(
+    setAndSave(
       exercises.map((e) =>
         e.uid === uid
           ? { ...e, sets: [...e.sets, { reps: '', weight: '', completed: false }] }
@@ -104,7 +102,7 @@ export default function WorkoutLogScreen() {
   }
 
   function updateSet(uid: string, si: number, field: 'reps' | 'weight', value: string) {
-    setExercisesAndSave(
+    setAndSave(
       exercises.map((e) =>
         e.uid === uid
           ? { ...e, sets: e.sets.map((s, i) => (i === si ? { ...s, [field]: value } : s)) }
@@ -114,7 +112,7 @@ export default function WorkoutLogScreen() {
   }
 
   function toggleDone(uid: string, si: number) {
-    setExercisesAndSave(
+    setAndSave(
       exercises.map((e) =>
         e.uid === uid
           ? { ...e, sets: e.sets.map((s, i) => (i === si ? { ...s, completed: !s.completed } : s)) }
@@ -127,7 +125,6 @@ export default function WorkoutLogScreen() {
     const now = new Date();
     const started = startedAt ? new Date(startedAt) : now;
     const durationMinutes = Math.max(0, Math.round((now.getTime() - started.getTime()) / 60000));
-
     const workout: SavedWorkout = {
       id: makeId(),
       date: now.toISOString(),
@@ -138,14 +135,10 @@ export default function WorkoutLogScreen() {
           muscleGroup: e.muscleGroup,
           sets: e.sets
             .filter((s) => s.reps || s.weight)
-            .map((s) => ({
-              reps: parseInt(s.reps) || 0,
-              weight: parseFloat(s.weight) || 0,
-            })),
+            .map((s) => ({ reps: parseInt(s.reps) || 0, weight: parseFloat(s.weight) || 0 })),
         }))
         .filter((e) => e.sets.length > 0),
     };
-
     saveWorkout(workout);
     clearPendingWorkout();
     setExercises([]);
@@ -158,6 +151,11 @@ export default function WorkoutLogScreen() {
     setExercises([]);
     setStartedAt(null);
     setShowConfirm(false);
+  }
+
+  function handleLogout() {
+    logout();
+    router.replace('/login');
   }
 
   const filteredSections = MUSCLE_GROUPS.map((group) => ({
@@ -173,26 +171,28 @@ export default function WorkoutLogScreen() {
     weekday: 'long', month: 'short', day: 'numeric',
   });
 
-  const completedSets = exercises.reduce(
-    (n, e) => n + e.sets.filter((s) => s.completed).length,
-    0
-  );
+  const completedSets = exercises.reduce((n, e) => n + e.sets.filter((s) => s.completed).length, 0);
   const totalSets = exercises.reduce((n, e) => n + e.sets.length, 0);
 
   return (
-    <View style={s.container}>
+    <View style={s.root}>
+      {/* Header */}
       <View style={s.header}>
         <View>
           <Text style={s.headerTitle}>Workout Log</Text>
           <Text style={s.headerDate}>{today}</Text>
         </View>
-        {exercises.length > 0 && (
-          <Text style={s.setsProgress}>
-            {completedSets}/{totalSets} sets
-          </Text>
-        )}
+        <View style={s.headerRight}>
+          {exercises.length > 0 && (
+            <Text style={s.setsProgress}>{completedSets}/{totalSets} sets</Text>
+          )}
+          <TouchableOpacity onPress={handleLogout} hitSlop={8}>
+            <Text style={s.logoutBtn}>Sign out</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
+      {/* Main content */}
       <ScrollView style={s.scroll} contentContainerStyle={s.scrollContent} keyboardShouldPersistTaps="handled">
         {exercises.length === 0 && (
           <View style={s.emptyState}>
@@ -261,7 +261,10 @@ export default function WorkoutLogScreen() {
           </View>
         ))}
 
-        <TouchableOpacity style={s.addExBtn} onPress={() => setShowPicker(true)}>
+        <TouchableOpacity
+          style={s.addExBtn}
+          onPress={() => { setShowPicker(true); setSearchQuery(''); }}
+        >
           <Text style={s.addExText}>+ Add Exercise</Text>
         </TouchableOpacity>
 
@@ -272,16 +275,17 @@ export default function WorkoutLogScreen() {
         )}
       </ScrollView>
 
-      {/* Exercise Picker */}
-      <Modal visible={showPicker} animationType="slide" onRequestClose={() => setShowPicker(false)}>
-        <View style={s.modal}>
-          <View style={s.modalHeader}>
-            <Text style={s.modalTitle}>Add Exercise</Text>
+      {/* Exercise picker — inline overlay instead of Modal */}
+      {showPicker && (
+        <View style={s.overlay}>
+          <View style={s.pickerHeader}>
+            <Text style={s.pickerTitle}>Add Exercise</Text>
             <TouchableOpacity onPress={() => { setShowPicker(false); setSearchQuery(''); }}>
-              <Text style={s.modalClose}>Done</Text>
+              <Text style={s.pickerClose}>Done</Text>
             </TouchableOpacity>
           </View>
           <TextInput
+            ref={searchRef}
             style={s.searchInput}
             value={searchQuery}
             onChangeText={setSearchQuery}
@@ -312,11 +316,11 @@ export default function WorkoutLogScreen() {
             />
           )}
         </View>
-      </Modal>
+      )}
 
-      {/* Finish Confirm */}
-      <Modal visible={showConfirm} animationType="fade" transparent onRequestClose={() => setShowConfirm(false)}>
-        <View style={s.overlay}>
+      {/* Finish confirm — inline overlay instead of Modal */}
+      {showConfirm && (
+        <View style={s.confirmOverlay}>
           <View style={s.confirmBox}>
             <Text style={s.confirmTitle}>Finish Workout?</Text>
             <Text style={s.confirmSub}>
@@ -333,13 +337,13 @@ export default function WorkoutLogScreen() {
             </TouchableOpacity>
           </View>
         </View>
-      </Modal>
+      )}
     </View>
   );
 }
 
 const s = StyleSheet.create({
-  container: { flex: 1, backgroundColor: BG },
+  root: { flex: 1, backgroundColor: BG },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -353,7 +357,9 @@ const s = StyleSheet.create({
   },
   headerTitle: { fontSize: 28, fontWeight: 'bold', color: TEXT },
   headerDate: { fontSize: 13, color: SECONDARY, marginTop: 2 },
+  headerRight: { alignItems: 'flex-end', gap: 6 },
   setsProgress: { fontSize: 13, color: ACCENT, fontWeight: '600' },
+  logoutBtn: { fontSize: 12, color: SECONDARY },
 
   scroll: { flex: 1 },
   scrollContent: { padding: 16, paddingBottom: 80 },
@@ -410,7 +416,6 @@ const s = StyleSheet.create({
   addExBtn: {
     borderWidth: 1,
     borderColor: ACCENT,
-    borderStyle: 'dashed',
     borderRadius: 14,
     padding: 16,
     alignItems: 'center',
@@ -421,9 +426,14 @@ const s = StyleSheet.create({
   finishBtn: { backgroundColor: ACCENT, borderRadius: 14, padding: 16, alignItems: 'center' },
   finishText: { color: TEXT, fontSize: 16, fontWeight: 'bold' },
 
-  // Modal – picker
-  modal: { flex: 1, backgroundColor: BG },
-  modalHeader: {
+  // Picker overlay
+  overlay: {
+    position: 'absolute',
+    top: 0, left: 0, right: 0, bottom: 0,
+    backgroundColor: BG,
+    zIndex: 200,
+  },
+  pickerHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -433,8 +443,8 @@ const s = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#222',
   },
-  modalTitle: { fontSize: 20, fontWeight: 'bold', color: TEXT },
-  modalClose: { fontSize: 15, color: ACCENT, fontWeight: '600' },
+  pickerTitle: { fontSize: 20, fontWeight: 'bold', color: TEXT },
+  pickerClose: { fontSize: 15, color: ACCENT, fontWeight: '600' },
   searchInput: {
     backgroundColor: ROW_BG,
     color: TEXT,
@@ -454,9 +464,7 @@ const s = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#1a1a1a',
   },
-  sectionHeadText: {
-    color: ACCENT, fontSize: 11, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase',
-  },
+  sectionHeadText: { color: ACCENT, fontSize: 11, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' },
   exItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -470,10 +478,12 @@ const s = StyleSheet.create({
   exItemName: { fontSize: 15, color: TEXT },
   exItemGroup: { fontSize: 12, color: SECONDARY },
 
-  // Modal – confirm
-  overlay: {
-    flex: 1,
+  // Confirm overlay
+  confirmOverlay: {
+    position: 'absolute',
+    top: 0, left: 0, right: 0, bottom: 0,
     backgroundColor: 'rgba(0,0,0,0.72)',
+    zIndex: 300,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 24,
