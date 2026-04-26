@@ -23,10 +23,12 @@ export default function LoginScreen() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [accountExists, setAccountExists] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    if (isLoggedIn()) router.replace('/(tabs)');
+    if (isLoggedIn()) { router.replace('/(tabs)'); return; }
+    setAccountExists(hasAccount());
   }, []);
 
   async function handleLogin() {
@@ -77,7 +79,7 @@ export default function LoginScreen() {
             : <Text style={s.btnText}>Sign In</Text>}
         </TouchableOpacity>
 
-        {!hasAccount() && (
+        {!accountExists && (
           <TouchableOpacity onPress={() => router.push('/create-account')}>
             <Text style={s.switchText}>No account? Create one</Text>
           </TouchableOpacity>
