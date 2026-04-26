@@ -7,9 +7,10 @@ import {
   TouchableOpacity,
   SectionList,
   StyleSheet,
+  ActivityIndicator,
   Platform,
 } from 'react-native';
-import { useFocusEffect, router } from 'expo-router';
+import { useFocusEffect } from 'expo-router';
 
 import {
   getPendingWorkout,
@@ -17,7 +18,7 @@ import {
   clearPendingWorkout,
   saveWorkout,
 } from '@/utils/storage';
-import { logout } from '@/utils/auth';
+import { hasPassword, setPassword, verifyPassword } from '@/utils/auth';
 import { EXERCISES, MUSCLE_GROUPS, Exercise } from '@/data/exercises';
 import { PendingExercise, PendingSet, SavedWorkout } from '@/types/workout';
 
@@ -45,10 +46,21 @@ function defaultSets(): PendingSet[] {
 export default function WorkoutLogScreen() {
   const [exercises, setExercises] = useState<PendingExercise[]>([]);
   const [startedAt, setStartedAt] = useState<string | null>(null);
+
+  // Exercise picker
   const [showPicker, setShowPicker] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Finish confirm
   const [showConfirm, setShowConfirm] = useState(false);
-  const searchRef = useRef<TextInput>(null);
+
+  // Password prompt
+  const [showPassPrompt, setShowPassPrompt] = useState(false);
+  const [isSetting, setIsSetting] = useState(false);
+  const [passInput, setPassInput] = useState('');
+  const [confirmInput, setConfirmInput] = useState('');
+  const [passError, setPassError] = useState('');
+  const [passLoading, setPassLoading] = useState(false);
 
   useFocusEffect(
     useCallback(() => {
@@ -70,6 +82,45 @@ export default function WorkoutLogScreen() {
     setExercises(updated);
     persist(updated, startedAt);
   }
+
+  // ── Password prompt ──────────────────────────────────────────────────────────
+
+  function openAddExercise() {
+    const needsSetup = !hasPassword();
+    setIsSetting(needsSetup);
+    setPassInput('');
+    setConfirmInput('');
+    setPassError('');
+    setShowPassPrompt(true);
+  }
+
+  async function handlePasswordSubmit() {
+    setPassError('');
+    if (!passInput) { setPassError('Password is required.'); return; }
+
+    setPassLoading(true);
+    if (isSetting) {
+      if (passInput.length < 4) { setPassError('Must be at least 4 characters.'); setPassLoading(false); return; }
+      if (passInput !== confirmInput) { setPassError('Passwords do not match.'); setPassLoading(false); return; }
+      await setPassword(passInput);
+      setPassLoading(false);
+      setShowPassPrompt(false);
+      setShowPicker(true);
+      setSearchQuery('');
+    } else {
+      const ok = await verifyPassword(passInput);
+      setPassLoading(false);
+      if (ok) {
+        setShowPassPrompt(false);
+        setShowPicker(true);
+        setSearchQuery('');
+      } else {
+        setPassError('Incorrect password.');
+      }
+    }
+  }
+
+  // ── Exercise management ──────────────────────────────────────────────────────
 
   function addExercise(exercise: Exercise) {
     const started = startedAt ?? new Date().toISOString();
@@ -153,11 +204,6 @@ export default function WorkoutLogScreen() {
     setShowConfirm(false);
   }
 
-  function handleLogout() {
-    logout();
-    router.replace('/login');
-  }
-
   const filteredSections = MUSCLE_GROUPS.map((group) => ({
     title: group,
     data: EXERCISES.filter(
@@ -165,12 +211,11 @@ export default function WorkoutLogScreen() {
         e.muscleGroup === group &&
         e.name.toLowerCase().includes(searchQuery.toLowerCase())
     ),
-  })).filter((s) => s.data.length > 0);
+  })).filter((sec) => sec.data.length > 0);
 
   const today = new Date().toLocaleDateString('en-US', {
     weekday: 'long', month: 'short', day: 'numeric',
   });
-
   const completedSets = exercises.reduce((n, e) => n + e.sets.filter((s) => s.completed).length, 0);
   const totalSets = exercises.reduce((n, e) => n + e.sets.length, 0);
 
@@ -182,17 +227,12 @@ export default function WorkoutLogScreen() {
           <Text style={s.headerTitle}>Workout Log</Text>
           <Text style={s.headerDate}>{today}</Text>
         </View>
-        <View style={s.headerRight}>
-          {exercises.length > 0 && (
-            <Text style={s.setsProgress}>{completedSets}/{totalSets} sets</Text>
-          )}
-          <TouchableOpacity onPress={handleLogout} hitSlop={8}>
-            <Text style={s.logoutBtn}>Sign out</Text>
-          </TouchableOpacity>
-        </View>
+        {exercises.length > 0 && (
+          <Text style={s.setsProgress}>{completedSets}/{totalSets} sets</Text>
+        )}
       </View>
 
-      {/* Main content */}
+      {/* Main scroll */}
       <ScrollView style={s.scroll} contentContainerStyle={s.scrollContent} keyboardShouldPersistTaps="handled">
         {exercises.length === 0 && (
           <View style={s.emptyState}>
@@ -261,10 +301,7 @@ export default function WorkoutLogScreen() {
           </View>
         ))}
 
-        <TouchableOpacity
-          style={s.addExBtn}
-          onPress={() => { setShowPicker(true); setSearchQuery(''); }}
-        >
+        <TouchableOpacity style={s.addExBtn} onPress={openAddExercise}>
           <Text style={s.addExText}>+ Add Exercise</Text>
         </TouchableOpacity>
 
@@ -275,7 +312,55 @@ export default function WorkoutLogScreen() {
         )}
       </ScrollView>
 
-      {/* Exercise picker — inline overlay instead of Modal */}
+      {/* ── Password prompt overlay ── */}
+      {showPassPrompt && (
+        <View style={s.passOverlay}>
+          <View style={s.passBox}>
+            <Text style={s.passTitle}>{isSetting ? '🔒 Set a Password' : '🔒 Enter Password'}</Text>
+            <Text style={s.passSub}>
+              {isSetting
+                ? 'Create a password to protect your workouts. It is hashed before being saved.'
+                : 'Enter your password to add an exercise.'}
+            </Text>
+
+            <TextInput
+              style={s.passInput}
+              value={passInput}
+              onChangeText={setPassInput}
+              placeholder="Password"
+              placeholderTextColor={SECONDARY}
+              secureTextEntry
+              autoFocus
+              onSubmitEditing={isSetting ? undefined : handlePasswordSubmit}
+            />
+            {isSetting && (
+              <TextInput
+                style={s.passInput}
+                value={confirmInput}
+                onChangeText={setConfirmInput}
+                placeholder="Confirm Password"
+                placeholderTextColor={SECONDARY}
+                secureTextEntry
+                onSubmitEditing={handlePasswordSubmit}
+              />
+            )}
+
+            {passError ? <Text style={s.passError}>{passError}</Text> : null}
+
+            <TouchableOpacity style={s.passBtn} onPress={handlePasswordSubmit} disabled={passLoading}>
+              {passLoading
+                ? <ActivityIndicator color="#fff" />
+                : <Text style={s.passBtnText}>{isSetting ? 'Set Password & Continue' : 'Confirm'}</Text>}
+            </TouchableOpacity>
+
+            <TouchableOpacity style={s.passCancelBtn} onPress={() => setShowPassPrompt(false)}>
+              <Text style={s.passCancelText}>Cancel</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
+
+      {/* ── Exercise picker overlay ── */}
       {showPicker && (
         <View style={s.overlay}>
           <View style={s.pickerHeader}>
@@ -285,7 +370,6 @@ export default function WorkoutLogScreen() {
             </TouchableOpacity>
           </View>
           <TextInput
-            ref={searchRef}
             style={s.searchInput}
             value={searchQuery}
             onChangeText={setSearchQuery}
@@ -318,7 +402,7 @@ export default function WorkoutLogScreen() {
         </View>
       )}
 
-      {/* Finish confirm — inline overlay instead of Modal */}
+      {/* ── Finish confirm overlay ── */}
       {showConfirm && (
         <View style={s.confirmOverlay}>
           <View style={s.confirmBox}>
@@ -357,9 +441,7 @@ const s = StyleSheet.create({
   },
   headerTitle: { fontSize: 28, fontWeight: 'bold', color: TEXT },
   headerDate: { fontSize: 13, color: SECONDARY, marginTop: 2 },
-  headerRight: { alignItems: 'flex-end', gap: 6 },
   setsProgress: { fontSize: 13, color: ACCENT, fontWeight: '600' },
-  logoutBtn: { fontSize: 12, color: SECONDARY },
 
   scroll: { flex: 1 },
   scrollContent: { padding: 16, paddingBottom: 80 },
@@ -399,12 +481,9 @@ const s = StyleSheet.create({
   inputDone: { color: '#444' },
 
   doneBtn: {
-    width: 34,
-    height: 34,
-    borderRadius: 17,
+    width: 34, height: 34, borderRadius: 17,
     backgroundColor: ROW_BG,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'center', justifyContent: 'center',
   },
   doneBtnActive: { backgroundColor: GREEN },
   doneIcon: { fontSize: 15, color: SECONDARY },
@@ -426,75 +505,92 @@ const s = StyleSheet.create({
   finishBtn: { backgroundColor: ACCENT, borderRadius: 14, padding: 16, alignItems: 'center' },
   finishText: { color: TEXT, fontSize: 16, fontWeight: 'bold' },
 
-  // Picker overlay
-  overlay: {
-    position: 'absolute',
-    top: 0, left: 0, right: 0, bottom: 0,
-    backgroundColor: BG,
-    zIndex: 200,
-  },
-  pickerHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingTop: Platform.OS === 'web' ? 20 : 60,
-    paddingHorizontal: 16,
-    paddingBottom: 14,
-    borderBottomWidth: 1,
-    borderBottomColor: '#222',
-  },
-  pickerTitle: { fontSize: 20, fontWeight: 'bold', color: TEXT },
-  pickerClose: { fontSize: 15, color: ACCENT, fontWeight: '600' },
-  searchInput: {
-    backgroundColor: ROW_BG,
-    color: TEXT,
-    borderRadius: 10,
-    paddingHorizontal: 14,
-    paddingVertical: 11,
-    fontSize: 15,
-    margin: 14,
-    marginBottom: 6,
-  },
-  noResults: { flex: 1, alignItems: 'center', paddingTop: 40 },
-  noResultsText: { color: SECONDARY, fontSize: 15 },
-  sectionHead: {
-    backgroundColor: BG,
-    paddingHorizontal: 16,
-    paddingVertical: 7,
-    borderBottomWidth: 1,
-    borderBottomColor: '#1a1a1a',
-  },
-  sectionHeadText: { color: ACCENT, fontSize: 11, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' },
-  exItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    backgroundColor: CARD,
-    borderBottomWidth: 1,
-    borderBottomColor: '#242424',
-  },
-  exItemName: { fontSize: 15, color: TEXT },
-  exItemGroup: { fontSize: 12, color: SECONDARY },
-
-  // Confirm overlay
-  confirmOverlay: {
-    position: 'absolute',
-    top: 0, left: 0, right: 0, bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.72)',
-    zIndex: 300,
+  // Password prompt
+  passOverlay: {
+    position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.78)',
+    zIndex: 400,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 24,
   },
-  confirmBox: {
+  passBox: {
     backgroundColor: CARD,
-    borderRadius: 18,
-    padding: 24,
+    borderRadius: 20,
+    padding: 28,
     width: '100%',
     maxWidth: 360,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#333',
   },
+  passTitle: { fontSize: 20, fontWeight: 'bold', color: TEXT, marginBottom: 8 },
+  passSub: { fontSize: 13, color: SECONDARY, textAlign: 'center', marginBottom: 20, lineHeight: 18 },
+  passInput: {
+    backgroundColor: ROW_BG,
+    color: TEXT,
+    borderRadius: 10,
+    paddingHorizontal: 16,
+    paddingVertical: 13,
+    fontSize: 15,
+    width: '100%',
+    marginBottom: 12,
+  },
+  passError: { color: RED, fontSize: 13, marginBottom: 12, textAlign: 'center' },
+  passBtn: {
+    backgroundColor: ACCENT,
+    borderRadius: 12,
+    padding: 15,
+    width: '100%',
+    alignItems: 'center',
+    marginBottom: 10,
+    minHeight: 50,
+    justifyContent: 'center',
+  },
+  passBtnText: { color: TEXT, fontWeight: 'bold', fontSize: 15 },
+  passCancelBtn: { padding: 10 },
+  passCancelText: { color: SECONDARY, fontSize: 14 },
+
+  // Exercise picker
+  overlay: {
+    position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+    backgroundColor: BG, zIndex: 200,
+  },
+  pickerHeader: {
+    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
+    paddingTop: Platform.OS === 'web' ? 20 : 60,
+    paddingHorizontal: 16, paddingBottom: 14,
+    borderBottomWidth: 1, borderBottomColor: '#222',
+  },
+  pickerTitle: { fontSize: 20, fontWeight: 'bold', color: TEXT },
+  pickerClose: { fontSize: 15, color: ACCENT, fontWeight: '600' },
+  searchInput: {
+    backgroundColor: ROW_BG, color: TEXT,
+    borderRadius: 10, paddingHorizontal: 14, paddingVertical: 11,
+    fontSize: 15, margin: 14, marginBottom: 6,
+  },
+  noResults: { flex: 1, alignItems: 'center', paddingTop: 40 },
+  noResultsText: { color: SECONDARY, fontSize: 15 },
+  sectionHead: {
+    backgroundColor: BG, paddingHorizontal: 16, paddingVertical: 7,
+    borderBottomWidth: 1, borderBottomColor: '#1a1a1a',
+  },
+  sectionHeadText: { color: ACCENT, fontSize: 11, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' },
+  exItem: {
+    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
+    paddingHorizontal: 16, paddingVertical: 14,
+    backgroundColor: CARD, borderBottomWidth: 1, borderBottomColor: '#242424',
+  },
+  exItemName: { fontSize: 15, color: TEXT },
+  exItemGroup: { fontSize: 12, color: SECONDARY },
+
+  // Finish confirm
+  confirmOverlay: {
+    position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.72)', zIndex: 300,
+    justifyContent: 'center', alignItems: 'center', padding: 24,
+  },
+  confirmBox: { backgroundColor: CARD, borderRadius: 18, padding: 24, width: '100%', maxWidth: 360 },
   confirmTitle: { fontSize: 22, fontWeight: 'bold', color: TEXT, marginBottom: 6 },
   confirmSub: { fontSize: 14, color: SECONDARY, marginBottom: 24, lineHeight: 20 },
   saveBtn: { backgroundColor: ACCENT, borderRadius: 12, padding: 15, alignItems: 'center', marginBottom: 10 },

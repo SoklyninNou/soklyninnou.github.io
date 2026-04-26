@@ -1,5 +1,4 @@
-const USER_KEY = 'gym_auth_user';
-const SESSION_KEY = 'gym_auth_session';
+const PASS_KEY = 'gym_pass_v1';
 
 function ok(): boolean {
   return typeof window !== 'undefined' && typeof localStorage !== 'undefined';
@@ -20,55 +19,34 @@ async function hashPassword(password: string, salt: string): Promise<string> {
     .join('');
 }
 
-export function hasAccount(): boolean {
+export function hasPassword(): boolean {
   if (!ok()) return false;
   try {
-    const raw = localStorage.getItem(USER_KEY);
+    const raw = localStorage.getItem(PASS_KEY);
     if (!raw) return false;
-    const u = JSON.parse(raw);
-    // Clear legacy plaintext accounts from before hashing was added
-    if (!u.passwordHash || !u.salt) {
-      localStorage.removeItem(USER_KEY);
-      localStorage.removeItem(SESSION_KEY);
-      return false;
-    }
-    return true;
+    const p = JSON.parse(raw);
+    return !!(p.hash && p.salt);
   } catch {
     return false;
   }
 }
 
-export async function createUser(username: string, password: string): Promise<void> {
+export async function setPassword(password: string): Promise<void> {
   if (!ok()) return;
   const salt = randomSalt();
-  const passwordHash = await hashPassword(password, salt);
-  localStorage.setItem(USER_KEY, JSON.stringify({ username, passwordHash, salt }));
+  const hash = await hashPassword(password, salt);
+  localStorage.setItem(PASS_KEY, JSON.stringify({ hash, salt }));
 }
 
-export async function login(username: string, password: string): Promise<boolean> {
+export async function verifyPassword(password: string): Promise<boolean> {
   if (!ok()) return false;
   try {
-    const raw = localStorage.getItem(USER_KEY);
-    const u = raw ? JSON.parse(raw) : null;
-    if (!u?.passwordHash || !u?.salt) return false;
-    if (u.username !== username) return false;
-    const hash = await hashPassword(password, u.salt);
-    if (hash === u.passwordHash) {
-      localStorage.setItem(SESSION_KEY, 'true');
-      return true;
-    }
-    return false;
+    const raw = localStorage.getItem(PASS_KEY);
+    const p = raw ? JSON.parse(raw) : null;
+    if (!p?.hash || !p?.salt) return false;
+    const hash = await hashPassword(password, p.salt);
+    return hash === p.hash;
   } catch {
     return false;
   }
-}
-
-export function isLoggedIn(): boolean {
-  if (!ok()) return false;
-  return localStorage.getItem(SESSION_KEY) === 'true';
-}
-
-export function logout(): void {
-  if (!ok()) return;
-  localStorage.removeItem(SESSION_KEY);
 }
