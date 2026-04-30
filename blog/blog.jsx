@@ -1,4 +1,4 @@
-const { useMemo, useState } = React;
+const { useMemo, useState, useEffect } = React;
 
 const posts = [
     {
@@ -33,9 +33,33 @@ const posts = [
     }
 ];
 
+function useLastUpdated(posts) {
+    const [lastUpdated, setLastUpdated] = useState({});
+
+    useEffect(() => {
+        const parser = new DOMParser();
+        posts.forEach(post => {
+            fetch(post.url)
+                .then(res => res.text())
+                .then(html => {
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const dates = doc.querySelectorAll('.post-page-date');
+                    if (dates.length > 0) {
+                        const last = dates[dates.length - 1].textContent.trim();
+                        setLastUpdated(prev => ({ ...prev, [post.id]: last }));
+                    }
+                })
+                .catch(() => {});
+        });
+    }, []);
+
+    return lastUpdated;
+}
+
 
 function BlogLanding() {
     const [query, setQuery] = useState('');
+    const lastUpdated = useLastUpdated(posts);
 
     const filtered = useMemo(() => {
         const q = query.trim().toLowerCase();
@@ -67,13 +91,13 @@ function BlogLanding() {
             <div className="posts-list">
                 {filtered.length === 0
                     ? <p className="empty-state">No posts match that search.</p>
-                    : filtered.map(post => <PostCard key={post.id} post={post} />)}
+                    : filtered.map(post => <PostCard key={post.id} post={post} lastUpdated={lastUpdated[post.id]} />)}
             </div>
         </div>
     );
 }
 
-function PostCard({ post }) {
+function PostCard({ post, lastUpdated }) {
     return (
         <a className="post-card" href={post.url}>
             <div className="post-content">
@@ -81,6 +105,9 @@ function PostCard({ post }) {
                 <div className="post-status"><a style={{ color: 'blue'}}>Status: </a>{post.status}</div>
                 <h2 className="post-title">{post.title}</h2>
                 <p className="post-date">{post.date}</p>
+                {lastUpdated && lastUpdated !== post.date && (
+                    <p className="post-last-updated">Last updated: {lastUpdated}</p>
+                )}
                 <p className="post-excerpt">{post.excerpt}</p>
                 <span className="read-more">Read More <span className="arrow">↗</span></span>
             </div>

@@ -10,7 +10,7 @@
 }
 
 /* Reset + Base */
-html, body {
+html {
     margin: 0;
     padding: 0;
     background-color: black;
@@ -18,9 +18,19 @@ html, body {
     background-size: cover;
     background-repeat: repeat-y;
     background-position: center;
-    color: white;
     overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: white;
     font-family: var(--font-family);
+    transition: margin-left 0.3s ease;
+}
+
+body.menu-open {
+    margin-left: min(80vw, 18rem);
 }
 
 /* NAVBAR */
@@ -28,8 +38,9 @@ html, body {
 .navbar {
     position: fixed;
     top: 0;
-    width: 100%;
-    height: var(--banner-height) ;
+    left: 0;
+    width: 100vw;
+    height: var(--banner-height);
     background-color: black;
     z-index: 1000;
     display: flex;
@@ -44,8 +55,6 @@ html, body {
 }
 
 .icon-group {
-    position: fixed;
-    right: 1rem;
     display: flex;
     gap: 1rem;
     align-items: center;
@@ -69,19 +78,19 @@ html, body {
 #burger-menu {
     position: fixed;
     top: var(--banner-height);
-    right: -100%;
+    left: -100%;
     width: 80%;
     max-width: 18rem;
     height: 100dvh;
     background-color: black;
-    border-left: 0.2rem solid royalblue;
-    transition: right 0.3s ease;
+    border-right: 0.2rem solid royalblue;
+    transition: left 0.3s ease;
     font-size: 1.25rem;
     z-index: 999;
 }
 
 #burger-menu.show {
-    right: 0;
+    left: 0;
 }
 
 #burger-menu > p {

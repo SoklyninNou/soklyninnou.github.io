@@ -10,15 +10,15 @@
 </head>
 <header>
     <div class="navbar" style="text-decoration: none;">
-        <img src="pictures/waiting.gif" alt="logo" class="icon" style="height: 3.8rem; width: 3.8rem;" onclick="goto('index')" style="cursor: pointer;">
         <div class="icon-group">
+            <img style="padding-left: 5px;" src="pictures/burger-icon.png" alt="menu" class="icon" onclick="burgerMenu()">
             <img src="pictures/share.png" alt="Share" class="icon" onclick="shareFunction()">
             <a href="https://github.com/SoklyninNou" target="_blank">
                 <img src="pictures/github.png" alt="Github" class="icon">
             </a>
             <a href="./screen-saver.html"><img src="pictures/ss.png" alt="Screen Saver" class="icon"></a>
-            <img style="padding-left: 5px;" src="pictures/burger-icon.png" alt="menu" class="icon" onclick="burgerMenu()">
         </div>
+        <img src="pictures/waiting.gif" alt="logo" class="icon" style="margin-right: 1em; height: 3.8rem; width: 3.8rem; transform: scaleX(-1);" onclick="goto('index')" style="cursor: pointer;">
     </div>
     <div id="burger-menu">
         <p onclick="goto('index')">Home</p>

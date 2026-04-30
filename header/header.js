@@ -26,6 +26,7 @@ function showToast(message) {
 function burgerMenu() {
     var x = document.getElementById("burger-menu");
     x.classList.toggle("show");
+    document.body.classList.toggle("menu-open");
 }
 
 function toggleDropdown(dropdownId) {

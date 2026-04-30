@@ -129,7 +129,6 @@
 
             const tocViewportTop = natural.top - window.scrollY;
 
-            // Not yet reached sticky threshold
             if (tocViewportTop > STICK_AT_Y) {
                 clearPinned();
                 return;
@@ -148,7 +147,6 @@
             const pinnedBottomIfFlat =
                 window.scrollY + STICK_AT_Y + tocHeight;
 
-            // Prevent overflow past layout bottom
             if (pinnedBottomIfFlat > layoutBottom) {
                 const top =
                     layoutBottom - tocHeight - window.scrollY;
