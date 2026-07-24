@@ -1,0 +1,15 @@
+.iframe {
+  width: 100%;
+  border-radius: 0.75rem;
+  margin-bottom: -0.5rem;
+  height: 10rem;
+  border: none;
+}
+
+@media (max-width: 480px) {
+  .iframe {
+    margin-bottom: 0.25rem;
+    border-radius: 0.5rem;
+    height: 10.5dvh;
+  }
+}

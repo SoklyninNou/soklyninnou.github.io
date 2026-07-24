@@ -1,184 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <link rel="icon" type="image/x-icon" href="/pictures/reze.png">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/pictures/reze.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="header/header.css" />
-    <script src="header/header.js"></script>
-
-    <link rel="stylesheet" href="../homepage/index.css" />
-    <script src="../homepage/index.js"></script>
-</head>
-<header>
-<div id="header"></div>
+    <title>Soklynin Nou</title>
     <script>
-        fetch('header/header.html')
-            .then(res => res.text())
-            .then(data => {
-                document.getElementById('header').innerHTML = data;
-            });
+      // Restores the real path GitHub Pages' 404.html redirect encoded into
+      // ?redirect=..., before React Router reads the URL on mount.
+      (function () {
+        var redirect = new URLSearchParams(window.location.search).get('redirect');
+        if (redirect) window.history.replaceState(null, '', redirect);
+      })();
     </script>
-</header>
-<body>
-    <div class="content">
-        <div class="title">About Me</div>
-        <div class="grid">
-            <div class="song">
-                <iframe
-                    class="song-iframe"
-                    src="https://open.spotify.com/embed/track/4oE7MyJhqSD3BaHRpNs8Nl?utm_source=generator&theme=0"
-                    width="100%"
-                    frameBorder="0"
-                    allowfullscreen=""
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy">
-                </iframe>
-                <iframe
-                    class="song-iframe"
-                    src="https://open.spotify.com/embed/track/6Ec5LeRzkisa5KJtwLfOoW?utm_source=generator&theme=0"
-                    width="100%"
-                    frameBorder="0"
-                    allowfullscreen=""
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy">
-                </iframe>
-                <iframe
-                    class="song-iframe"
-                    src="https://open.spotify.com/embed/track/3DwQ7AH3xGD9h65ezslm6q?utm_source=generator&theme=0"
-                    width="100%"
-                    frameBorder="0"
-                    allowfullscreen=""
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy">
-                </iframe>
-                <iframe
-                    class="song-iframe"
-                    src="https://open.spotify.com/embed/track/2D4dV2KXDTszzJ3p3cFqhA?utm_source=generator&theme=0"
-                    width="100%"
-                    frameBorder="0"
-                    allowfullscreen=""
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy">
-                </iframe>
-            </div>
-            <div class="context">
-                <p>
-                    Hi, I'm Lynin. I'm an undergraduate student studying <strong>Computer Science</strong>
-                    at the <strong>UC Berkeley</strong>. I am currently working on my personal project of
-                    developing an <strong>AI Agent </strong> that would assist me in various tasks.
-                </p>
-                <p>
-                    I'm interested in AI, algorithms, and machine learning models. But, I am also learning 
-                    to build the front-end interfaces and application logic of my projects.
-                </p>
-                <p>
-                    When I am not working on a project, I am repetitively lifting heavy metal objects,
-                    building things in Minecraft, losing brain cells in Dota 2, and experimenting with 
-                    novel things.
-                </p>
-                <p>
-                    Feel Free to explore my personal website and if you have any thoughs, you could email
-                    me: <strong>sly.nou [at] berkeley.edu</strong>
-                </p>
-                <br>
-            </div>
-        </div>
-        <div class="title">
-            Experience
-        </div>
-        <div class="container">
-            <div class="job">
-                <div class="container-title">Course Staff</div>
-                <p style="text-decoration: underline; line-height: 100%;">June 2025 - Present</p>
-                <ul>
-                    <li>Computer Security</li>
-                </ul>
-            </div>
-            <div class="job">
-                <div class="container-title">Embedded TA</div>
-                <p style="text-decoration: underline; line-height: 100%;">January 2024 - May 2024</p>
-                <ul>
-                    <li>Discrete Mathematic</li>
-                    <li>Calculus 3</li>
-                </ul>
-                <p style="text-decoration: underline; line-height: 100%;">August 2023 - December 2023</p>
-                <ul>
-                    <li>Calculus 1</li>
-                    <li>Trigonometry</li>    
-                <ul>
-            </div>
-            <div class="job">
-                <div class="container-title">Peer Tutor</div>
-                <p style="text-decoration: underline; line-height: 100%;">June 2022 - May 2024</p>
-                <ul>
-                    <li>Differential Equations</li>
-                    <li>Linear Algebra</li>
-                    <li>Discrete Mathematic</li>
-                    <li>Calculus 3</li>
-                    <li>Calculus 2</li>
-                    <li>Calculus 1</li>
-                </ul>
-            </div>
-            <div class="job">
-                <div class="container-title">Academic Assistant</div>
-                <p style="text-decoration: underline; line-height: 100%;">January 2022 - December 2022</p>
-                <ul>
-                    <li>Logistics</li>
-                    <li>Administration</li>   
-                </ul>
-            </div>
-            <div class="button" onclick="toggle('experience')">More</div>
-        </div>
-        <div class="title">
-            Cool things
-        </div>
-        <div class="container" id="centered-items">
-            <iframe
-                class="video-iframe"
-                src="https://www.youtube.com/embed/3ytqnteXfjw?si=d6d8bZy97dXKAbni"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-            </iframe>
-            <div class="divider"></div>
-            <img src="pictures/IMG_4744.JPG">
-            <div class="divider"></div>
-            <div class="container-title">I lost this game btw</div>
-            <img src="pictures/sadge-dota2.png">
-            <div class="divider"></div>
-            <div class="container-title">This one too</div>
-            <img src="pictures/big-sadge.jpeg">
-            <div class="divider"></div>
-        </div>
-        <div class="title">
-            Notes
-        </div>
-        <div class="container">
-            <div class="container-title">CS 188: Introduction to Artificial Intelligence</div>
-            <br>
-            <object 
-                class="pdf"
-                style="border-radius: 5%;"
-                data="notes/cs188_notes.pdf"
-                            width="100%"
-                            height="700">
-            </object>
-            <div class="divider"></div>
-            <br>
-            <div class="container-title">EECS 127: Optimization Models in Engineering</div>
-            <br>
-            <object 
-                class="pdf"
-                style="border-radius: 5%;"
-                data="notes/eecs127_notes.pdf"
-                            width="100%"
-                            height="700">
-            </object>
-            <div class="divider"></div>
-        </div>
-    </div>
-</body>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
-<!-- I Hate Github hosting so much -->

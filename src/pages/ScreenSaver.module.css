@@ -1,0 +1,77 @@
+.page {
+  position: fixed;
+  inset: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.container {
+  background-image: url('/video-memes/morgana.GIF');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading {
+  color: white;
+  font-size: 4em;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  padding: 1rem;
+  outline: none;
+}
+
+.videoContainer {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+}
+
+.toggleButton {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 100px;
+  height: 50px;
+  font-size: medium;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.toggleButton:hover {
+  opacity: 1;
+  pointer-events: auto;
+  background-color: #0056b3;
+}
+
+.hoverArea {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 50px;
+  z-index: 999;
+}
+
+.hoverArea:hover + .toggleButton {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 2.2em;
+  }
+}

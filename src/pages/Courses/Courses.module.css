@@ -1,0 +1,181 @@
+.page {
+  --item-border-radius: 1.25vw;
+  --legend-border-width: 0.7vw;
+}
+
+.centeredLargeText {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-decoration: underline royalblue;
+  font-size: 4vw;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.semester {
+  min-width: 15vw;
+  font-weight: bold;
+  font-size: 2vw;
+  line-height: 5.5vw;
+  aspect-ratio: 2.5 / 1;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  gap: 1vw;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.item {
+  position: relative;
+  width: 7vw;
+  height: 4vw;
+  font-size: 1vw;
+  align-self: center;
+  text-align: center;
+  line-height: 4vw;
+  cursor: pointer;
+  align-items: center;
+  border-radius: var(--item-border-radius);
+  border-bottom: royalblue 0.5vw solid;
+}
+
+.item::after {
+  content: attr(data-hover);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  width: max-content;
+  max-width: min(60vw, 220px);
+  white-space: normal;
+  transform: translateX(-50%) translateY(-8px);
+  background-color: #333;
+  color: #fff;
+  border-radius: var(--item-border-radius);
+  font-size: 1.2vw;
+  padding: 4px 10px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 999;
+  visibility: hidden;
+}
+
+.item:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.divider {
+  border-bottom: 1vw solid #333;
+  border-radius: 1vw;
+  width: 80%;
+  margin: 3vw auto;
+}
+
+.legend {
+  position: relative;
+  font-size: 2vw;
+  height: 7vw;
+  width: auto;
+  display: flex;
+  gap: 1vw;
+  margin: -2vw 3vw 2vw;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  flex-wrap: wrap;
+}
+
+.legend > div {
+  height: 100%;
+  width: 15%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.honors {
+  background-color: darkgoldenrod;
+}
+
+.compsci {
+  background-color: darkcyan;
+}
+
+.maths {
+  background-color: darkslateblue;
+}
+
+.physics {
+  background-color: darkmagenta;
+}
+
+.electives {
+  background-color: brown;
+}
+
+.teaching {
+  background-color: darkgreen;
+}
+
+.hidden {
+  display: none;
+}
+
+.legendButton {
+  border-bottom-style: solid;
+  border-bottom-color: royalblue;
+  border-bottom-width: var(--legend-border-width);
+  border-radius: var(--item-border-radius);
+  transition: transform 0.4s ease, border-bottom-width 0.4s ease;
+}
+
+.legendButton.off {
+  border-bottom-width: 0;
+  background-color: black;
+  transform: translateY(calc(var(--legend-border-width) / 2));
+}
+
+@media (max-width: 768px) {
+  .item {
+    width: auto;
+    height: auto;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .item::after {
+    font-size: 0.75rem;
+  }
+
+  .semester {
+    min-width: auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .legend {
+    font-size: 1rem;
+    height: auto;
+    margin: 1rem 1rem 1.5rem;
+  }
+
+  .legend > div {
+    width: auto;
+    padding: 0.5rem 0.9rem;
+  }
+
+  .centeredLargeText {
+    font-size: 1.6rem;
+  }
+}

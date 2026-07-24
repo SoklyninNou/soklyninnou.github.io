@@ -1,0 +1,61 @@
+.container {
+  background-color: #191919;
+  width: 70%;
+  height: auto;
+  padding: 1%;
+  margin: 0 15% 5%;
+  border: 3px solid royalblue;
+  border-radius: 1rem;
+  box-sizing: border-box;
+}
+
+.paper {
+  margin: 10% 10% 15%;
+  border-bottom: 8px solid #333;
+}
+
+.paper p {
+  font-size: 20px;
+  line-height: 200%;
+}
+
+.paperTitle {
+  color: royalblue;
+  font-size: 29px;
+  text-align: center;
+  padding-bottom: 3%;
+}
+
+.dataLink {
+  color: white;
+  text-decoration: none;
+}
+
+.dataLink:hover {
+  text-decoration: underline;
+}
+
+.readPaper {
+  color: royalblue;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.readPaper:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 92%;
+    margin: 0 4% 8%;
+  }
+
+  .paper p {
+    font-size: clamp(0.9rem, 3vw, 1rem);
+  }
+
+  .paperTitle {
+    font-size: clamp(1.1rem, 5vw, 1.4rem);
+  }
+}

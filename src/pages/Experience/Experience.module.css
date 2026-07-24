@@ -1,0 +1,41 @@
+.container {
+  background-color: #191919;
+  width: 80%;
+  padding: 1%;
+  margin: 0 10% 5%;
+  border: 3px solid royalblue;
+  border-radius: 1rem;
+  box-sizing: border-box;
+}
+
+.job {
+  margin: 10% 10% 15%;
+  border-bottom: 8px solid #333;
+  font-size: 20px;
+}
+
+.job ul {
+  list-style-type: circle;
+  line-height: 200%;
+}
+
+.jobTitle {
+  color: royalblue;
+  font-size: 40px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 92%;
+    margin: 0 4% 8%;
+  }
+
+  .job {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    margin: 5% 5% 10%;
+  }
+
+  .jobTitle {
+    font-size: clamp(1rem, 5vw, 1.5rem);
+  }
+}

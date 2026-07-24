@@ -1,0 +1,256 @@
+:root {
+  --banner-height: 3.75rem;
+  --separator: 2.5rem;
+  --button-time: 0.3s;
+  --border-radius: 0.75rem;
+  --font-family: 'Geist', sans-serif;
+  --title-font-size: clamp(1rem, 5vw, 3rem);
+  --container-padding: 1rem;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  background-image: url('/pictures/background.jpg');
+  background-size: cover;
+  background-repeat: repeat-y;
+  background-position: center;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-family: var(--font-family);
+  transition: margin-left 0.3s ease;
+}
+
+body.menu-open {
+  margin-left: min(80vw, 18rem);
+}
+
+/* NAVBAR */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: var(--banner-height);
+  background-color: black;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.2rem solid royalblue;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.icon-group {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.icon {
+  height: 1.75rem;
+  width: 1.75rem;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  cursor: pointer;
+}
+
+.logo {
+  margin-right: 1em;
+  height: 3.8rem;
+  width: 3.8rem;
+  transform: scaleX(-1);
+  cursor: pointer;
+}
+
+/* BURGER MENU */
+
+.burger-menu {
+  position: fixed;
+  top: var(--banner-height);
+  left: -100%;
+  width: 80%;
+  max-width: 18rem;
+  height: 100dvh;
+  background-color: black;
+  border-right: 0.2rem solid royalblue;
+  transition: left 0.3s ease;
+  font-size: 1.25rem;
+  z-index: 999;
+}
+
+.burger-menu.show {
+  left: 0;
+}
+
+.burger-menu p {
+  background-color: black;
+  color: white;
+  padding: 1rem;
+  margin: 0;
+  border-bottom: 1px solid #444;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.burger-menu p:hover {
+  background-color: grey;
+}
+
+.burger-menu a {
+  text-decoration: none;
+  color: white;
+  display: block;
+}
+
+/* PROFILE */
+
+.profile-container {
+  margin-top: calc(var(--banner-height) + var(--separator));
+  text-align: center;
+  z-index: 1;
+  padding: 0 1rem;
+}
+
+.profile {
+  height: 12rem;
+  width: 12rem;
+  background-image: url('/pictures/me.JPG');
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  border: 0.2rem solid black;
+  margin: 0 auto;
+}
+
+.profile-text {
+  margin-top: 0.5rem;
+  font-size: 3rem;
+  border-radius: 1.5rem;
+  display: inline-block;
+}
+
+.divider {
+  width: 80%;
+  height: 0.5rem;
+  background-color: #333;
+  margin: 1.5rem auto;
+}
+
+/* CONTAINER */
+.container {
+  background-color: rgb(25, 25, 25, 0.85);
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: auto;
+  padding: 5% 5% 0%;
+  margin: 0 auto 2rem auto;
+  border-right: 0.5rem solid black;
+  border-bottom: 0.5rem solid black;
+  border-radius: 1rem;
+  box-sizing: border-box;
+}
+
+/* Title pill */
+.title {
+  font-family: var(--font-family);
+  text-align: center;
+  font-size: var(--title-font-size);
+  background-color: rgb(25, 25, 25, 0.85);
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  height: auto;
+  padding: var(--container-padding);
+  margin: 4rem auto 1rem auto;
+  border: 0.2rem solid black;
+  border-radius: 4rem;
+  box-sizing: border-box;
+}
+
+/* BUTTON (Home "More" button) */
+.button {
+  position: relative;
+  font-size: 1.25rem;
+  height: 3.75rem;
+  width: 15rem;
+  margin: 0 auto;
+  margin-bottom: 5%;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  transition: all var(--button-time) ease;
+  background-color: rgb(25, 25, 25);
+}
+
+.button:hover {
+  width: 25rem;
+}
+
+.button.pressed {
+  background-color: rgb(25, 25, 25);
+}
+
+/* TOAST */
+
+.toast {
+  visibility: hidden;
+  width: max-content;
+  max-width: min(20rem, 85vw);
+  background-color: rgb(25, 25, 25, 0.85);
+  color: #fff;
+  text-align: center;
+  border-radius: 0.25rem;
+  padding: 0.75rem 1rem;
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity 0.5s ease, visibility 1s;
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media (max-width: 480px) {
+  .profile {
+    height: 6.5rem;
+    width: 6.5rem;
+  }
+
+  .profile-text {
+    font-size: 2rem;
+  }
+
+  .button {
+    font-size: 1.1rem;
+    height: 3.25rem;
+    width: 10rem;
+  }
+
+  .button:hover {
+    width: 15rem;
+  }
+
+  .container {
+    width: 90%;
+    padding: 0.75rem;
+  }
+}

@@ -1,0 +1,8 @@
+.trackerFrame {
+  position: fixed;
+  top: var(--banner-height);
+  left: 0;
+  width: 100%;
+  height: calc(100dvh - var(--banner-height));
+  border: none;
+}

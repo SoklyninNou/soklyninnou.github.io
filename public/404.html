@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Soklynin Nou</title>
+    <script>
+      // GitHub Pages has no server-side rewrites for client-side routes, so any
+      // deep link (e.g. /blog/about-me) lands here on refresh. Encode the real
+      // path into a query string and send the browser to the real index.html,
+      // whose inline script restores it before React Router reads the URL.
+      var loc = window.location;
+      var redirectPath = loc.pathname + loc.search + loc.hash;
+      loc.replace(loc.origin + '/?redirect=' + encodeURIComponent(redirectPath));
+    </script>
+  </head>
+  <body></body>
+</html>
