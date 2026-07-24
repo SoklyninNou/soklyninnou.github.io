@@ -28,17 +28,19 @@ export default function Courses() {
               {school.semesters.map((semester) => (
                 <div className={styles.row} key={semester.name}>
                   <div className={styles.semester}>{semester.name}</div>
-                  {semester.courses.map((course, i) => (
-                    <div
-                      key={`${course.code}-${i}`}
-                      className={`${styles.item} ${styles[course.category]}${
-                        hiddenCategories.has(course.category) ? ` ${styles.hidden}` : ''
-                      }`}
-                      data-hover={course.hover}
-                    >
-                      {course.code}
-                    </div>
-                  ))}
+                  <div className={styles.items}>
+                    {semester.courses.map((course, i) => (
+                      <div
+                        key={`${course.code}-${i}`}
+                        className={`${styles.item} ${styles[course.category]}${
+                          hiddenCategories.has(course.category) ? ` ${styles.hidden}` : ''
+                        }`}
+                        data-hover={course.hover}
+                      >
+                        {course.code}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>

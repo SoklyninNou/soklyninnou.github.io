@@ -29,8 +29,16 @@
 .row {
   display: flex;
   gap: 1vw;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1vw;
+  flex: 1;
 }
 
 .item {
