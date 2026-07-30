@@ -7,6 +7,9 @@ const NAV_LINKS = [
   { to: '/experience', label: 'Experience' },
   { to: '/courses', label: 'Courses' },
   { to: '/blog', label: 'Blog' },
+  // AgentLens is its own bundle under /agentlens/, so it needs a full page load
+  // rather than a client-side route.
+  { to: '/agentlens/', label: 'AgentLens', external: true },
 ];
 
 export default function SiteLayout() {
@@ -72,11 +75,17 @@ export default function SiteLayout() {
       </div>
 
       <div className={`burger-menu${isMenuOpen ? ' show' : ''}`}>
-        {NAV_LINKS.map((link) => (
-          <Link key={link.to} to={link.to} onClick={closeMenu}>
-            <p>{link.label}</p>
-          </Link>
-        ))}
+        {NAV_LINKS.map((link) =>
+          link.external ? (
+            <a key={link.to} href={link.to} onClick={closeMenu}>
+              <p>{link.label}</p>
+            </a>
+          ) : (
+            <Link key={link.to} to={link.to} onClick={closeMenu}>
+              <p>{link.label}</p>
+            </Link>
+          ),
+        )}
         <a href="mailto:sly.nou@berkeley.edu">
           <p>Contact me</p>
         </a>

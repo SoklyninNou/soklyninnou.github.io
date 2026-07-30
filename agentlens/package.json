@@ -1,0 +1,20 @@
+{
+  "name": "agentlens",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "AgentLens — observability & evaluation for SWE coding agents",
+  "scripts": {
+    "postinstall": "npm --prefix web install",
+    "seed": "node server/src/seed.js",
+    "server": "node server/src/server.js",
+    "dev": "node dev.mjs",
+    "build": "npm --prefix web run build",
+    "export": "node server/src/export-static.js",
+    "build:static": "npm run seed && npm run export && AGENTLENS_STATIC=1 AGENTLENS_BASE=${AGENTLENS_BASE:-/agentlens/} AGENTLENS_OUT=${AGENTLENS_OUT:-../../public/agentlens} npm --prefix web run build",
+    "start": "NODE_ENV=production node server/src/server.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  }
+}

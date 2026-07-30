@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run build:agentlens && vite build",
+    "build:agentlens": "npm --prefix agentlens/web install --no-audit --no-fund && npm --prefix agentlens run build:static",
     "preview": "vite preview"
   },
   "dependencies": {
