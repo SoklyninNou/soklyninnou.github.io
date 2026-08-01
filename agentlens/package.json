@@ -4,6 +4,18 @@
   "private": true,
   "type": "module",
   "description": "AgentLens — observability & evaluation for SWE coding agents",
+  "bin": {
+    "agentlens": "bin/agentlens.mjs"
+  },
+  "exports": {
+    "./sdk": "./sdk/index.js"
+  },
+  "files": [
+    "bin",
+    "sdk",
+    "server",
+    "web/dist"
+  ],
   "scripts": {
     "postinstall": "npm --prefix web install",
     "seed": "node server/src/seed.js",

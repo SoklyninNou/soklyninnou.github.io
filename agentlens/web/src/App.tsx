@@ -11,6 +11,8 @@ import TaskDetail from './pages/TaskDetail'
 import Failures from './pages/Failures'
 import Compare from './pages/Compare'
 import Search from './pages/Search'
+import Evaluate from './pages/Evaluate'
+import HowTo from './pages/HowTo'
 
 type Theme = 'light' | 'dark' | 'system'
 
@@ -43,6 +45,13 @@ const NAV = [
       { to: '/search', label: 'Search', icon: '⌕' },
     ],
   },
+  {
+    group: 'Your data',
+    items: [
+      { to: '/evaluate', label: 'Your agent', icon: '⊕' },
+      { to: '/how-to', label: 'How to', icon: '?' },
+    ],
+  },
 ]
 
 function Breadcrumbs() {
@@ -56,6 +65,8 @@ function Breadcrumbs() {
     failures: 'Failures',
     compare: 'Compare',
     search: 'Search',
+    evaluate: 'Your agent',
+    'how-to': 'How to',
   }
   return (
     <>
@@ -192,6 +203,8 @@ export default function App() {
           <Route path="/failures" element={<Failures />} />
           <Route path="/compare" element={<Compare />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/evaluate" element={<Evaluate />} />
+          <Route path="/how-to" element={<HowTo />} />
         </Routes>
       </div>
     </div>

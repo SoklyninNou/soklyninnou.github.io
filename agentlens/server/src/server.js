@@ -1,5 +1,5 @@
 import http from 'node:http'
-import { readFile, stat } from 'node:fs/promises'
+import { readdir, readFile, stat } from 'node:fs/promises'
 import { join, dirname, extname, normalize } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { db, rows, row } from './db.js'
@@ -374,6 +374,40 @@ get('/api/compare', (_p, url) => {
     return { trial: { ...trial, files_touched: J(trial.files_touched) }, spans }
   })
   return { sides: out.filter(Boolean) }
+})
+
+// ------------------------------------------------- user traces (local only)
+// Reads JSONL the user's own agent wrote. Deliberately read-only and confined
+// to one directory: this server is meant to run on the developer's machine, and
+// the traces it exposes contain their prompts and source.
+
+const TRACE_DIR = process.env.AGENTLENS_TRACE_DIR || null
+
+get('/api/local/traces', async () => {
+  if (!TRACE_DIR) return { dir: null, files: [] }
+  try {
+    const names = (await readdir(TRACE_DIR)).filter((n) => n.endsWith('.jsonl') || n.endsWith('.json'))
+    const files = []
+    for (const name of names) {
+      const st = await stat(join(TRACE_DIR, name))
+      files.push({ name, bytes: st.size, modified: st.mtimeMs })
+    }
+    return { dir: TRACE_DIR, files: files.sort((a, b) => b.modified - a.modified) }
+  } catch {
+    return { dir: TRACE_DIR, files: [] }
+  }
+})
+
+get('/api/local/traces/:name', async ({ name }) => {
+  if (!TRACE_DIR) return null
+  // Reject anything that is not a bare filename, so a crafted name cannot walk
+  // out of the trace directory.
+  if (name.includes('/') || name.includes('\\') || name.includes('..')) return null
+  try {
+    return { name, text: await readFile(join(TRACE_DIR, name), 'utf8') }
+  } catch {
+    return null
+  }
 })
 
 get('/api/spans/:id', ({ id }) => {
