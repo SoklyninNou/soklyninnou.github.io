@@ -88,6 +88,75 @@ the ones worth reading by hand.
 **Search** — SQLite FTS5 across every tool input, output, and error message.
 Searching `whitespace` surfaces the exact `str_replace` failures that cascaded.
 
+**Your agent** — the one tab that does not read the bundled corpus. Import a
+trace your own agent produced and it is analysed by *agent* rather than by run:
+which subagent burned the budget, how much of a supervisor's time is real work
+versus waiting on the helpers it spawned, and which delegation failed. See
+[Instrumenting your own agent](#instrumenting-your-own-agent).
+
+## Instrumenting your own agent
+
+```bash
+npx agentlens init     # VS Code tasks, a trace directory, and a .gitignore entry
+```
+
+Then emit spans. The SDK has no dependencies and appends synchronously, because
+the run you most want to read is usually the one that got killed:
+
+```js
+import { Tracer } from 'agentlens/sdk'
+
+const tracer = new Tracer({ file: '.agentlens/run.jsonl', run: { id: 'v1', model: 'claude-opus-5' } })
+const trial = tracer.trial({ task_id: 'fix-login-bug' })
+
+trial.span({ name: 'grep', target: 'src/auth.ts' }).end({ output: '3 matches' })
+
+const researcher = trial.subagent('researcher')
+researcher.span({ name: 'read_file', target: 'src/auth.ts' }).end()
+researcher.end({ tokens_in: 4200, cost_usd: 0.031 })
+
+await trial.grade('npm test')   // exit code 0 is a pass
+```
+
+Run the **AgentLens: open** task in VS Code (or `npx agentlens open`) and load the
+trace from the *Your agent* tab.
+
+### The format
+
+JSONL, one record per line, four record types — `run`, `trial`, `span`,
+`result`. Records may arrive in any order, so an emitter never has to buffer.
+Nothing but `agentlens/sdk` is required to produce it; appending the lines
+yourself is a supported path.
+
+A **subagent is a span**, not a record type: give it `"type":"subagent"` and an
+`agent` name, and everything whose `parent_id` chain reaches it is counted as
+its work. You tag the delegation, not every span underneath it. Depth and
+ownership are recomputed from the tree on import, so a trace cannot claim a
+shape it does not have.
+
+### Where the data lives
+
+Traces stay on the machine that produced them. The *Your agent* tab parses them
+in the browser and stores them in IndexedDB — chosen over `localStorage`
+because real traces carry full prompts and file contents, and clear the ~5 MB
+ceiling within a few runs. There is no upload path, and on the static
+deployment there is no server that could receive one. `init` adds `.agentlens/`
+to `.gitignore` for the same reason: a trace is a disclosure, not a build
+artefact.
+
+### What grading does and does not tell you
+
+`trial.grade(cmd)` records an exit code. That is the whole definition of success
+— AgentLens does not know what your agent was supposed to do. Runs with no
+`result` record are shown as *ungraded* and excluded from the pass rate rather
+than counted as passes.
+
+The failure taxonomy below applies to the **bundled corpus only**. Those causes
+are assigned by the generator and the trajectory is synthesised to match; there
+is no detector that reads a real trace and infers a cause, so imported trials
+carry no failure category. Tool errors, cost, and the timeline are measured
+from your spans and are real.
+
 ## Failure taxonomy
 
 The categories the app reasons in. Each one produces a *structurally different*
