@@ -20,6 +20,7 @@ import { SAMPLE_TRACE_ID, importSampleTrace } from '../lib/sample-trace'
 import { Card, DataTable, Empty, ErrorState, StatTile, Segmented, type Column } from '../components/ui'
 import { Meter } from '../components/charts'
 import { Waterfall } from '../components/Waterfall'
+import { DebugView } from './EvaluateDebug'
 
 const SAMPLE = `{"record":"run","id":"my-agent-v1","name":"my agent","model":"claude-opus-5"}
 {"record":"trial","id":"t1","run_id":"my-agent-v1","task_id":"fix-login-bug"}
@@ -28,7 +29,7 @@ const SAMPLE = `{"record":"run","id":"my-agent-v1","name":"my agent","model":"cl
 {"record":"span","id":"s3","trial_id":"t1","parent_id":"s2","name":"grep","type":"tool","start_ms":900,"end_ms":1400,"target":"src/auth.ts"}
 {"record":"result","trial_id":"t1","command":"npm test","exit_code":0}`
 
-type View = 'agents' | 'trials'
+type View = 'agents' | 'trials' | 'debug'
 
 export default function Evaluate() {
   const [stored, setStored] = useState<StoredTrace[]>([])
@@ -246,19 +247,21 @@ export default function Evaluate() {
             options={[
               { value: 'agents', label: 'Agents' },
               { value: 'trials', label: 'Trials' },
+              { value: 'debug', label: 'Debug' },
             ]}
           />
 
-          {view === 'agents' ? (
-            <AgentsView spans={allSpans} />
-          ) : (
+          {view === 'agents' && <AgentsView spans={allSpans} />}
+          {view === 'trials' && (
             <TrialsView
               trials={trials}
               spansByTrial={active.trace.spansByTrial}
               openTrial={openTrial}
               setOpenTrial={setOpenTrial}
+              onInspect={() => setView('debug')}
             />
           )}
+          {view === 'debug' && <DebugView trials={trials} spansByTrial={active.trace.spansByTrial} />}
         </>
       )}
     </div>
@@ -448,11 +451,13 @@ function TrialsView({
   spansByTrial,
   openTrial,
   setOpenTrial,
+  onInspect,
 }: {
   trials: ImportedTrial[]
   spansByTrial: Record<string, Span[]>
   openTrial: string | null
   setOpenTrial: (id: string | null) => void
+  onInspect: () => void
 }) {
   const columns: Column<ImportedTrial>[] = [
     { key: 'task', header: 'Task', sortValue: (t) => t.task_id, render: (t) => <span className="mono">{t.task_id}</span> },
@@ -519,14 +524,14 @@ function TrialsView({
             </button>
           }
         >
-          <TrialDetail trial={open} spans={spans} />
+          <TrialDetail trial={open} spans={spans} onInspect={onInspect} />
         </Card>
       )}
     </>
   )
 }
 
-function TrialDetail({ trial, spans }: { trial: ImportedTrial; spans: Span[] }) {
+function TrialDetail({ trial, spans, onInspect }: { trial: ImportedTrial; spans: Span[]; onInspect: () => void }) {
   const [selected, setSelected] = useState<string | null>(null)
   const [playhead, setPlayhead] = useState(0)
   const owner = useMemo(() => attributeSpans(spans), [spans])
@@ -594,11 +599,19 @@ function TrialDetail({ trial, spans }: { trial: ImportedTrial; spans: Span[] }) 
               {sel.error.slice(0, 800)}
             </pre>
           )}
+          {sel.input && (
+            <pre className="note-body mono" style={{ fontSize: 11.5, whiteSpace: 'pre-wrap', margin: 0 }}>
+              {sel.input.slice(0, 800)}
+            </pre>
+          )}
           {sel.output && !sel.error && (
             <pre className="note-body mono" style={{ fontSize: 11.5, whiteSpace: 'pre-wrap', margin: 0 }}>
               {sel.output.slice(0, 800)}
             </pre>
           )}
+          <span className="linkish small" onClick={onInspect}>
+            open in Debug for the full payload →
+          </span>
         </div>
       )}
     </div>
