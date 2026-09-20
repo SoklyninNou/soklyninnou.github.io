@@ -5,3 +5,6 @@ dist
 
 # Built by `npm run build:agentlens` from agentlens/.
 public/agentlens
+
+# Spotify credentials for `npm run sync:bside`. Never commit.
+scripts/bside.local.json

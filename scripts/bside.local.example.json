@@ -1,0 +1,8 @@
+{
+  "_comment": "Copy to scripts/bside.local.json and fill in. That file is gitignored; this one is not, so leave it blank.",
+  "clientId": "",
+  "clientSecret": "",
+  "playlist": "https://open.spotify.com/playlist/PASTE_YOUR_PLAYLIST_LINK",
+  "password": "12345678",
+  "market": "US"
+}

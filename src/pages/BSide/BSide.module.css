@@ -1,0 +1,755 @@
+/*
+ * Design notes: this page borrows Apple's platform vocabulary rather than any
+ * specific Apple product — the system font stack, inset-grouped lists, a
+ * segmented control, translucent materials over a blurred backdrop, and the
+ * standard sheet spring for motion. It deliberately opts out of the rest of the
+ * site's styling, so everything here is scoped to .page.
+ */
+
+.page {
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+
+  --bg: #000;
+  --surface: rgba(255, 255, 255, 0.07);
+  --surface-hi: rgba(255, 255, 255, 0.12);
+  --hairline: rgba(255, 255, 255, 0.11);
+  --label: rgba(255, 255, 255, 0.96);
+  --label-2: rgba(235, 235, 245, 0.6);
+  --label-3: rgba(235, 235, 245, 0.32);
+  --popover: rgba(28, 28, 30, 0.97);
+  --accent: #fa2b56;
+  --green: #30d158;
+  --red: #ff453a;
+  --fill-strong: #fff;
+  --on-fill: #000;
+
+  --glow-a: rgba(120, 120, 255, 0.28);
+  --glow-b: rgba(250, 43, 86, 0.12);
+
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--bg);
+  color: var(--label);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica,
+    Arial, sans-serif;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-color-scheme: light) {
+  .page {
+    --bg: #f2f2f7;
+    --surface: rgba(0, 0, 0, 0.045);
+    --surface-hi: rgba(0, 0, 0, 0.08);
+    --hairline: rgba(0, 0, 0, 0.09);
+    --label: #000;
+    --label-2: rgba(60, 60, 67, 0.6);
+    --label-3: rgba(60, 60, 67, 0.3);
+    --popover: rgba(255, 255, 255, 0.97);
+    --fill-strong: #1c1c1e;
+    --on-fill: #fff;
+    --green: #34c759;
+    --red: #ff3b30;
+    --glow-a: rgba(120, 120, 255, 0.18);
+    --glow-b: rgba(250, 43, 86, 0.08);
+  }
+}
+
+/* A slow, wide colour wash behind everything; it takes on the album's hue
+   once the answer is revealed. */
+.ambient {
+  position: absolute;
+  inset: -30%;
+  pointer-events: none;
+  background:
+    radial-gradient(42% 38% at 22% 12%, var(--glow-a), transparent 70%),
+    radial-gradient(46% 42% at 82% 82%, var(--glow-b), transparent 72%);
+  filter: blur(40px);
+  opacity: 0.85;
+  transition: background 1.2s var(--ease), opacity 1.2s var(--ease);
+}
+
+.pageRevealed .ambient {
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------------- gate */
+
+.gate,
+.empty {
+  position: relative;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1.25rem;
+  box-sizing: border-box;
+}
+
+.gateCard {
+  width: min(100%, 22.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2.25rem 1.75rem 1.5rem;
+  box-sizing: border-box;
+  border-radius: 26px;
+  border: 0.5px solid var(--hairline);
+  background: var(--surface);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.6);
+  animation: rise 0.55s var(--ease) both;
+}
+
+.gateGlyph {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  margin-bottom: 1.1rem;
+  color: var(--label);
+  background: var(--surface-hi);
+  border: 0.5px solid var(--hairline);
+}
+
+.gateTitle {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.gateBody {
+  margin: 0.4rem 0 1.5rem;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: var(--label-2);
+  max-width: 17rem;
+}
+
+.gateInput,
+.search {
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--label);
+  background: var(--surface-hi);
+  border: 0.5px solid transparent;
+  border-radius: var(--radius-md);
+  padding: 0.8rem 1rem;
+  outline: none;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.gateInput::placeholder,
+.search::placeholder {
+  color: var(--label-3);
+}
+
+.gateInput:focus,
+.search:focus {
+  border-color: rgba(120, 140, 255, 0.55);
+  background: var(--surface);
+}
+
+.gateButton {
+  width: 100%;
+  margin-top: 0.75rem;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 590;
+  color: var(--on-fill);
+  background: var(--fill-strong);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  transition: transform 0.18s var(--ease), opacity 0.18s var(--ease);
+}
+
+.gateButton:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.gateButton:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.gateNote {
+  margin: 0.9rem 0 0;
+  font-size: 0.8125rem;
+  min-height: 1.1em;
+  color: var(--red);
+  opacity: 0;
+  transition: opacity 0.2s var(--ease);
+}
+
+.gateNoteShown {
+  opacity: 1;
+}
+
+.shake {
+  animation: rise 0.55s var(--ease) both, shake 0.42s var(--ease);
+}
+
+@keyframes shake {
+  10%, 90% { transform: translateX(-6px); }
+  30%, 70% { transform: translateX(7px); }
+  50% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ------------------------------------------------------------------- shell */
+
+.shell {
+  position: relative;
+  width: min(100%, 27rem);
+  margin: 0 auto;
+  padding: max(2rem, env(safe-area-inset-top)) 1.25rem calc(2rem + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-height: 100dvh;
+  justify-content: center;
+  animation: rise 0.6s var(--ease) both;
+}
+
+.header {
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.6875rem;
+  font-weight: 620;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--label-3);
+}
+
+.title {
+  margin: 0.35rem 0 1.15rem;
+  font-size: clamp(1.5rem, 6vw, 1.875rem);
+  font-weight: 680;
+  letter-spacing: -0.028em;
+  line-height: 1.15;
+}
+
+/* Segmented control: a translucent track with a thumb that slides. */
+.segmented {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 13.5rem;
+  margin: 0 auto;
+  padding: 2px;
+  border-radius: 9px;
+  background: var(--surface);
+  border: 0.5px solid var(--hairline);
+}
+
+.segmentedThumb {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  width: calc(50% - 2px);
+  border-radius: 7px;
+  background: var(--surface-hi);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.35s var(--ease);
+}
+
+.segmentedThumbRight {
+  transform: translateX(100%);
+}
+
+.segment {
+  position: relative;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 560;
+  color: var(--label-2);
+  background: none;
+  border: none;
+  padding: 0.4rem 0;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: color 0.25s var(--ease);
+}
+
+.segment[aria-selected='true'] {
+  color: var(--label);
+}
+
+/* --------------------------------------------------------- guesses (list) */
+
+.guessList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 0.5px solid var(--hairline);
+  overflow: hidden;
+}
+
+.guessRow {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0 0.875rem;
+  height: 2.875rem;
+  border-bottom: 0.5px solid var(--hairline);
+  transition: background 0.3s var(--ease);
+}
+
+.guessRow:last-child {
+  border-bottom: none;
+}
+
+.guessRowActive {
+  background: var(--surface-hi);
+}
+
+.guessGlyph {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: transparent;
+  background: var(--surface-hi);
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.glyph_correct {
+  color: #fff;
+  background: var(--green);
+}
+
+.glyph_wrong {
+  color: #fff;
+  background: var(--red);
+}
+
+.glyph_skip {
+  color: var(--label-2);
+}
+
+.guessText {
+  font-size: 0.875rem;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: fadeIn 0.35s var(--ease) both;
+}
+
+.guessTextEmpty {
+  color: var(--label-3);
+  font-variant-numeric: tabular-nums;
+  animation: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-4px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ----------------------------------------------------------------- reveal */
+
+.reveal {
+  text-align: center;
+  animation: rise 0.6s var(--ease) both;
+}
+
+.artWrap {
+  position: relative;
+  width: 11.5rem;
+  margin: 0 auto 1.15rem;
+  aspect-ratio: 1;
+}
+
+.art {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 22px 44px -16px rgba(0, 0, 0, 0.75);
+  animation: pop 0.6s var(--ease) both;
+}
+
+.artFallback {
+  background: linear-gradient(145deg, var(--surface-hi), var(--surface));
+}
+
+@keyframes pop {
+  from { opacity: 0; transform: scale(0.88); }
+  to { opacity: 1; transform: none; }
+}
+
+.verdict {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 620;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.verdictWon { color: var(--green); }
+.verdictLost { color: var(--label-3); }
+
+.revealTitle {
+  margin: 0;
+  font-size: 1.3125rem;
+  font-weight: 650;
+  letter-spacing: -0.022em;
+  line-height: 1.2;
+}
+
+.revealArtist {
+  margin: 0.2rem 0 0;
+  font-size: 1rem;
+  color: var(--label-2);
+}
+
+.revealAlbum {
+  margin: 0.35rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--label-3);
+}
+
+/* ----------------------------------------------------------------- player */
+
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.trackRow {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  width: 100%;
+}
+
+.time {
+  font-size: 0.6875rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--label-3);
+  flex: none;
+  width: 1.9rem;
+  text-align: center;
+}
+
+.track {
+  position: relative;
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--surface-hi);
+  overflow: hidden;
+}
+
+.trackUnlocked,
+.trackFill {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  border-radius: 3px;
+}
+
+.trackUnlocked {
+  background: var(--label-3);
+  transition: width 0.45s var(--ease);
+}
+
+.trackFill {
+  background: var(--label);
+}
+
+.tick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1.5px;
+  margin-left: -0.75px;
+  background: var(--bg);
+  opacity: 0.55;
+}
+
+.playButton {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  color: var(--on-fill);
+  background: var(--fill-strong);
+  box-shadow: 0 10px 28px -10px rgba(0, 0, 0, 0.7);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.playButton:active {
+  transform: scale(0.92);
+  box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.7);
+}
+
+.audioError {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--red);
+  text-align: center;
+}
+
+/* ---------------------------------------------------------------- actions */
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.actionRow {
+  display: flex;
+  gap: 0.625rem;
+}
+
+.actionRow > * {
+  flex: 1;
+}
+
+.buttonPrimary,
+.buttonSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 590;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.18s var(--ease), opacity 0.18s var(--ease), background 0.18s var(--ease);
+}
+
+.buttonPrimary {
+  color: var(--on-fill);
+  background: var(--fill-strong);
+}
+
+.buttonSecondary {
+  color: var(--label);
+  background: var(--surface-hi);
+  border: 0.5px solid var(--hairline);
+}
+
+.buttonPrimary:active,
+.buttonSecondary:active {
+  transform: scale(0.97);
+}
+
+.buttonPrimary:disabled {
+  opacity: 0.32;
+  cursor: default;
+  transform: none;
+}
+
+/* ----------------------------------------------------------------- search */
+
+.searchWrap {
+  position: relative;
+}
+
+.searchGlyph {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--label-3);
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+}
+
+.search {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.searchClear {
+  position: absolute;
+  right: 0.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  color: var(--bg);
+  background: var(--label-3);
+}
+
+/* The suggestion list floats above the controls, like a popover. */
+.results {
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  z-index: 5;
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem;
+  max-height: 17rem;
+  overflow-y: auto;
+  border-radius: var(--radius-md);
+  border: 0.5px solid var(--hairline);
+  /* Nearly opaque: the play button sits right behind this, and a popover has
+     to stay legible over bright content. */
+  background: var(--popover);
+  backdrop-filter: blur(34px) saturate(180%);
+  -webkit-backdrop-filter: blur(34px) saturate(180%);
+  box-shadow: 0 18px 44px -16px rgba(0, 0, 0, 0.7);
+  animation: rise 0.28s var(--ease) both;
+}
+
+.result {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: var(--label);
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 0.5rem;
+  cursor: pointer;
+}
+
+.resultActive {
+  background: var(--surface-hi);
+}
+
+.resultArt {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.resultText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.resultTitle,
+.resultArtist {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.resultTitle {
+  font-size: 0.875rem;
+  letter-spacing: -0.01em;
+}
+
+.resultArtist {
+  font-size: 0.75rem;
+  color: var(--label-2);
+}
+
+/* ----------------------------------------------------------------- footer */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--label-3);
+}
+
+.footer b {
+  font-weight: 590;
+  color: var(--label-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.footerDot {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+/* ------------------------------------------------------------------ toast */
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(1.75rem + env(safe-area-inset-bottom));
+  transform: translate(-50%, 12px);
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 560;
+  color: var(--label);
+  background: color-mix(in srgb, var(--bg) 60%, transparent);
+  border: 0.5px solid var(--hairline);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s var(--ease), transform 0.28s var(--ease);
+}
+
+.toastShown {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page *,
+  .page *::before,
+  .page *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

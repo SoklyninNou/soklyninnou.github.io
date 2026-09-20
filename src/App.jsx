@@ -9,6 +9,8 @@ import BlogPost from './pages/Blog/BlogPost.jsx';
 import GymTracker from './pages/GymTracker.jsx';
 import Mambo from './pages/Mambo.jsx';
 import ScreenSaver from './pages/ScreenSaver.jsx';
+// Unlisted on purpose: reachable only by typing the URL. Do not add to the nav.
+import BSide from './pages/BSide/BSide.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 export default function App() {
@@ -26,6 +28,7 @@ export default function App() {
       </Route>
       <Route path="/mambo" element={<Mambo />} />
       <Route path="/screen-saver" element={<ScreenSaver />} />
+      <Route path="/b-side" element={<BSide />} />
     </Routes>
   );
 }
